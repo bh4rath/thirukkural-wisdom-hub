@@ -1815,7 +1815,7 @@ function filterChapters(book, sub) {
   announce(sub === 'all' ? 'Showing all chapters' : `Filtered: ${sub}`);
 }
 
-function showChapters(book) {
+function showChapters(book, addToHistory = true) {
   currentBook = book;
   const meta = BOOK_META[book];
   document.getElementById('bc-book').textContent = meta.tamil;
@@ -1833,11 +1833,11 @@ function showChapters(book) {
   renderChapterCards(bookChapters);
 
   showView('view-chapters');
-  history.pushState({view:'chapters', book}, '');
+  if (addToHistory) history.pushState({view:'chapters', book}, '');
   announce(`${meta.english} — ${bookChapters.length} chapters`);
 }
 
-function showKurals(chapterNum, highlightNum) {
+function showKurals(chapterNum, highlightNum, addToHistory = true) {
   currentChapter = chapterNum;
   const ch = CHAPTERS[chapterNum - 1];
   const meta = BOOK_META[ch.book];
@@ -1905,7 +1905,7 @@ function showKurals(chapterNum, highlightNum) {
   updateChapterProgress(chapterNum);
 
   showView('view-kurals');
-  history.pushState({view:'kurals', chapterNum, book: ch.book}, '');
+  if (addToHistory) history.pushState({view:'kurals', chapterNum, book: ch.book}, '');
   announce(`${ch.e} — ${kurals.length} Kurals loaded`);
 
   if (highlightNum) {
@@ -2026,8 +2026,10 @@ function selectChapter(n) {
   const ch = CHAPTERS[n - 1];
   if (ch) {
     currentBook = ch.book;
-    showChapters(ch.book);
-    setTimeout(() => showKurals(n), 100);
+    // Set up chapters UI state (breadcrumb, filters) without pushing history,
+    // then navigate directly to kurals — one Back returns to the search origin.
+    showChapters(ch.book, false);
+    showKurals(n);
   }
 }
 
@@ -2050,10 +2052,10 @@ window.addEventListener('popstate', (e) => {
     showView('view-home');
   } else if (state.view === 'chapters') {
     currentBook = state.book;
-    showChapters(state.book);
+    showChapters(state.book, false);
   } else if (state.view === 'kurals') {
     currentBook = state.book;
-    showKurals(state.chapterNum);
+    showKurals(state.chapterNum, undefined, false);
   }
 });
 
