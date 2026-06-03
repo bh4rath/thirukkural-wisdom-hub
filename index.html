@@ -1249,9 +1249,40 @@ let lastFocusedElement = null;
 // ===== FETCH =====
 async function fetchKurals() {
   try {
+    // Try the pre-generated kid-friendly JSON first; fall back to original source
+    let rawList;
+    try {
+      const res = await fetch('./kurals-kids.json');
+      if (!res.ok) throw new Error('not found');
+      const data = await res.json();
+      // kurals-kids.json is already in our internal format (has .number, .line1, etc.)
+      rawList = data;
+      allKurals = rawList.map(k => {
+        const chNum = k.chapter_number || Math.ceil(k.number / 10);
+        const ch = CHAPTERS[chNum - 1] || {};
+        return {
+          number: k.number,
+          line1: k.line1 || '',
+          line2: k.line2 || '',
+          transliteration1: k.transliteration1 || '',
+          transliteration2: k.transliteration2 || '',
+          translation: k.translation || '',
+          meaning_tamil: k.meaning_tamil || '',
+          meaning_english: k.meaning_english || '',
+          chapter_number: chNum,
+          chapter_tamil: ch.t || '',
+          chapter_english: ch.e || '',
+          book: ch.book || 'aram',
+        };
+      });
+      return;
+    } catch (_) {
+      // kurals-kids.json not available yet — load from upstream source
+    }
+
     const res = await fetch('https://raw.githubusercontent.com/tk120404/thirukkural/master/thirukkural.json');
     const data = await res.json();
-    const rawList = data.kural || data;
+    rawList = data.kural || data;
     allKurals = rawList.map((k, i) => {
       const num = i + 1;
       const chNum = Math.ceil(num / 10);
