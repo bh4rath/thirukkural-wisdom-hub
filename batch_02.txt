@@ -1,0 +1,962 @@
+You are simplifying Thirukkural explanations so a 10-year-old child can easily read and understand them.
+
+For EVERY kural in the list below, rewrite TWO fields:
+1. "translation" — one clear sentence (max 20 words) in everyday English, capturing what the couplet says.
+2. "meaning_english" — 2-3 short sentences in simple, friendly language. Relate it to everyday life a child knows (school, family, friends, sports, food). No formal or old-fashioned words like "virtue", "righteousness", "thee", "thou", "conducive", "celestial", "temporal", "hath".
+
+Return ONLY a valid JSON array — no markdown, no code fences, no extra text:
+[{"num": <number>, "translation": "...", "meaning_english": "..."}, ...]
+
+Kurals to simplify:
+[
+  {
+    "num": 191,
+    "translation": "With silly words who insults all  Is held in contempt as banal",
+    "meaning_english": "He who to the disgust of many speaks useless things will be despised by all"
+  },
+  {
+    "num": 192,
+    "translation": "Vain talk before many is worse  Than doing to friends deeds adverse",
+    "meaning_english": "To speak useless things in the presence of many is a greater evil than to do unkind things towards friends"
+  },
+  {
+    "num": 193,
+    "translation": "The babbler's hasty lips proclaim  That \\\"good-for-nothing\\\" is his name",
+    "meaning_english": "That conversation in which a man utters forth useless things will say of him \"he is without virtue.\""
+  },
+  {
+    "num": 194,
+    "translation": "Vain words before an assembly  Will make all gains and goodness flee",
+    "meaning_english": "The words devoid of profit or pleasure which a man speaks will, being inconsistent with virtue,"
+  },
+  {
+    "num": 195,
+    "translation": "Glory and grace will go away  When savants silly nonsense say",
+    "meaning_english": "If the good speak vain words their eminence and excellence will leave them"
+  },
+  {
+    "num": 196,
+    "translation": "Call him a human chaff who prides  Himself in weightless idle words",
+    "meaning_english": "Call not him a man who parades forth his empty words Call him the chaff of men"
+  },
+  {
+    "num": 197,
+    "translation": "Let not men of worth vainly quack  Even if they would roughly speak",
+    "meaning_english": "Let the wise if they will, speak things without excellence; it will be well for them not to speak useless things"
+  },
+  {
+    "num": 198,
+    "translation": "The wise who weigh the worth refrain  From words that have no grain and brain",
+    "meaning_english": "The wise who seek after rare pleasures will not speak words that have not much weight in them"
+  },
+  {
+    "num": 199,
+    "translation": "The wise of spotless self-vision  Slip not to silly words-mention",
+    "meaning_english": "Those wise men who are without faults and are freed from ignorance will not even forgetfully speak things that profit not"
+  },
+  {
+    "num": 200,
+    "translation": "To purpose speak the fruitful word  And never indulge in useless load",
+    "meaning_english": "Speak what is useful, and speak not useless words"
+  },
+  {
+    "num": 201,
+    "translation": "Sinners fear not the pride of sin  The worthy dread the ill within",
+    "meaning_english": "Those who have experience of evil deeds will not fear, but the excellent will fear the pride of sin"
+  },
+  {
+    "num": 202,
+    "translation": "Since evil begets evil dire  Fear ye evil more than fire",
+    "meaning_english": "Because evil produces evil, therefore should evil be feared more than fire"
+  },
+  {
+    "num": 203,
+    "translation": "The wisest of the wise are those  Who injure not even their foes",
+    "meaning_english": "So shalt thou wisdom's highest law, 'tis said, fulfil"
+  },
+  {
+    "num": 204,
+    "translation": "His ruin virtue plots who plans  The ruin of another man's",
+    "meaning_english": "Even though forgetfulness meditate not the ruin of another Virtue will meditate the ruin of him who thus meditates"
+  },
+  {
+    "num": 205,
+    "translation": "Who makes poverty plea for ill  Shall reduce himself poorer still",
+    "meaning_english": "Commit not evil, saying, \"I am poor\": if you do, you will become poorer still"
+  },
+  {
+    "num": 206,
+    "translation": "From wounding others let him refrain  Who would from harm himself remain",
+    "meaning_english": "Let him not do evil to others who desires not that sorrows should pursue him"
+  },
+  {
+    "num": 207,
+    "translation": "Men may escape other foes and live  But sin its deadly blow will give",
+    "meaning_english": "However great be the enmity men have incurred they may still live The enmity of sin will incessantly pursue and kill"
+  },
+  {
+    "num": 208,
+    "translation": "Ruin follows who evil do  As shadow follows as they go",
+    "meaning_english": "Destruction will dwell at the heels of those who commit evil even as their shadow that leaves them not"
+  },
+  {
+    "num": 209,
+    "translation": "Let none who loves himself at all  Think of evil however small",
+    "meaning_english": "If a man love himself, let him not commit any sin however small"
+  },
+  {
+    "num": 210,
+    "translation": "He is secure, know ye, from ills  Who slips not right path to do evils",
+    "meaning_english": "Know ye that he is freed from destruction who commits no evil, going to neither side of the right path"
+  },
+  {
+    "num": 211,
+    "translation": "Duty demands nothing in turn;  How can the world recompense rain?",
+    "meaning_english": "Benevolence seeks not a return. What does the world give back to the clouds ?"
+  },
+  {
+    "num": 212,
+    "translation": "All the wealth that toils give  Is meant to serve those who deserve",
+    "meaning_english": "All the wealth acquired with perseverance by the worthy is for the exercise of benevolence"
+  },
+  {
+    "num": 213,
+    "translation": "In heav'n and earth 'tis hard to find  A greater good than being kind",
+    "meaning_english": "It is difficult to obtain another good equal to benevolence either in this world or in that of the gods"
+  },
+  {
+    "num": 214,
+    "translation": "He lives who knows befitting act  Others are deemed as dead in fact",
+    "meaning_english": "He truly lives who knows (and discharges) the proper duties (of benevolence) He who knows them not will be reckoned among the dead"
+  },
+  {
+    "num": 215,
+    "translation": "The wealth that wise and kind do make  Is like water that fills a lake",
+    "meaning_english": "The wealth of that man of eminent knowledge who desires to exercise the benevolence approved of by the world, is like the full waters of a city-tank"
+  },
+  {
+    "num": 216,
+    "translation": "Who plenty gets and plenty gives  Is like town-tree teeming with fruits",
+    "meaning_english": "The wealth of a man (possessed of the virtue) of benevolence is like the ripening of a fruitful tree in the midst of a town"
+  },
+  {
+    "num": 217,
+    "translation": "The wealth of a wide-hearted soul  Is a herbal tree that healeth all",
+    "meaning_english": "If wealth be in the possession of a man who has the great excellence (of benevolence), it is like a tree which as a medicine is an infallible cure for disease"
+  },
+  {
+    "num": 218,
+    "translation": "Though seers may fall on evil days  Their sense of duty never strays",
+    "meaning_english": "The wise who know what is duty will not scant their benevolence even when they are without wealth"
+  },
+  {
+    "num": 219,
+    "translation": "The good man's poverty and grief  Is want of means to give relief",
+    "meaning_english": "The poverty of a benevolent man, is nothing but his inability to exercise the same"
+  },
+  {
+    "num": 220,
+    "translation": "By good if ruin comes across  Sell yourself to save that loss",
+    "meaning_english": "If it be said that loss will result from benevolence, such loss is worth being procured even by the sale of one's self"
+  },
+  {
+    "num": 221,
+    "translation": "To give the poor is charity  The rest is loan and vanity",
+    "meaning_english": "To give to the destitute is true charity All other gifts have the nature of (what is done for) a measured return"
+  },
+  {
+    "num": 222,
+    "translation": "To beg is bad e'en from the good  To give is good, were heaven forbid",
+    "meaning_english": "To beg is evil, even though it were said that it is a good path (to heaven) To give is good, even though it were said that those who do so cannot obtain heaven"
+  },
+  {
+    "num": 223,
+    "translation": "No pleading, \\\"I am nothing worth,\\\"  But giving marks a noble birth",
+    "meaning_english": "(Even in a low state) not to adopt the mean expedient of saying \"I have nothing,\" but to give, is the characteristic of the mad of noble birth"
+  },
+  {
+    "num": 224,
+    "translation": "The cry for alms is painful sight  Until the giver sees him bright",
+    "meaning_english": "To see men begging from us in disagreeable, until we see their pleasant countenance"
+  },
+  {
+    "num": 225,
+    "translation": "Higher's power which hunger cures  Than that of penance which endures",
+    "meaning_english": "The power of those who perform penance is the power of enduring hunger It is inferior to the power of those who remove the hunger (of others)"
+  },
+  {
+    "num": 226,
+    "translation": "Drive from the poor their gnawing pains  If room you seek to store your gains",
+    "meaning_english": "The removal of the killing hunger of the poor is the place for one to lay up his wealth"
+  },
+  {
+    "num": 227,
+    "translation": "Who shares his food with those who need  Hunger shall not harm his creed",
+    "meaning_english": "The fiery disease of hunger shall never touch him who habitually distributes his food to others"
+  },
+  {
+    "num": 228,
+    "translation": "The joy of give and take they lose  Hard-hearted rich whose hoarding fails",
+    "meaning_english": "Do the hard-eyed who lay up and lose their possessions not know the happiness which springs from the pleasure of giving ?"
+  },
+  {
+    "num": 229,
+    "translation": "Worse than begging is that boarding  Alone what one's greed is hoarding",
+    "meaning_english": "Solitary and unshared eating for the sake of filling up one's own riches is certainly much more"
+  },
+  {
+    "num": 230,
+    "translation": "Nothing is more painful than death  Yet more is pain of giftless dearth",
+    "meaning_english": "Nothing is more unpleasant than death: yet even that is pleasant where charity cannot be exercised"
+  },
+  {
+    "num": 231,
+    "translation": "They gather fame who freely give  The greatest gain for all that live",
+    "meaning_english": "Give to the poor and live with praise There is no greater profit to man than that"
+  },
+  {
+    "num": 232,
+    "translation": "The glory of the alms-giver  Is praised aloud as popular",
+    "meaning_english": "Whatsoever is spoken in the world will abide as praise upon that man who gives alms to the poor"
+  },
+  {
+    "num": 233,
+    "translation": "Nothing else lasts on earth for e'er  Saving high fame of the giver!",
+    "meaning_english": "There is nothing that stands forth in the world imperishable, except fame, exalted in solitary greatness"
+  },
+  {
+    "num": 234,
+    "translation": "From hailing gods heavens will cease  To hail the men of lasting praise",
+    "meaning_english": "If one has acquired extensive fame within the limits of this earth, the world of the Gods will no longer praise those sages who have attained that world"
+  },
+  {
+    "num": 235,
+    "translation": "Fame in fall and life in death  Are rare but for the soulful worth",
+    "meaning_english": "Prosperity to the body of fame, resulting in poverty to the body of flesh and the stability to the former arising from the death of the latter, are achievable only by the wise"
+  },
+  {
+    "num": 236,
+    "translation": "Be born with fame if birth you want  If not of birth you must not vaunt",
+    "meaning_english": "If you are born (in this world), be born with qualities conductive to fame From those who are destitute of them it will be better not to be born"
+  },
+  {
+    "num": 237,
+    "translation": "Why grieve at those who blame the shame  Of those who cannot live in fame?",
+    "meaning_english": "Why do those who cannot live with praise, grieve those who despise them, instead of grieving themselves for their own inability"
+  },
+  {
+    "num": 238,
+    "translation": "To men on earth it is a shame  Not to beget the child of fame",
+    "meaning_english": "Not to beget fame will be esteemed a disgrace by the wise in this world"
+  },
+  {
+    "num": 239,
+    "translation": "The land will shrink in yield if men  O'erburden it without renown",
+    "meaning_english": "The ground which supports a body without fame will diminish in its rich produce"
+  },
+  {
+    "num": 240,
+    "translation": "They live who live without blemish  The blameful ones do not flurish",
+    "meaning_english": "Those live who live without disgrace Those who live without fame live not"
+  },
+  {
+    "num": 241,
+    "translation": "The wealth of wealth is wealth of grace  Earthly wealth e'en the basest has",
+    "meaning_english": "The wealth of kindness is wealth of wealth, in as much as the wealth of property is possessed by the basest of men"
+  },
+  {
+    "num": 242,
+    "translation": "Seek by sound ways good compassion;  All faiths mark that for-salvation",
+    "meaning_english": "(Stand) in the good path, consider, and be kind. Even considering according to the conflicting tenets of the different sects, kindness will be your best aid, (in the acquisition of heavenly bliss.)"
+  },
+  {
+    "num": 243,
+    "translation": "The hearts of mercy shall not go  Into dark worlds of gruesome woe",
+    "meaning_english": "They will never enter the world of darkness and wretchedness whose minds are the abode of kindness"
+  },
+  {
+    "num": 244,
+    "translation": "His soul is free from dread of sins  Whose mercy serveth all beings",
+    "meaning_english": "(The wise) say that the evils, which his soul would dread, will never come upon the man who exercises kindness and protects the life (of other creatures)"
+  },
+  {
+    "num": 245,
+    "translation": "The wide wind-fed world witness bears:  Men of mercy meet not sorrows",
+    "meaning_english": "This great rich earth over which the wind blows, is a witness that sorrow never comes upon the kindhearted"
+  },
+  {
+    "num": 246,
+    "translation": "Who grace forsake and graceless act  The former loss and woes forget",
+    "meaning_english": "(The wise) say that those who neglect kindness and practise cruelties, neglected virtue (in their former birth), and forgot (the sorrows which they must suffer.)"
+  },
+  {
+    "num": 247,
+    "translation": "This world is not for weathless ones  That world is not for graceless swines",
+    "meaning_english": "As this world is not for those who are without wealth, so that world is not for those who are without kindness"
+  },
+  {
+    "num": 248,
+    "translation": "The wealthless may prosper one day;  The graceless never bloom agay",
+    "meaning_english": "Those who are without wealth may, at some future time, become prosperous; those who are destitute of kindness are utterly destitute; for them there is no change"
+  },
+  {
+    "num": 249,
+    "translation": "Like Truth twisted by confused mind  Wisdom is vain in hearts unkind",
+    "meaning_english": "If you consider, the virtue of him who is without kindness is like the perception of the true being by him who is without wisdom"
+  },
+  {
+    "num": 250,
+    "translation": "Think how you feel before the strong  When to the feeble you do wrong",
+    "meaning_english": "When a man is about to rush upon those who are weaker than himself, let him remember how he has stood (trembling) before those who are stronger than himself"
+  },
+  {
+    "num": 251,
+    "translation": "What graciousness can one command  who feeds his flesh by flesh gourmand",
+    "meaning_english": "How can he be possessed of kindness, who to increase his own flesh, eats the flesh of other creatures"
+  },
+  {
+    "num": 252,
+    "translation": "The thriftless have no property  And flesh-eaters have no pity",
+    "meaning_english": "As those possess no property who do not take care of it, so those possess no kindness who feed on flesh"
+  },
+  {
+    "num": 253,
+    "translation": "Who wields a steel is steel-hearted  Who tastes body is hard-hearted",
+    "meaning_english": "Like the (murderous) mind of him who carries a weapon (in his hand), the mind of him who feasts with pleasure on the body of another (creature), has no regard for goodness"
+  },
+  {
+    "num": 254,
+    "translation": "If merciless it is to kill,  To kill and eat is disgraceful",
+    "meaning_english": "If it be asked what is kindness and what its opposite, the answer would be preservation and destruction of life; and therefore it is not right to feed on the flesh (obtained by taking away life)"
+  },
+  {
+    "num": 255,
+    "translation": "Off with flesh; a life you save  The eater hell's mouth shall not waive!",
+    "meaning_english": "Not to eat flesh contributes to the continuance of life; therefore if a man eat flesh, hell will not open its mouth (to let him escape out, after he has once fallen in)"
+  },
+  {
+    "num": 256,
+    "translation": "None would kill and sell the flesh  For eating it if they don't wish",
+    "meaning_english": "If the world does not destroy life for the purpose of eating, then no one would sell flesh for the sake of money"
+  },
+  {
+    "num": 257,
+    "translation": "From eating flesh men must abstain  If they but feel the being's pain",
+    "meaning_english": "If men should come to know that flesh is nothing but the unclean ulcer of a body, let them abstain from eating it"
+  },
+  {
+    "num": 258,
+    "translation": "Whose mind from illusion is freed  Refuse on lifeless flesh to feed",
+    "meaning_english": "The wise, who have freed themselves from mental delusion, will not eat the flesh which has been severed from an animal"
+  },
+  {
+    "num": 259,
+    "translation": "Not to-kill-and-eat, truly  Excels thousand pourings of ghee!",
+    "meaning_english": "Not to kill and eat (the flesh of) an animal, is better than the pouring forth of ghee etc, in a thousand sacrifices"
+  },
+  {
+    "num": 260,
+    "translation": "All lives shall lift their palms to him  Who eats not flesh nor kills with whim",
+    "meaning_english": "All creatures will join their hands together, and worship him who has never taken away life, nor eaten flesh"
+  },
+  {
+    "num": 261,
+    "translation": "Pains endure; pain not beings  This is the type of true penance",
+    "meaning_english": "The nature of religious discipline consists, in the endurance (by the ascetic) of the sufferings which it brings on himself, and in abstaining from giving pain to others"
+  },
+  {
+    "num": 262,
+    "translation": "Penance is fit for penitents  Not for him who in vain pretends",
+    "meaning_english": "Austerities can only be borne, and their benefits enjoyed, by those who have practised them (in a former birth); it will be useless for those who have not done so, to attempt to practise them (now)"
+  },
+  {
+    "num": 263,
+    "translation": "Is it to true penitent's aid,  That others austere path avoid?",
+    "meaning_english": "It is to provide food etc, for the ascetics who have abandoned (the desire of earthly possessions) that other persons have forgotten (to practise) austerity ?"
+  },
+  {
+    "num": 264,
+    "translation": "In penance lies the power to save  The friends and foil the foe and knave",
+    "meaning_english": "If (the ascetic) desire the destruction of his enemies, or the aggrandizement of his friends, it will be effected by (the power of) his austerities"
+  },
+  {
+    "num": 265,
+    "translation": "What they wish as they wish is won  Here hence by men penance is done",
+    "meaning_english": "Religious dislipline is practised in this world, because it secures the attainment of whatever one may wish to enjoy (in the world to come)"
+  },
+  {
+    "num": 266,
+    "translation": "Who do penance achieve their aim  Others desire-rid themselves harm",
+    "meaning_english": "Those discharge their duty who perform austerities; all others accomplish their own destruction, through the entanglement of the desire (of riches and sensual pleasure)"
+  },
+  {
+    "num": 267,
+    "translation": "Pure and bright gets the gold in fire;  and so the life by pain austere",
+    "meaning_english": "Just as gold is purified as heated in the fire, will those shine, who have endured the burning of pain (in frequent austerities)"
+  },
+  {
+    "num": 268,
+    "translation": "He worship wins from every soul  Who Master is by soul control",
+    "meaning_english": "All other creatures will worship him who has attained the control of his own soul"
+  },
+  {
+    "num": 269,
+    "translation": "They can even defy death  Who get by penance godly strenth",
+    "meaning_english": "Those who have attained the power which religious discipline confers, will be able also to pass the limit of Yama, (the God of death)"
+  },
+  {
+    "num": 270,
+    "translation": "Many are poor and few are rich  For they care not for penance much",
+    "meaning_english": "Because there are few who practise austerity and many who do not, there are many destitute and few rich in this world"
+  },
+  {
+    "num": 271,
+    "translation": "Elements five of feigned life  Of a sly hypocrite within laugh",
+    "meaning_english": "The five elements (of his body) will laugh within him at the feigned conduct of the deceitful minded man"
+  },
+  {
+    "num": 272,
+    "translation": "Of what avail are sky-high shows  When guild the conscience gnaws and knows",
+    "meaning_english": "What avails an appearance (of sanctity) high as heaven, if his mind suffers (the indulgence) of conscious sin"
+  },
+  {
+    "num": 273,
+    "translation": "Vaunting sainthood while week within  Seems a grazer with tiger skin",
+    "meaning_english": "The assumed appearance of power, by a man who has no power (to restrain his senses and perform austerity), is like a cow feeding on grass covered with a tiger's skin"
+  },
+  {
+    "num": 274,
+    "translation": "Sinning in saintly show is like  Fowlers in ambush birds to strike",
+    "meaning_english": "He who hides himself under the mask of an ascetic and commits sins, like a sportsman who conceals himself in the thicket to catch birds"
+  },
+  {
+    "num": 275,
+    "translation": "Who false within but freedom feign  Shall moan \\\"What have we done\\\" with pain",
+    "meaning_english": "The false conduct of those who say they have renounced all desire will one day bring them sorrows that will make them cry out, \"Oh! what have we done, what have we done.\""
+  },
+  {
+    "num": 276,
+    "translation": "Vilest is he who seems a saint  Cheating the world without restraint",
+    "meaning_english": "Amongst living men there are none so hard-hearted as those who without to saking (desire) in their heart, falsely take the appearance of those who have forsaken (it)"
+  },
+  {
+    "num": 277,
+    "translation": "Berry-red is his outward view,  Black like its nose his inward hue",
+    "meaning_english": "(The world) contains persons whose outside appears (as fair) as the (red) berry of the Abrus, but whose inside is as black as the nose of that berry"
+  },
+  {
+    "num": 278,
+    "translation": "Filthy in mind some bathe in streams  Hiding sins in showy extremes",
+    "meaning_english": "There are many men of masked conduct, who perform their ablutions, and (make a show) of"
+  },
+  {
+    "num": 279,
+    "translation": "Know men by acts and not by forms  Strait arrow kills, bent lute but charms",
+    "meaning_english": "As, in its use, the arrow is crooked, and the curved lute is straight, so by their deeds, (and not by their appearance) let (the uprightness or crookedness of) men be estimated"
+  },
+  {
+    "num": 280,
+    "translation": "No balding nor tangling the hair!  Abstain from condemned acts with care",
+    "meaning_english": "There is no need of a shaven crown, nor of tangled hair, if a man abstain from those deeds which the wise have condemned"
+  },
+  {
+    "num": 281,
+    "translation": "Let him who would reproachless be  From all frauds guard his conscience free",
+    "meaning_english": "Let him, who desires not to be despised, keep his mind from (the desire of) defrauding another of the smallest thing"
+  },
+  {
+    "num": 282,
+    "translation": "\\\"We will by fraud win other's wealth\\\"  Even this thought is sin and stealth",
+    "meaning_english": "Even the thought (of sin) is sin; think not then of crafiily stealing the property of another"
+  },
+  {
+    "num": 283,
+    "translation": "The gain by fraud may overflow  But swift to ruin it shall go",
+    "meaning_english": "The property, which is acquired by fraud, will entirely perish, even while it seems to increase"
+  },
+  {
+    "num": 284,
+    "translation": "The fruit that fraud and greed obtain  Shall end in endless grief and pain",
+    "meaning_english": "The eager desire of defrauding others will, when it brings forth its fruit, produce undying sorrow"
+  },
+  {
+    "num": 285,
+    "translation": "Love and Grace are not their worth  Who watch to waylay dozer's wealth",
+    "meaning_english": "The study of kindness and the exercise of benevolence is not with those who watch for another's forgetfulness, though desire of his property"
+  },
+  {
+    "num": 286,
+    "translation": "They cannot walk in measured bounds  who crave and have covetous ends",
+    "meaning_english": "They cannot walk steadfastly, according to rule, who eagerly desire to defraud others"
+  },
+  {
+    "num": 287,
+    "translation": "Men of measured wisdom shun  Black art of fraud and what it won",
+    "meaning_english": "That black-knowledge which is called fraud, is not in those who desire that greatness which is called rectitude"
+  },
+  {
+    "num": 288,
+    "translation": "Virtue abides in righteous hearts  Into minds of frauds deceit darts",
+    "meaning_english": "Deceit dwells in the mind of those who are conversant with fraud, even as virtue in the minds of those who are conversant with rectitude"
+  },
+  {
+    "num": 289,
+    "translation": "They perish in their perfidy  Who know nothing but pilfery",
+    "meaning_english": "Those, who are acquainted with nothing but fraud, will perish in the very commission of transgression"
+  },
+  {
+    "num": 290,
+    "translation": "Even the body rejects thieves;  The honest men, heaven receives",
+    "meaning_english": "Even their body will fail the fraudulent; but even the world of the gods will not fail those who are free from fraud"
+  },
+  {
+    "num": 291,
+    "translation": "If \\\"What is truth\\\"? the question be,  It is to speak out evil-free",
+    "meaning_english": "Truth is the speaking of such words as are free from the least degree of evil (to others)"
+  },
+  {
+    "num": 292,
+    "translation": "E'en falsehood may for truth suffice,  When good it brings removing vice",
+    "meaning_english": "Even falsehood has the nature of truth, if it confer a benefit that is free from fault"
+  },
+  {
+    "num": 293,
+    "translation": "Let not a man knowingly lie;  Conscience will scorch and make him sigh",
+    "meaning_english": "Let not a man knowingly tell a lie; for after he has told the lie, his mind will burn him (with the memory of his guilt)"
+  },
+  {
+    "num": 294,
+    "translation": "He lives in loving hearts of all  Who serves the Truth serene in soul",
+    "meaning_english": "He who, in his conduct, preserves a mind free from deceit, will dwell in the minds of all men"
+  },
+  {
+    "num": 295,
+    "translation": "To speak the truth from heart sincere  Is more than giving and living austere",
+    "meaning_english": "He, who speaks truth with all his heart, is superior to those who make gifts and practise austerities"
+  },
+  {
+    "num": 296,
+    "translation": "Not to lie brings all the praise  All virtues from Truth arise",
+    "meaning_english": "There is no praise like the praise of never uttering a falsehood: without causing any suffering, it will lead to every virtue"
+  },
+  {
+    "num": 297,
+    "translation": "Lie not lie not Naught else you need  All virtues are in Truth indeed",
+    "meaning_english": "If a man has the power to abstain from falsehood, it will be well with him, even though he practise no other virtue"
+  },
+  {
+    "num": 298,
+    "translation": "Water makes you pure outward  Truth renders you pure inward",
+    "meaning_english": "Purity of body is produced by water and purity of mind by truthfulness"
+  },
+  {
+    "num": 299,
+    "translation": "All lights are not lights for the wise;  Truth light is light bright like Sun-light",
+    "meaning_english": "All lamps of nature are not lamps; the lamp of truth is the lamp of the wise"
+  },
+  {
+    "num": 300,
+    "translation": "Of all the things we here have seen  Nothing surpasses Truth serene!",
+    "meaning_english": "Amidst all that we have seen (described) as real (excellence), there is nothing so good as truthfulness"
+  },
+  {
+    "num": 301,
+    "translation": "Anger against the weak is wrong  It is futile against the strong",
+    "meaning_english": "He restrains his anger who restrains it when it can injure; when it cannot injure, what does it matter whether he restrain it, or not ?"
+  },
+  {
+    "num": 302,
+    "translation": "Vain is wrath against men of force  Against the meek it is still worse",
+    "meaning_english": "Anger is bad, even when it cannot injure; when it can injure; there is no greater evil"
+  },
+  {
+    "num": 303,
+    "translation": "Off with wrath with any one  It is the source of sin and pain",
+    "meaning_english": "Forget anger towards every one, as fountains of evil spring from it"
+  },
+  {
+    "num": 304,
+    "translation": "Is there a foe like harmful ire  Which kills the smile and joyful cheer?",
+    "meaning_english": "What other foe to man works such annoy?"
+  },
+  {
+    "num": 305,
+    "translation": "Thyself to save, from wrath away!  If not thyself the wrath will slay",
+    "meaning_english": "If a man would guard himself, let him guard against anger; if he do not guard it, anger will kill him"
+  },
+  {
+    "num": 306,
+    "translation": "Friend-killer is the fatal rage  It burns the helpful kinship-barge",
+    "meaning_english": "The fire of anger will burn up even the pleasant raft of friendship"
+  },
+  {
+    "num": 307,
+    "translation": "The wrath-lover to doom is bound  Like failless-hand that strikes the ground",
+    "meaning_english": "Destruction will come upon him who ragards anger as a good thing, as surely as the hand of him who strikes the ground will not fail"
+  },
+  {
+    "num": 308,
+    "translation": "Save thy soul from burning ire  Though tortured like the touch of fire",
+    "meaning_english": "Though one commit things against you as painful (to bear) as if a bundle of fire had been thrust upon you, it will be well, to refrain, if possible, from anger"
+  },
+  {
+    "num": 309,
+    "translation": "Wishes he gains as he wishes  If man refrains from rage vicious!",
+    "meaning_english": "If a man never indulges anger in his heart, he will at once obtain whatever he has thought of"
+  },
+  {
+    "num": 310,
+    "translation": "Dead are they who are anger-fed  Saints are they from whom wrath has fled",
+    "meaning_english": "Those, who give way to excessive anger, are no better than dead men; but those, who are freed from it, are equal to those who are freed (from death)"
+  },
+  {
+    "num": 311,
+    "translation": "The pure by faith mean pain to none  Though princely wealth by that is won",
+    "meaning_english": "It is the determination of the spotless not to cause sorrow to others, although they could (by so causing) obtain the wealth which confers greatness"
+  },
+  {
+    "num": 312,
+    "translation": "The spotless hearts seek not revenge  Though Malice does the worst in rage",
+    "meaning_english": "It is the determination of the spotless not to do evil, even in return, to those who have cherished enmity and done them evil"
+  },
+  {
+    "num": 313,
+    "translation": "Revenging even causeless hate  Bad-blood breeds and baneful heat",
+    "meaning_english": "In an ascetic inflict suffering even on those who hate him, when he has not done them any evil, it will afterwards give him irretrievable sorrow"
+  },
+  {
+    "num": 314,
+    "translation": "Doing good-turns, put them to shame  Thus chide the evil who do harm",
+    "meaning_english": "The (proper) punishment to those who have done evil (to you), is to put them to shame by showing them kindness, in return and to forget both the evil and the good done on both sides"
+  },
+  {
+    "num": 315,
+    "translation": "What does a man from wisdom gain  If he pines not at other's pain?",
+    "meaning_english": "What benefit has he derived from his knowledge, who does not endeavour to keep off pain from another as much as from himself ?"
+  },
+  {
+    "num": 316,
+    "translation": "What you feel as pain to yourself  Do it not to the other-self",
+    "meaning_english": "Let not a man consent to do those things to another which, he knows, will cause sorrow"
+  },
+  {
+    "num": 317,
+    "translation": "Any, anywhere injure not  At any time even in thought",
+    "meaning_english": "It is the chief of all virtues not knowingly to do any person evil, even in the lowest degree, and at any time"
+  },
+  {
+    "num": 318,
+    "translation": "How can he injure other souls  Who in his life injury feels",
+    "meaning_english": "Why does a man inflict upon other creatures those sufferings, which he has found by experience are sufferings to himself ?"
+  },
+  {
+    "num": 319,
+    "translation": "Harm others in the forenoon  Harm seeks thee in afternoon",
+    "meaning_english": "If a man inflict sorrow upon others in the morning, it will come upon him unsought in the very evening"
+  },
+  {
+    "num": 320,
+    "translation": "No harm is done by peace-lovers  For pains rebound on pain-givers",
+    "meaning_english": "Sorrow will come upon those who cause pain to others; therfore those, who desire to be free from sorrow, give no pain to others"
+  },
+  {
+    "num": 321,
+    "translation": "What is Virtue? 'Tis not to kill  For killing causes every ill",
+    "meaning_english": "Never to destroy life is the sum of all virtuous conduct The destruction of life leads to every evil"
+  },
+  {
+    "num": 322,
+    "translation": "Share the food and serve all lives  This is the law of all the laws",
+    "meaning_english": "The chief of all (the virtues) which authors have summed up, is the partaking of food that has been shared with others, and the preservation of the mainfold life of other creatures"
+  },
+  {
+    "num": 323,
+    "translation": "Not to kill is unique good  The next, not to utter falsehood",
+    "meaning_english": "Not to destroy life is an incomparably (great) good next to it in goodness ranks freedom from falsehood"
+  },
+  {
+    "num": 324,
+    "translation": "What way is good? That we can say  The way away from heat to slay",
+    "meaning_english": "Good path is that which considers how it may avoid killing any creature"
+  },
+  {
+    "num": 325,
+    "translation": "Of saints who renounce birth-fearing  The head is he who dreads killing",
+    "meaning_english": "Of all those who, fearing the permanence of earthly births, have abandoned desire, he is the chief who, fearing (the guilt of) murder, considers how he may avoid the destruction of life"
+  },
+  {
+    "num": 326,
+    "translation": "Life-eating-Death shall spare the breath  Of him who no life puts to death",
+    "meaning_english": "Yama, the destroyer of life, will not attack the life of him, who acts under the determination of never destroying life"
+  },
+  {
+    "num": 327,
+    "translation": "Kill not life that others cherish  Even when your life must perish",
+    "meaning_english": "Let no one do that which would destroy the life of another, although he should by so doing, lose his own life"
+  },
+  {
+    "num": 328,
+    "translation": "The gain of slaughter is a vice  Though deemed good in sacrifice",
+    "meaning_english": "The advantage which might flow from destroying life in sacrifice, is dishonourable to the wise (who renounced the world), even although it should be said to be productive of great good"
+  },
+  {
+    "num": 329,
+    "translation": "Those who live by slaying are  Eaters of carrion bizarre!",
+    "meaning_english": "To minds of them who what is vileness know"
+  },
+  {
+    "num": 330,
+    "translation": "The loathsome poor sickly and sore  Are killers stained by blood before",
+    "meaning_english": "(The wise) will say that men of diseased bodies, who live in degradation and in poverty, are those who separated the life from the body of animals (in a former birth)"
+  },
+  {
+    "num": 331,
+    "translation": "The worst of follies it is told  The fleeting as lasting to hold",
+    "meaning_english": "That ignorance which considers those things to be stable which are not so, is dishonourable (to the wise)"
+  },
+  {
+    "num": 332,
+    "translation": "Like a drama-crowd wealth gathers  Like passing show its pride too goes",
+    "meaning_english": "The acquisition of wealth is like the gathering together of an assembly for a theatre; its expenditure is like the breaking up of that assembly"
+  },
+  {
+    "num": 333,
+    "translation": "Wealth wanes away; but when it comes  Take care to do enduring things",
+    "meaning_english": "Wealth is perishable; let those who obtain it immediately practise those (virtues) which are imperishable"
+  },
+  {
+    "num": 334,
+    "translation": "The showy day is but a saw  Your life, know that, to file and gnaw",
+    "meaning_english": "Time, which shows itself (to the ignorant) as if it were something (real) is in the estimation of the wise (only) a saw which cuts down life"
+  },
+  {
+    "num": 335,
+    "translation": "Ere tongue benumbs and hiccough comes  Rise up to do good deeds betimes",
+    "meaning_english": "Let virtuous deeds be done quickly, before the hiccup comes making the tongue silent"
+  },
+  {
+    "num": 336,
+    "translation": "One was yesterday; not today!",
+    "meaning_english": "This world possesses the greatness that one who yesterday was is not today"
+  },
+  {
+    "num": 337,
+    "translation": "Man knows not his next moment  On crores of things he is intent",
+    "meaning_english": "Innumerable are the thoughts which occupy the mind of (the unwise), who know not that they shall live another moment"
+  },
+  {
+    "num": 338,
+    "translation": "The soul from body any day  Like bird from egg-shell flies away",
+    "meaning_english": "The love of the soul to the body is like (the love of) a bird to its egg which it flies away from and leaves empty"
+  },
+  {
+    "num": 339,
+    "translation": "Death is like a slumber deep  And birth like waking from that sleep",
+    "meaning_english": "Death is like sleep; birth is like awaking from it"
+  },
+  {
+    "num": 340,
+    "translation": "The life berthed in this body shows  A fixed home it never knows",
+    "meaning_english": "It seems as if the soul, which takes a temporary shelter in a body, had not attained a home"
+  },
+  {
+    "num": 341,
+    "translation": "From what from what a man is free  From that, from that his torments flee",
+    "meaning_english": "Whatever thing, a man has renounced, by that thing; he cannot suffer pain"
+  },
+  {
+    "num": 342,
+    "translation": "Give up all to gain the True  And endless joys shall hence seek you",
+    "meaning_english": "After a man has renounced (all things), there will still be many things in this world (which he may enjoy); if he should desire them, let him, while it is time abandon (the world)"
+  },
+  {
+    "num": 343,
+    "translation": "Curb the senses five and renounce  The carving desires all at once",
+    "meaning_english": "Let the five senses be destroyed; and at the same time, let everything be abandoned that (the ascetic) has (formerly) desired"
+  },
+  {
+    "num": 344,
+    "translation": "To have nothing is law of vows  Having the least deludes and snares",
+    "meaning_english": "To be altogether destitute is the proper condition of those who perform austerities; if they possess anything, it will change (their resolution) and bring them back to their confused state"
+  },
+  {
+    "num": 345,
+    "translation": "Why add to bonds while this body  Is too much for saints to be birth-free",
+    "meaning_english": "What means the addition of other things those who are attempting to cut off (future) births, when even their body is too much (for them)"
+  },
+  {
+    "num": 346,
+    "translation": "Who curbs the pride of I and mine  Gets a world rare for gods to gain",
+    "meaning_english": "Shall enter realms above the powers divine"
+  },
+  {
+    "num": 347,
+    "translation": "Grief clings on and on to those  Who cling to bonds without release",
+    "meaning_english": "Sorrows will never let go their hold of those who give not up their hold of desire"
+  },
+  {
+    "num": 348,
+    "translation": "Who renounce all are free from care  Others suffer delusive snare",
+    "meaning_english": "Those who have entirely renounced (all things and all desire) have obtained (absorption into God); all others wander in confusion, entangled in the net of (many) births"
+  },
+  {
+    "num": 349,
+    "translation": "Bondage cut off, rebirth is off  The world then seems instable stuff",
+    "meaning_english": "At the moment in which desire has been abandoned, (other) births will be cut off; when that has not been done, instability will be seen"
+  },
+  {
+    "num": 350,
+    "translation": "Bind Thyself to the unbound one  That binding breaks all bonds anon",
+    "meaning_english": "Desire the desire of Him who is without desire; in order to renounce desire, desire that desire"
+  },
+  {
+    "num": 351,
+    "translation": "That error entails ignoble birth  Which deems vain things as things of worth",
+    "meaning_english": "Inglorious births are produced by the confusion (of mind) which considers those things to be real which are not real"
+  },
+  {
+    "num": 352,
+    "translation": "Men of spotless pure insight  Enjoy delight devoid of night",
+    "meaning_english": "A clear, undimmed vision of things will deliver its possessors from the darkness of future births, and confer the felicity (of heaven)"
+  },
+  {
+    "num": 353,
+    "translation": "To doubtless minds whose heart is clear  More than earth heaven is near",
+    "meaning_english": "Heaven is nearer than earth to those men of purified minds who are freed from from doubt"
+  },
+  {
+    "num": 354,
+    "translation": "Knowledge of five senses is vain  Without knowing the Truth within",
+    "meaning_english": "Even those who have all the knowledge which can be attained by the five senses, will derive no benefit from it, if they are without a knowledge of the true nature of things"
+  },
+  {
+    "num": 355,
+    "translation": "Knowledge is truth of things to find  In every case of every kind",
+    "meaning_english": "(True) knowledge is the perception concerning every thing of whatever kind, that that thing is the true thing"
+  },
+  {
+    "num": 356,
+    "translation": "Who learn and here the Truth discern  Enter the path of non-return",
+    "meaning_english": "They, who in this birth have learned to know the True Being, enter the road which returns not into this world"
+  },
+  {
+    "num": 357,
+    "translation": "One-minded sage sees inner-truth  He is free from thoughts of rebirth",
+    "meaning_english": "Let it not be thought that there is another birth for him whose mind having thoroughly considered (all it has been taught) has known the True Being"
+  },
+  {
+    "num": 358,
+    "translation": "It is knowledge to know Self-Truth  And remove the folly of birth",
+    "meaning_english": "True knowledge consists in the removal of ignorance; which is (the cause of) births, and the perception of the True Being who is (the bestower of) heaven"
+  },
+  {
+    "num": 359,
+    "translation": "Know the Refuge; off with bondage  Be free from ills of thraldom, O sage",
+    "meaning_english": "He who so lives as to know Him who is the support of all things and abandon all desire, will be freed from the evils which would otherwise cleave to him and destroy (his efforts after absorption)"
+  },
+  {
+    "num": 360,
+    "translation": "Woes expire when lust, wrath, folly  Expire even to name, fully",
+    "meaning_english": "If the very names of these three things, desire, anger, and confusion of mind, be destroyed, then will also perish evils (which flow from them)"
+  },
+  {
+    "num": 361,
+    "translation": "Desire to all, always is seed  From which ceaseless births proceed",
+    "meaning_english": "(The wise) say that the seed, which produces unceasing births, at all times, to all creatures, is desire"
+  },
+  {
+    "num": 362,
+    "translation": "If long thou must, long for non-birth  It comes by longing no more for earth",
+    "meaning_english": "If anything be desired, freedom from births should be desired; that (freedom from births) will be attained by desiring to be without desire"
+  },
+  {
+    "num": 363,
+    "translation": "No such wealth is here and there  As peerless wealth of non-desire",
+    "meaning_english": "There is in this world no excellence equal to freedom from desire; and even in that world, there is nothing like it"
+  },
+  {
+    "num": 364,
+    "translation": "To nothing crave is purity  That is the fruit of verity",
+    "meaning_english": "Purity (of mind) consists in freedom from desire; and that (freedom from desire) is the fruit of the love of truth"
+  },
+  {
+    "num": 365,
+    "translation": "The free are those who desire not  The rest not free in bonds are caught",
+    "meaning_english": "They are said to be free (from future birth) who are freed from desire; all others (who, whatever else they may be free from, are not freed from desire) are not thus free"
+  },
+  {
+    "num": 366,
+    "translation": "Dread desire; Virtue is there  To every soul desire is snare!",
+    "meaning_english": "It is the chief duty of (an ascetic) to watch against desire with (jealous) fear; for it has power to deceive (and destroy) him"
+  },
+  {
+    "num": 367,
+    "translation": "Destroy desire; deliverance  Comes as much as you aspire hence",
+    "meaning_english": "If a man thoroughly cut off all desire, the deeds, which confer immortality, will come to him, in the path in which he seeks them"
+  },
+  {
+    "num": 368,
+    "translation": "Desire extinct no sorrow-taints  Grief comes on grief where it pretends",
+    "meaning_english": "There is no sorrow to those who are without desire; but where that is, (sorrow) will incessantly come, more and more"
+  },
+  {
+    "num": 369,
+    "translation": "Desire, the woe of woes destroy  Joy of joys here you enjoy",
+    "meaning_english": "Even while in this body, joy will never depart (from the mind, in which) desire, that sorrow of sorrows, has been destroyed"
+  },
+  {
+    "num": 370,
+    "translation": "Off with desire insatiate  You gain the native blissful state",
+    "meaning_english": "The removal of desire, whose nature it is never to be satisfied, will immediately confer a nature that can never be changed"
+  },
+  {
+    "num": 371,
+    "translation": "Efforts succeed by waxing star  Wealth-losing brings waning star",
+    "meaning_english": "Perseverance comes from a prosperous fate, and idleness from an adverse fate"
+  },
+  {
+    "num": 372,
+    "translation": "Loss-fate makes a dull fool of us  Gain-fate makes us prosperous, wise!",
+    "meaning_english": "An adverse fate produces folly, and a prosperous fate produces enlarged knowledge"
+  },
+  {
+    "num": 373,
+    "translation": "What matters subtle study deep?  Levels of innate wisdom-keep",
+    "meaning_english": "Although (a man) may study the most polished treatises, the knowledge which fate has decreed to him will still prevail"
+  },
+  {
+    "num": 374,
+    "translation": "Two natures in the world obtain  Some wealth and others wisdom gain",
+    "meaning_english": "There are (through fate) two different natures in the world, hence the difference (observable in men) in (their acquisition of) wealth, and in their attainment of knowledge"
+  },
+  {
+    "num": 375,
+    "translation": "In making wealth fate changes mood;  The good as bad and bad as good",
+    "meaning_english": "In the acquisition of property, every thing favourable becomes unfavourable, and (on the other hand) everything unfavourable becomes favourable, (through the power of fate)"
+  },
+  {
+    "num": 376,
+    "translation": "Things not thine never remain  Things destined are surely thine",
+    "meaning_english": "Whatever is not conferred by fate cannot be preserved although it be guarded with most painful care; and that, which fate has made his, cannot be lost, although one should even take it and throw it away"
+  },
+  {
+    "num": 377,
+    "translation": "Who crores amass enjoy but what  The Dispenser's decrees allot",
+    "meaning_english": "Even those who gather together millions will only enjoy them, as it has been determined by the disposer (of all things)"
+  },
+  {
+    "num": 378,
+    "translation": "The destitute desire will quit  If fate with ills visit them not",
+    "meaning_english": "The destitute will renounce desire (and become ascetics), if (fate) do not make them suffer the hindrances to which they are liable, and they pass away"
+  },
+  {
+    "num": 379,
+    "translation": "Who good in time of good perceive  In evil time why should they grieve?",
+    "meaning_english": "How is it that those, who are pleased with good fortune, trouble themselves when evil comes, (since both are equally the decree of fate) ?"
+  },
+  {
+    "num": 380,
+    "translation": "What power surpasses fate? Its will  Persists against the human skill",
+    "meaning_english": "What is stronger than fate ? If we think of an expedient (to avert it), it will itself be with us before (the thought)"
+  }
+]

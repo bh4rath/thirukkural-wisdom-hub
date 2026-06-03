@@ -1,0 +1,962 @@
+You are simplifying Thirukkural explanations so a 10-year-old child can easily read and understand them.
+
+For EVERY kural in the list below, rewrite TWO fields:
+1. "translation" — one clear sentence (max 20 words) in everyday English, capturing what the couplet says.
+2. "meaning_english" — 2-3 short sentences in simple, friendly language. Relate it to everyday life a child knows (school, family, friends, sports, food). No formal or old-fashioned words like "virtue", "righteousness", "thee", "thou", "conducive", "celestial", "temporal", "hath".
+
+Return ONLY a valid JSON array — no markdown, no code fences, no extra text:
+[{"num": <number>, "translation": "...", "meaning_english": "..."}, ...]
+
+Kurals to simplify:
+[
+  {
+    "num": 571,
+    "translation": "Living in the world implies The bounteous dame of benign eyes",
+    "meaning_english": "The world exists through that greatest ornament (of princes), a gracious demeanour"
+  },
+  {
+    "num": 572,
+    "translation": "World lives by looks of lovely worth Who lack them are burdens of earth",
+    "meaning_english": "The prosperity of the world springs from the kindliness, the existence of those who have no (kindliness) is a burden to the earth"
+  },
+  {
+    "num": 573,
+    "translation": "Of tuneless song what is the use? Without gracious looks what are eyes?",
+    "meaning_english": "Of what avail is a song if it be inconsistent with harmony ? what is the use of eyes which possess no kindliness"
+  },
+  {
+    "num": 574,
+    "translation": "Except that they are on the face  What for are eyes sans measured grace",
+    "meaning_english": "Beyond appearing to be in the face, what good do they do, those eyes in which is no well-regulated kindness ?"
+  },
+  {
+    "num": 575,
+    "translation": "Kind looks are jewels for eyes to wear Without them they are felt as sore",
+    "meaning_english": "Kind looks are the ornaments of the eyes; without these they will be considered (by the wise) to be merely two sores"
+  },
+  {
+    "num": 576,
+    "translation": "Like trees on inert earth they grow Who don't eye to eye kindness show",
+    "meaning_english": "They resemble the trees of the earth, who although they have eyes, never look kindly (on others)"
+  },
+  {
+    "num": 577,
+    "translation": "Ungracious men lack real eyes Men of real eyes show benign grace",
+    "meaning_english": "Men without kind looks are men without eyes; those who (really) have eyes are also not devoid of kind looks"
+  },
+  {
+    "num": 578,
+    "translation": "Who gracious are but dutiful Have right for this earth beautiful",
+    "meaning_english": "The world is theirs (kings) who are able to show kindness, without injury to their affairs, (administration of justice)"
+  },
+  {
+    "num": 579,
+    "translation": "To be benign and bear with foes Who vex us is true virtue's phase",
+    "meaning_english": "Patiently to bear with, and show kindness to those who grieve us, is the most excellent of all dispositions"
+  },
+  {
+    "num": 580,
+    "translation": "Men of graceful courtesy Take hemlock and look cheerfully",
+    "meaning_english": "Those who desire (to cultivate that degree of) urbanity which all shall love, even after swallowing the poison served to them by their friends, will be friendly with them"
+  },
+  {
+    "num": 581,
+    "translation": "A king should treat these two as eyes  The code of laws and careful spies",
+    "meaning_english": "Let a king consider as his eyes these two things, a spy and a book (of laws) universally esteemed"
+  },
+  {
+    "num": 582,
+    "translation": "All that happens, always, to all  The king should know in full detail",
+    "meaning_english": "'Tis duty of the king to learn with speed"
+  },
+  {
+    "num": 583,
+    "translation": "Conquests are not for the monarch Who cares not for the Spy's remark",
+    "meaning_english": "There is no way for a king to obtain conquests, who knows not the advantage of discoveries made by a spy"
+  },
+  {
+    "num": 584,
+    "translation": "His officers, kinsmen and foes  Who watch keenly are worthy spies",
+    "meaning_english": "He is a spy who watches all men, to wit, those who are in the king's employment, his relatives, and his enemies"
+  },
+  {
+    "num": 585,
+    "translation": "Fearless gaze, suspectless guise  Guarding secrets mark the spies",
+    "meaning_english": "A spy is one who is able to assume an appearance which may create no suspicion (in the minds of others), who fears no man's face, and who never reveals (his purpose)"
+  },
+  {
+    "num": 586,
+    "translation": "Guised as monks they gather secrets They betray them not under threats",
+    "meaning_english": "He is a spy who, assuming the appearance of an ascetic, goes into (whatever place he wishes), examines into (all, that is needful), and never discovers himself, whatever may be done to him"
+  },
+  {
+    "num": 587,
+    "translation": "A spy draws out other's secrets Beyond a doubt he clears his facts",
+    "meaning_english": "A spy is one who is able to discover what is hidden and who retains no doubt concerning what he has known"
+  },
+  {
+    "num": 588,
+    "translation": "The reports given by one spy By another spy verify",
+    "meaning_english": "Let not a king receive the information which a spy has discovered and made known to him, until he has examined it by another spy"
+  },
+  {
+    "num": 589,
+    "translation": "Engage the spies alone, apart When three agree confirm report",
+    "meaning_english": "Let a king employ spies so that one may have no knowledge of the other; and when the information of three agrees together, let him receive it"
+  },
+  {
+    "num": 590,
+    "translation": "Give not the spy open reward It would divulge the secret heard!",
+    "meaning_english": "Let not a king publicly confer on a spy any marks of his favour; if he does, he will divulge his own secret"
+  },
+  {
+    "num": 591,
+    "translation": "To own is to own energy All others own but lethargy",
+    "meaning_english": "Energy makes out the man of property; as for those who are destitute of it, do they (really) possess what they possess ?"
+  },
+  {
+    "num": 592,
+    "translation": "Psychic heart is wealth indeed Worldly wealth departs in speed",
+    "meaning_english": "The possession of (energy of) mind is true property; the possession of wealth passes away and abides not"
+  },
+  {
+    "num": 593,
+    "translation": "The strong in will do not complain  The loss of worldly wealth and gain",
+    "meaning_english": "They who are possessed of enduring energy will not trouble themselves, saying, \"we have lost our property.\""
+  },
+  {
+    "num": 594,
+    "translation": "Fortune enquires, enters with boom Where tireless strivers have their home",
+    "meaning_english": "Wealth will find its own way to the man of unfailing energy"
+  },
+  {
+    "num": 595,
+    "translation": "Water depth is lotus height  Mental strength is men's merit",
+    "meaning_english": "The stalks of water-flowers are proportionate to the depth of water; so is men's greatness proportionate to their minds"
+  },
+  {
+    "num": 596,
+    "translation": "Let thoughts be always great and grand  Though they fail their virtues stand",
+    "meaning_english": "In all that a king thinks of, let him think of his greatness; and if it should be thrust from him (by fate), it will have the nature of not being thrust from him"
+  },
+  {
+    "num": 597,
+    "translation": "Elephants are firm when arrows hit Great minds keep fit ev'n in defeat",
+    "meaning_english": "The strong minded will not faint, even when all is lost; the elephant stands firm, even when wounded by a shower of arrows"
+  },
+  {
+    "num": 598,
+    "translation": "Heartless persons cannot boast \\\"We are liberal to our best\\\"",
+    "meaning_english": "Those who have no (greatness of) mind, will not acquire the joy of saying in the world, \"we have excercised liaberality\""
+  },
+  {
+    "num": 599,
+    "translation": "Huge elephant sharp in tusk quails  When tiger, less in form, assails",
+    "meaning_english": "Although the elephant has a large body, and a sharp tusk, yet it fears the attack of the tiger"
+  },
+  {
+    "num": 600,
+    "translation": "Mental courage is true manhood Lacking that man is like a wood",
+    "meaning_english": "Energy is mental wealth; those men who are destitute of it are only trees in the form of men"
+  },
+  {
+    "num": 601,
+    "translation": "Quenchless lamp of ancestry goes When foul idleness encloses",
+    "meaning_english": "By the darkness, of idleness, the indestructible lamp of family (rank) will be extinguished"
+  },
+  {
+    "num": 602,
+    "translation": "To make your home an ideal home Loath sloth as sloth; refuse it room",
+    "meaning_english": "Let those, who desire that their family may be illustrious, put away all idleness from their conduct"
+  },
+  {
+    "num": 603,
+    "translation": "The fool who fosters sluggishness Before he dies ruins his house",
+    "meaning_english": "The (lustre of the) family of the ignorant man, who acts under the influence of destructive laziness will perish, even before he is dead"
+  },
+  {
+    "num": 604,
+    "translation": "Who strive not high, sunk deep in sloth Ruin their house by evil growth",
+    "meaning_english": "Family (greatness) will be destroyed, and faults will increase, in those men who give way to laziness, and put forth no dignified exertions"
+  },
+  {
+    "num": 605,
+    "translation": "To lag, forget, idle and doze These four are pleasure boats of loss",
+    "meaning_english": "Procrastination, forgetfulness, idleness, and sleep, these four things, form the vessel which is desired by those destined to destruction"
+  },
+  {
+    "num": 606,
+    "translation": "With all the wealth of lords of earth The slothful gain nothing of worth",
+    "meaning_english": "It is a rare thing for the idle, even when possessed of the riches of kings who ruled over the whole earth, to derive any great benefit from it"
+  },
+  {
+    "num": 607,
+    "translation": "The slothful lacking noble deeds Subject themselves to scornful words",
+    "meaning_english": "Those who through idleness, and do not engage themselves in dignified exertion, will subject"
+  },
+  {
+    "num": 608,
+    "translation": "If sloth invades a noble house It will become a slave of foes",
+    "meaning_english": "If idleness take up its abode in a king of high birth, it will make him a slave of his enemies"
+  },
+  {
+    "num": 609,
+    "translation": "The blots on race and rule shall cease When one from sloth gets his release",
+    "meaning_english": "When a man puts away idleness, the reproach which has come upon himself and his family will disappear"
+  },
+  {
+    "num": 610,
+    "translation": "The slothless king shall gain en masse *All regions trod by Lord apace * Hindu mythology holds that Lord Vishnu measured with his feet the three worlds",
+    "meaning_english": "The king who never gives way to idleness will obtain entire possession of (the whole earth) passed over by him who measured (the worlds) with His foot"
+  },
+  {
+    "num": 611,
+    "translation": "Feel not frustrate saying This hard Who tries attains striving's reward",
+    "meaning_english": "Yield not to the feebleness which says, \"this is too difficult to be done\"; labour will give the greatness (of mind) which is necessary (to do it)"
+  },
+  {
+    "num": 612,
+    "translation": "In doing work don't break and shirk The world will quit who quits his work",
+    "meaning_english": "Take care not to give up exertion in the midst of a work; the world will abandon those who abandon their unfinished work"
+  },
+  {
+    "num": 613,
+    "translation": "On excellence of industry Depends magnanimous bounty",
+    "meaning_english": "The lustre of munificence will dwell only with the dignity of laboriousness or efforts"
+  },
+  {
+    "num": 614,
+    "translation": "Bounty of man who never strives Like sword in eunuch's hand it fails",
+    "meaning_english": "The liberality of him, who does not labour, will fail, like the manliness of a hermaphrodite, who has a sword in its hand"
+  },
+  {
+    "num": 615,
+    "translation": "Work who likes and not pleasure  Wipes grief of friends, pillar secure",
+    "meaning_english": "He who desires not pleasure, but desires labour, will be a pillar to sustain his relations, wiping away their sorrows"
+  },
+  {
+    "num": 616,
+    "translation": "Industry adds prosperity Indolence brings but poverty",
+    "meaning_english": "Labour will produce wealth; idleness will bring poverty"
+  },
+  {
+    "num": 617,
+    "translation": "Illuck abides with sloth they say *Laxmi's gifts with labourers stay *Laxmi the Goddes of wealth and prosperity",
+    "meaning_english": "They say that the black Mudevi (the goddess of adversity) dwells with laziness, and the Latchmi (the goddess of prosperity) dwells with the labour of the industrious"
+  },
+  {
+    "num": 618,
+    "translation": "Misfortune is disgrace to none The shame is nothing learnt or done",
+    "meaning_english": "Adverse fate is no disgrace to any one; to be without exertion and without knowing what should be known, is disgrace"
+  },
+  {
+    "num": 619,
+    "translation": "Though fate is against fulfilment Hard labour has ready payment",
+    "meaning_english": "Although it be said that, through fate, it cannot be attained, yet labour, with bodily exertion, will yield its reward"
+  },
+  {
+    "num": 620,
+    "translation": "Tireless Toiler's striving hand Shall leave even the fate behind",
+    "meaning_english": "They who labour on, without fear and without fainting will see even fate (put) behind their back"
+  },
+  {
+    "num": 621,
+    "translation": "Laugh away troubles; there is No other way to conquer woes",
+    "meaning_english": "If troubles come, laugh; there is nothing like that, to press upon and drive away sorrow"
+  },
+  {
+    "num": 622,
+    "translation": "Deluging sorrows come to nought When wise men face them with firm thought",
+    "meaning_english": "A flood of troubles will be overcome by the (courageous) thought which the minds of the wise will entertain, even in sorrow"
+  },
+  {
+    "num": 623,
+    "translation": "Grief they face and put to grief Who grieve not grief by mind's relief",
+    "meaning_english": "They give sorrow to sorrow, who in sorrow do not suffer sorrow"
+  },
+  {
+    "num": 624,
+    "translation": "Who pulls like bulls patiently on Causes grief to grieve anon",
+    "meaning_english": "Troubles will vanish (i.e., will be troubled) before the man who (struggles against difficulties) as a"
+  },
+  {
+    "num": 625,
+    "translation": "Before the brave grief grieves and goes Who dare a host of pressing woes",
+    "meaning_english": "The troubles of that man will be troubled (and disappear) who, however thickly they may come upon him, does not abandon (his purpose)"
+  },
+  {
+    "num": 626,
+    "translation": "The wise that never gloat in gain Do not fret in fateful ruin",
+    "meaning_english": "Will those men ever cry out in sorrow, \"we are destitute\" who, (in their prosperity), give not way to (undue desire) to keep their wealth"
+  },
+  {
+    "num": 627,
+    "translation": "The wise worry no more of woes Knowing body's butt of sorrows",
+    "meaning_english": "The great will not regard trouble as trouble, knowing that the body is the butt of trouble"
+  },
+  {
+    "num": 628,
+    "translation": "Who seek not joy, deem grief norm By sorrows do not come to harm",
+    "meaning_english": "That man never experiences sorrow, who does not seek for pleasure, and who considers distress to be natural (to man)"
+  },
+  {
+    "num": 629,
+    "translation": "In joy to joy who is not bound In grief he grieves not dual round!",
+    "meaning_english": "He does not suffer sorrow, in sorrow who does not look for pleasure in pleasure"
+  },
+  {
+    "num": 630,
+    "translation": "His glory is esteemed by foes Who sees weal in wanton woes!",
+    "meaning_english": "The elevation, which even his enemies will esteem, will be gained by him, who regards pain as pleasure"
+  },
+  {
+    "num": 631,
+    "translation": "He is minister who chooses Right means, time, mode and rare ventures",
+    "meaning_english": "The minister is one who can make an excellent choice of means, time, manner of execution, and the difficult undertaking (itself)"
+  },
+  {
+    "num": 632,
+    "translation": "With these he guards people, -by his Knowledge, firmness and manliness",
+    "meaning_english": "The minister is one who in addition to the aforesaid five things excels in the possession of firmness,"
+  },
+  {
+    "num": 633,
+    "translation": "A minister cherishes friends Divides foes and the parted blends",
+    "meaning_english": "The minister is one who can effect discord (among foes), maintain the good-will of his friends and restore to friendship those who have seceded (from him)"
+  },
+  {
+    "num": 634,
+    "translation": "A minister must sift reflect Select and say surely one fact",
+    "meaning_english": "The minister is one who is able to comprehend (the whole nature of an undertaking), execute it in the best manner possible, and offer assuring advice (in time of necessity)"
+  },
+  {
+    "num": 635,
+    "translation": "Have him for help who virtue knows Right wisdom speaks, ever apt in acts",
+    "meaning_english": "He is the best helper (of the king) who understanding the duties, of the latter, is by his special learning, able to tender the fullest advice, and at all times conversant with the best method (of"
+  },
+  {
+    "num": 636,
+    "translation": "Which subtler brain can stand before The keen in brain with learned love?",
+    "meaning_english": "What (contrivances) are there so acute as to resist those who possess natural acuteness in addition to learning ?"
+  },
+  {
+    "num": 637,
+    "translation": "Albeit you know to act from books Act after knowing world's outlooks",
+    "meaning_english": "Though you are acquainted with the (theoretical) methods (of performing an act), understand the ways of the world and act accordingly"
+  },
+  {
+    "num": 638,
+    "translation": "The man in place must tell the facts Though the ignorant king refutes",
+    "meaning_english": "Although the king be utterly ignorant, it is the duty of the minister to give (him) sound advice"
+  },
+  {
+    "num": 639,
+    "translation": "Seventy crores of foes are better Than a minister with mind bitter",
+    "meaning_english": "Far better are seventy crores of enemies (for a king) than a minister at his side who intends (his) ruin"
+  },
+  {
+    "num": 640,
+    "translation": "The unresolved, though well designed To fulfil an act they have no mind",
+    "meaning_english": "Those ministers who are destitute of (executive) ability will fail to carry out their projects, although they may have contrived aright"
+  },
+  {
+    "num": 641,
+    "translation": "The goodness called goodness of speech Is goodness which nothing can reach",
+    "meaning_english": "The possession of that goodness which is called the goodness of speech is (even to others) better than any other goodness"
+  },
+  {
+    "num": 642,
+    "translation": "Since gain or ruin speeches bring Guard against the slips of tongue",
+    "meaning_english": "Since (both) wealth and evil result from (their) speech, ministers should most carefully guard themselves against faultiness therein"
+  },
+  {
+    "num": 643,
+    "translation": "A speech is speech that holds ears And attracts ev'n those that are averse",
+    "meaning_english": "The (minister's) speech is that which seeks (to express) elements as bind his friends (to himself) and is so delivered as to make even his enemies desire (his friendship)"
+  },
+  {
+    "num": 644,
+    "translation": "Weigh thy words and speak; because  No wealth or virtue words surpass",
+    "meaning_english": "Understand the qualities (of your hearers) and (then) make your speech; for superior to it, there is neither virtue nor wealth"
+  },
+  {
+    "num": 645,
+    "translation": "Speak out thy world so that no word Can win it and say untoward",
+    "meaning_english": "Deliver your speech, after assuring yourself that no counter speech can defeat your own"
+  },
+  {
+    "num": 646,
+    "translation": "Spotless men speak what is sweet And grasp in others what is meet",
+    "meaning_english": "It is the opinion of those who are free from defects in diplomacy that the minister should speak so as to make his hearers desire (to hear more) and grasp the meaning of what he hears himself"
+  },
+  {
+    "num": 647,
+    "translation": "No foe defies the speaker clear Flawless, puissant, and free from fear",
+    "meaning_english": "It is impossible for any one to conquer him by intrique who possesses power of speech, and is neither faulty nor timid"
+  },
+  {
+    "num": 648,
+    "translation": "The world will quickly carry out The words of counsellors astute",
+    "meaning_english": "If there be those who can speak on various subjects in their proper order and in a pleasing manner, the world would readily accept them"
+  },
+  {
+    "num": 649,
+    "translation": "They overspeak who do not seek A few and flawless words to speak",
+    "meaning_english": "They will desire to utter many words, who do not know how to speak a few faultless ones"
+  },
+  {
+    "num": 650,
+    "translation": "Who can't express what they have learnt Are bunch of flowers not fragrant",
+    "meaning_english": "Those who are unable to set forth their acquirements (before others) are like flowers blossoming in a cluster and yet without fragrance"
+  },
+  {
+    "num": 651,
+    "translation": "Friendship brings gain; but action pure Does every good thing we desire",
+    "meaning_english": "The efficacy of support will yield (only) wealth; (but) the efficacy of action will yield all that is desired"
+  },
+  {
+    "num": 652,
+    "translation": "Eschew always acts that do not  Bring good nor glory on their part",
+    "meaning_english": "Ministers should at all times avoid acts which, in addition to fame, yield no benefit (for the future)"
+  },
+  {
+    "num": 653,
+    "translation": "Those in the world desire for fame Should shun the deed that dims their name",
+    "meaning_english": "Those who say, \"we will become (better)\" should avoid the performance of acts that would destroy (their fame)"
+  },
+  {
+    "num": 654,
+    "translation": "Though perils press the faultless wise Shun deeds of mean, shameful device",
+    "meaning_english": "Those who have infallible judgement though threatened with peril will not do acts which have brought disgrace (on former ministers)"
+  },
+  {
+    "num": 655,
+    "translation": "Do not wrong act and grieve, \\\"Alas\\\"  If done, do not repeat it twice",
+    "meaning_english": "Let a minister never do acts of which he would have to grieve saying, \"what is this I have done\"; (but) should he do (them), it were good that he grieved not"
+  },
+  {
+    "num": 656,
+    "translation": "Though she who begot thee hungers Shun acts denounced by ancient seers",
+    "meaning_english": "Though a minister may see his mother starve; let him do not act which the wise would (treat with contempt)"
+  },
+  {
+    "num": 657,
+    "translation": "Pinching poverty of the wise Is more than wealth hoarded by Vice",
+    "meaning_english": "Far more excellent is the extreme poverty of the wise than wealth obtained by heaping up of sinful"
+  },
+  {
+    "num": 658,
+    "translation": "Those who dare a forbidden deed Suffer troubles though they succeed",
+    "meaning_english": "The actions of those, who have not desisted from doing deeds forbidden (by the great), will, even if they succeed, cause them sorrow"
+  },
+  {
+    "num": 659,
+    "translation": "Gains from weeping, weeping go Though lost, from good deeds blessings flow",
+    "meaning_english": "All that has been obtained with tears (to the victim) will depart with tears (to himself); but what has been by fair means; though with loss at first, will afterwards yield fruit"
+  },
+  {
+    "num": 660,
+    "translation": "The wealth gathered in guilty ways Is water poured in wet clay vase",
+    "meaning_english": "(For a minister) to protect (his king) with wealth obtained by foul means is like preserving a vessel of wet clay by filling it with water"
+  },
+  {
+    "num": 661,
+    "translation": "A powerful mind does powerful act And all the rest are imperfect",
+    "meaning_english": "Firmness in action is (simply) one's firmness of mind; all other (abilities) are not of this nature"
+  },
+  {
+    "num": 662,
+    "translation": "Shun failing fuss; fail not purpose These two are maxims of the wise",
+    "meaning_english": "Not to perform a ruinous act, and not to be discouraged by the ruinous termination of an act, are the two maxims which, the wise say, from the principles of those who have investigated the subject"
+  },
+  {
+    "num": 663,
+    "translation": "The strong achieve and then display Woe unto work displayed midway",
+    "meaning_english": "So to perform an act as to publish it (only) at its termination is (true) manliness; for to announce it beforehand, will cause irremediable sorrow"
+  },
+  {
+    "num": 664,
+    "translation": "Easy it is to tell a fact But hard it is to know and act",
+    "meaning_english": "To say (how an act is to be performed) is (indeed) easy for any one; but far difficult it is to do according to what has been said"
+  },
+  {
+    "num": 665,
+    "translation": "Dynamic deeds of a doughty soul Shall win the praise of king and all",
+    "meaning_english": "The firmness in action of those who have become great by the excellence (of their counsel) will, by attaining its fulfilment in the person of the king, be esteemed (by all)."
+  },
+  {
+    "num": 666,
+    "translation": "The will-to-do achieves the deed When mind that wills is strong indeed",
+    "meaning_english": "If those who have planned (an undertaking) possess firmness (in executing it) they will obtain what they have desired even as they have desired it"
+  },
+  {
+    "num": 667,
+    "translation": "Scorn not the form: for men there are Like linchpin of big rolling car",
+    "meaning_english": "Let none be despised for (their) size; (for) the world has those who resemble the linch-pin of the big rolling car"
+  },
+  {
+    "num": 668,
+    "translation": "Waver not; do wakefully  The deed resolved purposefully",
+    "meaning_english": "An act that has been firmly resolved on must be as firmly carried out without delay"
+  },
+  {
+    "num": 669,
+    "translation": "Do with firm will though pains beset  The deed that brings delight at last",
+    "meaning_english": "Though it should cause increasing sorrow (at the outset), do with firmness the act that yield bliss (in the end)"
+  },
+  {
+    "num": 670,
+    "translation": "The world merits no other strength But strength of will-to-do at length",
+    "meaning_english": "The great will not esteem those who esteem not firmness of action, whatever other abilities the latter may possess"
+  },
+  {
+    "num": 671,
+    "translation": "When counsel takes a resolve strong Weak delay of action is wrong",
+    "meaning_english": "Consultation ends in forming a resolution (to act); (but) delay in the execution of that resolve is an evil"
+  },
+  {
+    "num": 672,
+    "translation": "Delay such acts as need delay Delay not acts that need display",
+    "meaning_english": "Sleep over such (actions) as may be slept over; (but) never over such as may not be slept over"
+  },
+  {
+    "num": 673,
+    "translation": "It's best to act when feasible If not see what is possible",
+    "meaning_english": "Whenever it is possible (to overcome your enemy) the act (of fighting) is certainly good; if not, endeavour to employ some more successful method"
+  },
+  {
+    "num": 674,
+    "translation": "Work or foe left unfinished Flare up like fire unextinguished",
+    "meaning_english": "When duly considered, the incomplete execution of an undertaking and hostility will grow and destroy one like the (unextinguished) remnant of a fire"
+  },
+  {
+    "num": 675,
+    "translation": "Money and means, time, place and deed Decide these five and then proceed",
+    "meaning_english": "Do an act after a due consideration of the (following) five, viz money, means, time, execution and place"
+  },
+  {
+    "num": 676,
+    "translation": "Weigh well the end, hindrance, profit  And then pursue a fitting act",
+    "meaning_english": "An act is to be performed after considering the exertion required, the obstacles to be encountered, and the great profit to be gained (on its completion)"
+  },
+  {
+    "num": 677,
+    "translation": "Know first the secret from experts That is the way of fruitful acts",
+    "meaning_english": "The method of performance for one who has begun an act is to ascertain the mind of him who knows the secret thereof"
+  },
+  {
+    "num": 678,
+    "translation": "Lure a tusker by a tusker Achieve a deed by deed better",
+    "meaning_english": "To make one undertaking the means of accomplishing another (similar to it) is like making one rutting elephant the means of capturing another"
+  },
+  {
+    "num": 679,
+    "translation": "Than doing good to friends it is More urgent to befriend the foes",
+    "meaning_english": "One should rather hasten to secure the alliance of the foes (of one's foes) than perform good offices to one's friends"
+  },
+  {
+    "num": 680,
+    "translation": "Small statesmen fearing people's fear Submit to foes superior",
+    "meaning_english": "Ministers of small states, afraid of their people being frightened, will yield to and acknowledge their superior foes, if the latter offer them a chance of reconciliation"
+  },
+  {
+    "num": 681,
+    "translation": "Love, noble birth, good courtesy Pleasing kings mark true embassy",
+    "meaning_english": "The qualification of an ambassador are affection (for his relations) a fitting birth, and the possession of attributes pleasing to royalty"
+  },
+  {
+    "num": 682,
+    "translation": "Envoys must bear love for their prince Knowledge and learned eloquence",
+    "meaning_english": "Love (to his sovereign), knowledge (of his affairs), and a discriminating power of speech (before other sovereigns) are the three sine qua non qualifications of an ambassador"
+  },
+  {
+    "num": 683,
+    "translation": "Savant among savants, he pleads  Before lanced king, triumphant words",
+    "meaning_english": "To be powerful in politics among those who are learned (in ethics) is the character of him who speaks"
+  },
+  {
+    "num": 684,
+    "translation": "Who has these three: good form, sense, lore Can act as bold ambassador",
+    "meaning_english": "He may go on a mission (to foreign rulers) who has combined in him all these three viz, (natural) sense, an attractive bearing and well-tried learning"
+  },
+  {
+    "num": 685,
+    "translation": "Not harsh, the envoy's winsome ways Does good by pleasant words concise",
+    "meaning_english": "He is an ambassador who (in the presence of foreign rulers) speaks briefly, avoids harshness, talks so as to make them smile, and thus brings good (to his own sovereign)"
+  },
+  {
+    "num": 686,
+    "translation": "Learned; fearless, the envoy tends Convincing words which time demands",
+    "meaning_english": "He is an ambassador who having studied (politics) talks impressively, is not afraid of angry looks, and knows (to employ) the art suited to the time"
+  },
+  {
+    "num": 687,
+    "translation": "Knowing duty time and place The envoy employs mature phrase",
+    "meaning_english": "He is chief (among ambassadors) who understands the proper decorum (before foreign princes), seeks the (proper) occasion, knows the (most suitable) place, and delivers his message after (due)"
+  },
+  {
+    "num": 688,
+    "translation": "The true envoy of three virtues Is pure helpful and bold in views",
+    "meaning_english": "The qualifications of him who faithfully delivers his (sovereign's) message are purity, the support (of foreign ministers), and boldness, with truthfulness in addition to the (aforesaid) three"
+  },
+  {
+    "num": 689,
+    "translation": "The envoy who ports the king's message Has flawless words and heart's courage",
+    "meaning_english": "He alone is fit to communicate (his sovereign's) reply, who possesses the firmness not to utter even inadvertently what may reflect discredit (on the latter)"
+  },
+  {
+    "num": 690,
+    "translation": "Braving death the bold envoy Assures his king's safety and joy",
+    "meaning_english": "He is the ambassador who fearlessly seeks his sovereign's good though it should cost him his life (to deliver his message)"
+  },
+  {
+    "num": 691,
+    "translation": "Move with hostile kings as with fire  Not coming close nor going far",
+    "meaning_english": "Thus let them act who dwell beneath of warlike kings the palace-roof"
+  },
+  {
+    "num": 692,
+    "translation": "Crave not for things which kings desire  This brings thee their fruitful favour",
+    "meaning_english": "For ministers not to cover the things desired by their kings will through the kings themselves yield them everlasting wealth"
+  },
+  {
+    "num": 693,
+    "translation": "Guard thyself from petty excess Suspected least, there's no redress",
+    "meaning_english": "Ministers who would save themselves should avoid (the commission of) serious errors for if the king's suspicion is once roused, no one can remove it"
+  },
+  {
+    "num": 694,
+    "translation": "Whisper not; nor smile exchange Amidst august men's assemblage",
+    "meaning_english": "While in the presence of the sovereign, ministers should neither whisper to nor smile at others"
+  },
+  {
+    "num": 695,
+    "translation": "Hear not, ask not the king's secret Hear only when he lets it out",
+    "meaning_english": "(When the king is engaged) in secret counsel (with others), ministers should neither over-hear anything whatever nor pry into it with inquisitive questions, but (wait to) listen when it is divulged (by"
+  },
+  {
+    "num": 696,
+    "translation": "Discern his mood and time and tell No dislikes but what king likes well",
+    "meaning_english": "Knowing the (king's disposition and seeking the right time, (the minister) should in a pleasing manner suggest things such as are desirable and not disagreeable"
+  },
+  {
+    "num": 697,
+    "translation": "Tell pleasing things; and never tell Even if pressed what is futile",
+    "meaning_english": "Ministers should (always) give agreeable advice but on no occasion recommend useless actions, though requested (to do so)"
+  },
+  {
+    "num": 698,
+    "translation": "As young and kinsman do not slight; Look with awe king's light and might",
+    "meaning_english": "Ministers should behave in accordance with the (Divine) light in the person of kings and not despise them saying, \"He is our junior (in age) and connected with our family!\""
+  },
+  {
+    "num": 699,
+    "translation": "The clear-visioned do nothing base Deeming they have the monarch's grace",
+    "meaning_english": "Those whose judgement is firm will not do what is disagreeable (to the sovereign) saying (within"
+  },
+  {
+    "num": 700,
+    "translation": "Worthless acts based on friendship old  Shall spell ruin and woe untold",
+    "meaning_english": "The (foolish) claim with which a minister does unbecoming acts because of his (long) familiarity (with the king) will ensure his ruin"
+  },
+  {
+    "num": 701,
+    "translation": "Who reads the mind by look, untold Adorns the changeless sea-girt world",
+    "meaning_english": "The minister who by looking (at the king) understands his mind without being told (of it), will be a perpetual ornament to the world which is surrounded by a never-drying sea"
+  },
+  {
+    "num": 702,
+    "translation": "Take him as God who reads the thought Of another man with without a doubt",
+    "meaning_english": "He is to be esteemed a god who is able to ascertain without a doubt what is within (one's mind)"
+  },
+  {
+    "num": 703,
+    "translation": "By sign who scans the sign admit At any cost in cabinet",
+    "meaning_english": "The king should ever give whatever (is asked) of his belongings and secure him who, by the indications (of his own mind) is able to read those of another"
+  },
+  {
+    "num": 704,
+    "translation": "Untold, he who divines the thought Though same in form is quite apart",
+    "meaning_english": "Those who understand one's thoughts without being informed (thereof) and those who do not, may (indeed) resemble one another bodily; still are they different (mentally)"
+  },
+  {
+    "num": 705,
+    "translation": "Among senses what for is eye If thought by thought one can't descry?",
+    "meaning_english": "Of what use are the eyes amongst one's members, if they cannot by their own indications dive those of another ?"
+  },
+  {
+    "num": 706,
+    "translation": "What throbs in mind the face reflects Just as mirror nearby objects",
+    "meaning_english": "As the mirror reflects what is near so does the face show what is uppermost in the mind"
+  },
+  {
+    "num": 707,
+    "translation": "Than face what is subtler to tell First if the mind feels well or ill",
+    "meaning_english": "Is there anything so full of knowledge as the face ? (No) it precedes the mind, whether (the latter is) pleased or vexed"
+  },
+  {
+    "num": 708,
+    "translation": "Just standing in front would suffice For those who read the mind on face",
+    "meaning_english": "If the king gets those who by looking into his mind can understand (and remove) what has occurred (to him) it is enough that he stand looking at their face"
+  },
+  {
+    "num": 709,
+    "translation": "Friend or foe the eyes will show To those who changing outlooks know",
+    "meaning_english": "If a king gets ministers who can read the movements of the eye, the eyes (of foreign kings) will (themselves) reveal (to him) their hatred or friendship"
+  },
+  {
+    "num": 710,
+    "translation": "The scale of keen discerning minds  Is eye and eye that secrets finds",
+    "meaning_english": "The measuring-rod of those (ministers) who say \"we are acute\" will on inquiry be found to be their (own) eyes and nothing else"
+  },
+  {
+    "num": 711,
+    "translation": "The pure in thought and eloquence  Adapt their words to audience",
+    "meaning_english": "Let the pure who know the arrangement of words speak with deliberation after ascertaining (the nature of) the court (then assembled)"
+  },
+  {
+    "num": 712,
+    "translation": "Who know the art of speech shall suit Their chosen words to time in fact",
+    "meaning_english": "Let the good who know the uses of words speak with a clear knowledge after ascertaining the time (suited to the court)"
+  },
+  {
+    "num": 713,
+    "translation": "They speak in vain at length who talk Words unversed which ears don't take",
+    "meaning_english": "Those who undertake to speak without knowing the (nature of the) court are ignorant of the quality of words as well as devoid of the power (of learning)"
+  },
+  {
+    "num": 714,
+    "translation": "Before the bright be brilliant light Before the muff be mortar white",
+    "meaning_english": "Ministers should be lights in the assembly of the enlightned, but assume the pure whiteness of mortar (ignorance) in that of fools"
+  },
+  {
+    "num": 715,
+    "translation": "Modest restraint all good excels Which argues not before elders",
+    "meaning_english": "The modesty by which one does not rush forward and speak in (an assembly of) superiors is the best among all (one's) good qualities"
+  },
+  {
+    "num": 716,
+    "translation": "Tongue-slip before the talented wise is like slipping from righteous ways",
+    "meaning_english": "(For a minister) to blunder in the presence of those who have acquired a vast store of learning and know (the value thereof) is like a good man stumbling (and falling away) from the path (of virtue)"
+  },
+  {
+    "num": 717,
+    "translation": "The learning of the learned shines Valued by flawless scholar-minds",
+    "meaning_english": "The learning of those who have read and understood (much) will shine in the assembly of those who faultlessly examine (the nature of) words"
+  },
+  {
+    "num": 718,
+    "translation": "To address understanding ones Is to water beds of growing grains",
+    "meaning_english": "Lecturing to those who have the ability to understand (for themselves) is like watering a bed of plants that are growing (of themselves)"
+  },
+  {
+    "num": 719,
+    "translation": "O ye who speak before the keen Forgetful, address not the mean",
+    "meaning_english": "Those who are able to speak good things impressively in an assembly of the good should not even forgetfully speak them in that of the low"
+  },
+  {
+    "num": 720,
+    "translation": "To hostiles who wise words utters Pours ambrosia into gutters",
+    "meaning_english": "To utter (a good word) in the assembly of those who are of inferior rank is like dropping nectar on the ground"
+  },
+  {
+    "num": 721,
+    "translation": "The pure fail not in power of words Knowing grand council's moods and modes",
+    "meaning_english": "The pure who know the classification of words having first ascertained the nature (of the court) will not (through fear) falter in their speech before the powerful body"
+  },
+  {
+    "num": 722,
+    "translation": "Among scholars he is scholar Who holds scholars with learned lore",
+    "meaning_english": "Those who can agreeably set forth their acquirements before the learned will be regarded as the most learned among the learned"
+  },
+  {
+    "num": 723,
+    "translation": "Many brave foes and die in fields The fearless few face wise councils",
+    "meaning_english": "Many indeed may (fearlessly) die in the presence of (their) foes; (but) few are those who are fearless in the assembly (of the learned)"
+  },
+  {
+    "num": 724,
+    "translation": "Impress the learned with your lore From greater savants learn still more",
+    "meaning_english": "(Ministers) should agreeably set forth their acquirements before the learned and acquire more (knowledge) from their superiors (in learning)"
+  },
+  {
+    "num": 725,
+    "translation": "Grammar and logic learn so that Foes you can boldly retort",
+    "meaning_english": "In order to reply fearlessly before a foreign court, (ministers) should learn logic according to the rules (of grammar)"
+  },
+  {
+    "num": 726,
+    "translation": "To cowards what can sword avail And books to those who councils fail?",
+    "meaning_english": "What have they to do with a sword who are not valiant, or they with learning who are afraid of an intelligent assembly ?"
+  },
+  {
+    "num": 727,
+    "translation": "Like eunuch's sword in field, is vain His lore who fears men of brain",
+    "meaning_english": "The learning of him who is diffident before an assembly is like the shining sword of an hermaphrodite in the presence of his foes"
+  },
+  {
+    "num": 728,
+    "translation": "Though learned much his lore is dead Who says no good before the good",
+    "meaning_english": "Those who cannot agreeably speak good things before a good assembly are indeed unprofitable persons inspite of all their various acquirements"
+  },
+  {
+    "num": 729,
+    "translation": "Who fear to face good assembly Are learned idiots, certainly",
+    "meaning_english": "They who, though they have learned and understood, are yet afraid of the assembly of the good, are said to be inferior (even) to the illiterate"
+  },
+  {
+    "num": 730,
+    "translation": "They are breathing dead who dare not Empress before the wise their art",
+    "meaning_english": "Those who through fear of the assembly are unable to set forth their learning in an interesting manner, though alive, are yet like the dead"
+  },
+  {
+    "num": 731,
+    "translation": "It's country which has souls of worth Unfailing yields and ample wealth",
+    "meaning_english": "A kingdom is that in which (those who carry on) a complete cultivation, virtuous persons, and"
+  },
+  {
+    "num": 732,
+    "translation": "The Land has large luring treasure Where pests are nil and yields are sure",
+    "meaning_english": "A kingdom is that which is desire for its immense wealth, and which grows greatly in prosperity, being free from destructive causes"
+  },
+  {
+    "num": 733,
+    "translation": "It's land that bears pressing burdens And pays its tax which king demands",
+    "meaning_english": "A kingdom is that which can bear any burden that may be pressed on it (from adjoining kingdoms) and (yet) pay the full tribute to its sovereign"
+  },
+  {
+    "num": 734,
+    "translation": "It is country which is free from Fierce famine, plague and foemen's harm",
+    "meaning_english": "A kingdom is that which continues to be free from excessive starvation, irremediable epidemics, and destructive foes"
+  },
+  {
+    "num": 735,
+    "translation": "Sects and ruinous foes are nil No traitors in a land tranquil",
+    "meaning_english": "A kingdom is that which is without various (irregular) associations, destructive internal enemies, and murderous savages who (sometimes) harass the sovereign"
+  },
+  {
+    "num": 736,
+    "translation": "The land of lands no ruin knows Even in grief its wealth yet grows",
+    "meaning_english": "The learned say that the best kingdom is that which knows no evil (from its foes), and, if injured (at all), suffers no diminution in its fruitfulness"
+  },
+  {
+    "num": 737,
+    "translation": "Waters up and down, hills and streams With strong forts as limbs country beams",
+    "meaning_english": "The constituents of a kingdom are the two waters (from above and below), well situated hills and an undestructible fort"
+  },
+  {
+    "num": 738,
+    "translation": "Rich yield, delight, defence and wealth Are jewels of lands with blooming health",
+    "meaning_english": "Freedom from epidemics, wealth, produce, happiness and protection (to subjects); these five, the learned, say, are the ornaments of a kingdom"
+  },
+  {
+    "num": 739,
+    "translation": "A land is land which yields unsought Needing hard work the land is nought",
+    "meaning_english": "The learned say that those are kingdom whose wealth is not laboured for, and those not, whose wealth is only obtained through labour"
+  },
+  {
+    "num": 740,
+    "translation": "Though a land has thus every thing It is worthless without a king",
+    "meaning_english": "Although in possession of all the above mentioned excellences, these are indeed of no use to a country, in the absence of harmony between the sovereign and the sujects"
+  },
+  {
+    "num": 741,
+    "translation": "The fort is vital for offence Who fear the foes has its defence",
+    "meaning_english": "A fort is an object of importance to those who march (against their foes) as well as to those who through fear (of pursuers) would seek it for shelter"
+  },
+  {
+    "num": 742,
+    "translation": "A crystal fount, a space a mount Thick woods form a fort paramount",
+    "meaning_english": "A fort is that which has everlasting water, plains, mountains and cool shady forests"
+  },
+  {
+    "num": 743,
+    "translation": "An ideal fort's so says science: High, broad, strong and hard for access",
+    "meaning_english": "The learned say that a fortress is an enclosure having these four (qualities) viz, height, breadth, strength and inaccessibility"
+  },
+  {
+    "num": 744,
+    "translation": "Ample in space, easy to hold The fort foils enemies bold",
+    "meaning_english": "A fort is that which has an extensive space within, but only small places to be guarded, and such as can destroy the courage of besieging foes"
+  },
+  {
+    "num": 745,
+    "translation": "Impregnable with stores of food Cosy to live-That fort is good",
+    "meaning_english": "A fort is that which cannot be captured, which abounds in suitable provisions, and affords a position of easy defence to its inmates"
+  },
+  {
+    "num": 746,
+    "translation": "A fort is full of stores and arms And brave heroes to meet alarms",
+    "meaning_english": "A fort is that which has all (needful) things, and excellent heroes that can help it against destruction (by foes)"
+  },
+  {
+    "num": 747,
+    "translation": "Besieging foes a fort withstands Darts and mines of treacherous hands",
+    "meaning_english": "A fort is that which cannot be captured by blockading, assaulting, or undermining it"
+  },
+  {
+    "num": 748,
+    "translation": "A fort holds itself and defies The attacks of encircling foes",
+    "meaning_english": "That is a fort whose inmates are able to overcome without losing their ground, even abler men who have besieged it"
+  },
+  {
+    "num": 749,
+    "translation": "A fort it is that fells the foes And gains by deeds a name glorious",
+    "meaning_english": "A fort is that which derives excellence from the stratagems made (by its inmates) to defeat their enemies in the battlefield"
+  },
+  {
+    "num": 750,
+    "translation": "But a fort however grand Is nil if heroes do not stand",
+    "meaning_english": "Although a fort may possess all (the above-said) excellence, it is, as it were without these, if its inmates possess not the excellence of action"
+  },
+  {
+    "num": 751,
+    "translation": "Naught exists that can, save wealth Make the worthless as men of worth",
+    "meaning_english": "Besides wealth there is nothing that can change people of no importance into those of (some) importance"
+  },
+  {
+    "num": 752,
+    "translation": "The have-nothing poor all despise The men of wealth all raise and praise",
+    "meaning_english": "All despise the poor; (but) all praise the rich"
+  },
+  {
+    "num": 753,
+    "translation": "Waneless wealth is light that goes To every land and gloom removes",
+    "meaning_english": "The imperishable light of wealth goes into regions desired (by its owner) and destroys the darkness (of enmity therein)"
+  },
+  {
+    "num": 754,
+    "translation": "The blameless wealth from fairest means Brings good virtue and also bliss",
+    "meaning_english": "The wealth acquired with a knowledge of the proper means and without foul practices will yield virtue and happiness"
+  },
+  {
+    "num": 755,
+    "translation": "Riches devoid of love and grace Off with it; it is disgrace!",
+    "meaning_english": "(Kings) should rather avoid than seek the accumulation of wealth which does not flow in with mercy and love"
+  },
+  {
+    "num": 756,
+    "translation": "Escheats, derelicts; spoils of war Taxes duties are king's treasure",
+    "meaning_english": "The spoils of slaughtered foes; these are the royal revenues"
+  },
+  {
+    "num": 757,
+    "translation": "Grace the child of love is nourished By the wet-nurse of wealth cherished",
+    "meaning_english": "The child mercy which is borne by love grows under the care of the rich nurse of wealth"
+  },
+  {
+    "num": 758,
+    "translation": "Treasures in hand fulfil all things Like hill-tuskers the wars of kings",
+    "meaning_english": "An undertaking of one who has wealth in one's hands is like viewing an elephant-fight from a hill-top"
+  },
+  {
+    "num": 759,
+    "translation": "Make wealth; there is no sharper steel The insolence of foes to quell",
+    "meaning_english": "Accumulate wealth; it will destroy the arrogance of (your) foes; there is no weapon sharper than it"
+  },
+  {
+    "num": 760,
+    "translation": "They have joy and virtue at hand Who acquire treasures abundant",
+    "meaning_english": "To those who have honestly acquired an abundance of riches, the other two, (virtue and pleasure) are things easy (of acquisition)"
+  }
+]

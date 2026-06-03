@@ -1,0 +1,962 @@
+You are simplifying Thirukkural explanations so a 10-year-old child can easily read and understand them.
+
+For EVERY kural in the list below, rewrite TWO fields:
+1. "translation" — one clear sentence (max 20 words) in everyday English, capturing what the couplet says.
+2. "meaning_english" — 2-3 short sentences in simple, friendly language. Relate it to everyday life a child knows (school, family, friends, sports, food). No formal or old-fashioned words like "virtue", "righteousness", "thee", "thou", "conducive", "celestial", "temporal", "hath".
+
+Return ONLY a valid JSON array — no markdown, no code fences, no extra text:
+[{"num": <number>, "translation": "...", "meaning_english": "..."}, ...]
+
+Kurals to simplify:
+[
+  {
+    "num": 1,
+    "translation": "'A' leads letters; the Ancient Lord Leads and lords the entire world",
+    "meaning_english": "As the letter A is the first of all letters, so the eternal God is first in the world"
+  },
+  {
+    "num": 2,
+    "translation": "That lore is vain which does not fall  At His good feet who knoweth all",
+    "meaning_english": "What Profit have those derived from learning, who worship not the good feet of Him who is possessed of pure knowledge ?"
+  },
+  {
+    "num": 3,
+    "translation": "Long they live on earth who gain The feet of God in florid brain",
+    "meaning_english": "They who are united to the glorious feet of Him who passes swiftly over the flower of the mind, shall flourish long above all worlds"
+  },
+  {
+    "num": 4,
+    "translation": "Who hold His feet who likes nor loathes Are free from woes of human births",
+    "meaning_english": "To those who meditate the feet of Him who is void of desire or aversion, evil shall never come"
+  },
+  {
+    "num": 5,
+    "translation": "God's praise who tell, are free from right  And wrong, the twins of dreaming night",
+    "meaning_english": "The two-fold deeds that spring from darkness shall not adhere to those who delight in the true praise of God"
+  },
+  {
+    "num": 6,
+    "translation": "They prosper long who walk His way Who has the senses signed away",
+    "meaning_english": "Those shall long proposer who abide in the faultless way of Him who has destroyed the five desires of the senses"
+  },
+  {
+    "num": 7,
+    "translation": "His feet, whose likeness none can find, Alone can ease the anxious mind",
+    "meaning_english": "Anxiety of mind cannot be removed, except from those who are united to the feet of Him who is incomparable"
+  },
+  {
+    "num": 8,
+    "translation": "Who swims the sea of vice is he Who clasps the feet of Virtue's sea",
+    "meaning_english": "None can swim the sea of vice, but those who are united to the feet of that gracious Being who is a sea of virtue"
+  },
+  {
+    "num": 9,
+    "translation": "Like senses stale that head is vain Which bows not to Eight-Virtued Divine",
+    "meaning_english": "The head that worships not the feet of Him who is possessed of eight attributes, is as useless as a sense without the power of sensation"
+  },
+  {
+    "num": 10,
+    "translation": "The sea of births they alone swim Who clench His feet and cleave to Him",
+    "meaning_english": "None can swim the great sea of births but those who are united to the feet of God"
+  },
+  {
+    "num": 11,
+    "translation": "The genial rain ambrosia call: The world but lasts while rain shall fall",
+    "meaning_english": "By the continuance of rain the world is preserved in existence; it is therefore worthy to be called ambrosia"
+  },
+  {
+    "num": 12,
+    "translation": "The rain begets the food we eat",
+    "meaning_english": "Rain produces good food, and is itself food"
+  },
+  {
+    "num": 13,
+    "translation": "Let clouds their visits stay, and dearth Distresses all the sea-girt earth",
+    "meaning_english": "If the cloud, withholding rain, deceive (our hopes) hunger will long distress the sea-girt spacious world"
+  },
+  {
+    "num": 14,
+    "translation": "Unless the fruitful shower descend, The ploughman's sacred toil must end",
+    "meaning_english": "If the abundance of wealth imparting rain diminish, the labour of the plough must cease"
+  },
+  {
+    "num": 15,
+    "translation": "Destruction it may sometimes pour But only rain can life restore",
+    "meaning_english": "Rain by its absence ruins men; and by its existence restores them to fortune"
+  },
+  {
+    "num": 16,
+    "translation": "No grassy blade its head will rear, If from the cloud no drop appear",
+    "meaning_english": "If no drop falls from the clouds, not even the green blade of grass will be seen"
+  },
+  {
+    "num": 17,
+    "translation": "The ocean's wealth will waste away, Except the cloud its stores repay",
+    "meaning_english": "Even the wealth of the wide sea will be diminished, if the cloud that has drawn (its waters) up gives them not back again (in rain)"
+  },
+  {
+    "num": 18,
+    "translation": "The earth, beneath a barren sky, Would offerings for the gods deny",
+    "meaning_english": "If the heaven dry up, neither yearly festivals, nor daily worship will be offered in this world, to the celestials"
+  },
+  {
+    "num": 19,
+    "translation": "Were heaven above to fail below Nor alms nor penance earth would show",
+    "meaning_english": "If rain fall not, penance and alms-deeds will not dwell within this spacious world"
+  },
+  {
+    "num": 20,
+    "translation": "Water is life that comes from rain Sans rain our duties go in vain",
+    "meaning_english": "If it be said that the duties of life cannot be discharged by any person without water, so without rain there cannot be the flowing of water"
+  },
+  {
+    "num": 21,
+    "translation": "No merit can be held so high As theirs who sense and self deny",
+    "meaning_english": "The end and aim of all treatise is to extol beyond all other excellence, the greatness of those who, while abiding in the rule of conduct peculiar to their state, have abandoned all desire"
+  },
+  {
+    "num": 22,
+    "translation": "To con ascetic glory here Is to count the dead upon the sphere",
+    "meaning_english": "To describe the measure of the greatness of those who have forsaken the two-fold desires, is like counting the dead"
+  },
+  {
+    "num": 23,
+    "translation": "No lustre can with theirs compare Who know the right and virtue wear",
+    "meaning_english": "The greatness of those who have discovered the properties of both states of being, and renounced the world, shines forth on earth (beyond all others)"
+  },
+  {
+    "num": 24,
+    "translation": "With hook of firmness to restrain The senses five, is heaven to gain",
+    "meaning_english": "He who guides his five senses by the hook of wisdom will be a seed in the world of heaven"
+  },
+  {
+    "num": 25,
+    "translation": "Indra himself has cause to say How great the power ascetics' sway",
+    "meaning_english": "Indra, the king of the inhabitants of the spacious heaven, is himself, a sufficient proof of the strength of him who has subdued his five senses"
+  },
+  {
+    "num": 26,
+    "translation": "The small the paths of ease pursue The great achieve things rare to do",
+    "meaning_english": "The great will do those things which is difficult to be done; but the mean cannot do them"
+  },
+  {
+    "num": 27,
+    "translation": "They gain the world, who grasp and tell Of taste, sight, hearing, touch and smell",
+    "meaning_english": "The world is within the knowledge of him who knows the properties of taste, sight, touch, hearing and smell"
+  },
+  {
+    "num": 28,
+    "translation": "Full-worded men by what they say, Their greatness to the world display",
+    "meaning_english": "The hidden words of the men whose words are full of effect, will shew their greatness to the world"
+  },
+  {
+    "num": 29,
+    "translation": "Their wrath, who've climb'd the mount of good, Though transient, cannot be withstood",
+    "meaning_english": "The anger of those who have ascended the mountain of goodness, though it continue but for a moment, cannot be resisted"
+  },
+  {
+    "num": 30,
+    "translation": "With gentle mercy towards all, The sage fulfils the vitue's call",
+    "meaning_english": "The virtuous are truly called Anthanar; because in their conduct towards all creatures they are clothed in kindness"
+  },
+  {
+    "num": 31,
+    "translation": "From virtue weal and wealth outflow; What greater good can mankind know?",
+    "meaning_english": "Virtue will confer heaven and wealth; what greater source of happiness can man possess ?"
+  },
+  {
+    "num": 32,
+    "translation": "Virtue enhances joy and gain; Forsaking it is fall and pain",
+    "meaning_english": "There can be no greater source of good than (the practice of) virtue; there can be no greater source of evil than the forgetfulness of it"
+  },
+  {
+    "num": 33,
+    "translation": "Perform good deeds as much you can Always and everywhere, o man!",
+    "meaning_english": "As much as possible, in every way, incessantly practise virtue"
+  },
+  {
+    "num": 34,
+    "translation": "In spotless mind virtue is found And not in show and swelling sound",
+    "meaning_english": "Let him who does virtuous deeds be of spotless mind; to that extent is virtue; all else is vain show"
+  },
+  {
+    "num": 35,
+    "translation": "Four ills eschew and virtue reach, Lust, anger, envy, evil-speech",
+    "meaning_english": "That conduct is virtue which is free from these four things, viz, malice, desire, anger and bitter speech"
+  },
+  {
+    "num": 36,
+    "translation": "Do good enow; defer it not A deathless aid in death if sought",
+    "meaning_english": "Defer not virtue to another day; receive her now; and at the dying hour she will be your undying friend"
+  },
+  {
+    "num": 37,
+    "translation": "Litter-bearer and rider say  Without a word, the fortune's way",
+    "meaning_english": "The fruit of virtue need not be described in books; it may be inferred from seeing the bearer of a palanquin and the rider therein"
+  },
+  {
+    "num": 38,
+    "translation": "Like stones that block rebirth and pain Are doing good and good again",
+    "meaning_english": "If one allows no day to pass without some good being done, his conduct will be a stone to block up the passage to other births"
+  },
+  {
+    "num": 39,
+    "translation": "Weal flows only from virtue done The rest is rue and renown gone",
+    "meaning_english": "Only that pleasure which flows from domestic virtue is pleasure; all else is not pleasure, and it is without praise"
+  },
+  {
+    "num": 40,
+    "translation": "Worthy act is virtue done Vice is what we ought to shun",
+    "meaning_english": "That is virtue which each ought to do, and that is vice which each should shun"
+  },
+  {
+    "num": 41,
+    "translation": "The ideal householder is he Who aids the natural orders there",
+    "meaning_english": "He will be called a (true) householder, who is a firm support to the virtuous of the three orders in"
+  },
+  {
+    "num": 42,
+    "translation": "His help the monk and retired share, And celibate students are his care",
+    "meaning_english": "He will be said to flourish in domestic virtue who aids the forsaken, the poor, and the dead"
+  },
+  {
+    "num": 43,
+    "translation": "By dutiful householder's aid God, manes, kin, self and guests are served",
+    "meaning_english": "The chief (duty of the householder) is to preserve the five-fold rule (of conduct) towards the manes, the Gods, his guests, his relations and himself"
+  },
+  {
+    "num": 44,
+    "translation": "Sin he shuns and food he shares His home is bright and brighter fares",
+    "meaning_english": "His descendants shall never fail who, living in the domestic state, fears vice (in the acquisition of property) and shares his food (with others)"
+  },
+  {
+    "num": 45,
+    "translation": "In grace and gain the home excels, Where love with virtue sweetly dwells",
+    "meaning_english": "If the married life possess love and virtue, these will be both its duty and reward"
+  },
+  {
+    "num": 46,
+    "translation": "Who turns from righteous family To be a monk, what profits he?",
+    "meaning_english": "What will he who lives virtuously in the domestic state gain by going into the other, (ascetic) state ?"
+  },
+  {
+    "num": 47,
+    "translation": "Of all who strive for bliss, the great Is he who leads the married state",
+    "meaning_english": "Among all those who labour (for future happiness) he is greatest who lives well in the household state"
+  },
+  {
+    "num": 48,
+    "translation": "Straight in virtue, right in living Make men brighter than monks praying",
+    "meaning_english": "The householder who, not swerving from virtue, helps the ascetic in his way, endures more than those who endure penance"
+  },
+  {
+    "num": 49,
+    "translation": "Home-life and virtue, are the same; Which spotless monkhood too can claim",
+    "meaning_english": "The marriage state is truly called virtue The other state is also good, if others do not reproach it"
+  },
+  {
+    "num": 50,
+    "translation": "He is a man of divine worth Who lives in ideal home on earth",
+    "meaning_english": "He who on earth has lived in the conjugal state as he should live, will be placed among the Gods who dwell in heaven"
+  },
+  {
+    "num": 51,
+    "translation": "A good housewife befits the house, Spending with thrift the mate's resource",
+    "meaning_english": "She who has the excellence of home virtues, and can expend within the means of her husband, is a help in the domestic state"
+  },
+  {
+    "num": 52,
+    "translation": "Bright is home when wife is chaste If not all greatness is but waste",
+    "meaning_english": "If the wife be devoid of domestic excellence, whatever (other) greatness be possessed, the conjugal state, is nothing"
+  },
+  {
+    "num": 53,
+    "translation": "What is rare when wife is good What can be there when she is bad?",
+    "meaning_english": "If his wife be eminent (in virtue), what does (that man) not possess ? If she be without excellence, what does (he) possess ?"
+  },
+  {
+    "num": 54,
+    "translation": "What greater fortune is for men Than a constant chaste woman?",
+    "meaning_english": "What is more excellent than a wife, if she possess the stability of chastity ?"
+  },
+  {
+    "num": 55,
+    "translation": "Her spouse before God who adores, Is like rain that at request pours",
+    "meaning_english": "If she, who does not worship God, but who rising worships her husband, say, \"let it rain,\" it will rain"
+  },
+  {
+    "num": 56,
+    "translation": "The good wife guards herself from blame, She tends her spouse and brings him fame",
+    "meaning_english": "She is a wife who unweariedly guards herself, takes care of her husband, and preserves an unsullied fame"
+  },
+  {
+    "num": 57,
+    "translation": "Of what avail are watch and ward? Their purity is women's guard",
+    "meaning_english": "What avails the guard of a prison ? The chief guard of a woman is her chastity"
+  },
+  {
+    "num": 58,
+    "translation": "Women who win their husbands' heart Shall flourish where the gods resort",
+    "meaning_english": "If women shew reverence to their husbands, they will obtain great excellence in the world where the gods flourish"
+  },
+  {
+    "num": 59,
+    "translation": "A cuckold has not the lion-like gait Before his detractors aright",
+    "meaning_english": "The man whose wife seeks not the praise (of chastity) cannot walk with lion-like stately step, before those who revile them"
+  },
+  {
+    "num": 60,
+    "translation": "An honest wife is home's delight And children good are jewels abright",
+    "meaning_english": "The excellence of a wife is the good of her husband; and good children are the jewels of that goodness"
+  },
+  {
+    "num": 61,
+    "translation": "The world no higher bliss bestows Than children virtuous and wise",
+    "meaning_english": "Among all the benefits that may be acquired, we know no greater benefit than the acquisition of intelligent children"
+  },
+  {
+    "num": 62,
+    "translation": "No evil comes and no blemish; Noble sons bring all we wish",
+    "meaning_english": "The evils of the seven births shall not touch those who abtain children of a good disposition, free from vice"
+  },
+  {
+    "num": 63,
+    "translation": "Children are one's wealth indeed Their wealth is measured by their deed",
+    "meaning_english": "Men will call their sons their wealth, because it flows to them through the deeds which they (sons) perform on their behalf"
+  },
+  {
+    "num": 64,
+    "translation": "The food is more than nectar sweet In which one's children hands insert",
+    "meaning_english": "The rice in which the little hand of their children has dabbled will be far sweeter (to the parent) than ambrosia"
+  },
+  {
+    "num": 65,
+    "translation": "Children's touch delights the body Sweet to ears are their words lovely",
+    "meaning_english": "The touch of children gives pleasure to the body, and the hearing of their words, pleasure to the ear"
+  },
+  {
+    "num": 66,
+    "translation": "The flute and lute are sweet they say Deaf to baby's babble's lay!",
+    "meaning_english": "\"The pipe is sweet, the lute is sweet,\" say those who have not heard the prattle of their own children"
+  },
+  {
+    "num": 67,
+    "translation": "A father's duty to his son is  To seat him in front of the wise",
+    "meaning_english": "The benefit which a father should confer on his son is to give him precedence in the assembly of the learned"
+  },
+  {
+    "num": 68,
+    "translation": "With joy the hearts of parents swell  To see their children themselves excel",
+    "meaning_english": "That their children should possess knowledge is more pleasing to all men of this great earth than to themselves"
+  },
+  {
+    "num": 69,
+    "translation": "The mother, hearing her son's merit  Delights more than when she begot",
+    "meaning_english": "The mother who hears her son called \"a wise man\" will rejoice more than she did at his birth"
+  },
+  {
+    "num": 70,
+    "translation": "The son to sire this word is debt  \\\"What penance such a son begot!\\\"",
+    "meaning_english": "(So to act) that it may be said \"by what great penance did his father beget him,\" is the benefit which a son should render to his father"
+  },
+  {
+    "num": 71,
+    "translation": "What bolt can bar true love in fact  The tricking tears reveal the heart",
+    "meaning_english": "Is there any fastening that can shut in love ? Tears of the affectionate will publish the love that is within"
+  },
+  {
+    "num": 72,
+    "translation": "To selves belong the loveless ones;  To oth'rs the loving e'en to bones",
+    "meaning_english": "Those who are destitute of love appropriate all they have to themselves; but those who possess love consider even their bones to belong to others"
+  },
+  {
+    "num": 73,
+    "translation": "Soul is encased in frame of bone  To taste the life of love alone",
+    "meaning_english": "They say that the union of soul and body in man is the fruit of the union of love and virtue (in a former birth)"
+  },
+  {
+    "num": 74,
+    "translation": "Love yields aspiration and thence  Friendship springs up in excellence",
+    "meaning_english": "Love begets desire: and that (desire) begets the immeasureable excellence of friendship"
+  },
+  {
+    "num": 75,
+    "translation": "The crowning joy of home life flows  From peaceful psychic love always",
+    "meaning_english": "These are the fruits of tranquil life of love"
+  },
+  {
+    "num": 76,
+    "translation": "\\\"Love is virtue's friend\\\" say know-nots  It helps us against evil plots",
+    "meaning_english": "The ignorant say that love is an ally to virtue only, but it is also a help to get out of vice"
+  },
+  {
+    "num": 77,
+    "translation": "Justice burns the loveless form  Like solar blaze the boneless worm",
+    "meaning_english": "Virtue will burn up the soul which is without love, even as the sun burns up the creature which is without bone, ie worms"
+  },
+  {
+    "num": 78,
+    "translation": "Life bereft of love is gloom  Can sapless tree in desert bloom?",
+    "meaning_english": "The domestic state of that man whose mind is without love is like the flourishing of a withered tree upon the parched desert"
+  },
+  {
+    "num": 79,
+    "translation": "Love is the heart which limbs must move,  Or vain the outer parts will prove",
+    "meaning_english": "Of what avail are all the external members (of the body) to those who are destitute of love, the internal member"
+  },
+  {
+    "num": 80,
+    "translation": "The seat of life is love alone;  Or beings are but skin and bone!",
+    "meaning_english": "That body alone which is inspired with love contains a living soul: if void of it, (the body) is bone overlaid with skin"
+  },
+  {
+    "num": 81,
+    "translation": "Men set up home, toil and earn  To tend the guests and do good turn",
+    "meaning_english": "The whole design of living in the domestic state and laying up (property) is (to be able) to exercise the benevolence of hospitality"
+  },
+  {
+    "num": 82,
+    "translation": "To keep out guests cannot be good  Albeit you eat nector-like food",
+    "meaning_english": "It is not fit that one should wish his guests to be outside (his house) even though he were eating the food of immortality"
+  },
+  {
+    "num": 83,
+    "translation": "Who tends his guests day in and out  His life in want never wears out",
+    "meaning_english": "The domestic life of the man that daily entertains the guests who come to him shall not be laid waste by poverty"
+  },
+  {
+    "num": 84,
+    "translation": "The goddess of wealth will gladly rest  Where smiles welcome the worthy guest",
+    "meaning_english": "Lakshmi with joyous mind shall dwell in the house of that man who, with cheerful countenance, entertains the good as guests"
+  },
+  {
+    "num": 85,
+    "translation": "Should his field be sown who first  Feeds the guests and eats the rest?",
+    "meaning_english": "Is it necessary to sow the field of the man who, having feasted his guests, eats what may remain ?"
+  },
+  {
+    "num": 86,
+    "translation": "Who tends a guest and looks for next  Is a welcome guest in heaven's feast",
+    "meaning_english": "He who, having entertained the guests that have come, looks out for others who may yet come, will be a welcome guest to the inhabitants of heaven"
+  },
+  {
+    "num": 87,
+    "translation": "Worth of the guest of quality  Is worth of hospitality",
+    "meaning_english": "The advantages of benevolence cannot be measured; the measure (of the virtue) of the guests (entertained) is the only measure"
+  },
+  {
+    "num": 88,
+    "translation": "Who loathe guest-service one day cry:  \\\"We toil and store; but life is dry\\\"",
+    "meaning_english": "Those who have taken no part in the benevolence of hospitality shall (at length lament) saying, \"we have laboured and laid up wealth and are now without support.\""
+  },
+  {
+    "num": 89,
+    "translation": "The man of wealth is poor indeed  Whose folly fails the guest to feed",
+    "meaning_english": "That stupidity which excercises no hospitality is poverty in the midst of wealth It is the property of the stupid"
+  },
+  {
+    "num": 90,
+    "translation": "Anicham smelt withers: like that  A wry-faced look withers the guest",
+    "meaning_english": "As the Anicham flower fades in smelling, so fades the guest when the face is turned away"
+  },
+  {
+    "num": 91,
+    "translation": "The words of Seers are lovely sweet  Merciful and free from deceit",
+    "meaning_english": "Sweet words are those which imbued with love and free from deceit flow from the mouth of the virtuous"
+  },
+  {
+    "num": 92,
+    "translation": "Sweet words from smiling lips dispense  More joys than heart's beneficence",
+    "meaning_english": "Sweet speech, with a cheerful countenance is better than a gift made with a joyous mind"
+  },
+  {
+    "num": 93,
+    "translation": "Calm face, sweet look, kind words from heart  Such is the gracious virtue's part",
+    "meaning_english": "Sweet speech, flowing from the heart (uttered) with a cheerful countenance and a sweet look, is true virtue"
+  },
+  {
+    "num": 94,
+    "translation": "Whose loving words delight each one  The woe of want from them is gone",
+    "meaning_english": "Sorrow-increasing poverty shall not come upon those who use towards all, pleasure-increasing sweetness of speech"
+  },
+  {
+    "num": 95,
+    "translation": "To be humble and sweet words speak  No other jewel do wise men seek",
+    "meaning_english": "Humility and sweetness of speech are the ornaments of man; all others are not (ornaments)"
+  },
+  {
+    "num": 96,
+    "translation": "His sins vanish, his virtues grow  Whose fruitful words with sweetness flow",
+    "meaning_english": "If a man, while seeking to speak usefully, speaks also sweetly, his sins will diminish and his virtue increase"
+  },
+  {
+    "num": 97,
+    "translation": "The fruitful courteous kindly words  Lead to goodness and graceful deeds",
+    "meaning_english": "That speech which, while imparting benefits ceases not to please, will yield righteousness (for this world) and merit (for the next world)"
+  },
+  {
+    "num": 98,
+    "translation": "Kind words free from meanness delight  This life on earth and life the next",
+    "meaning_english": "Sweet speech, free from harm to others, will give pleasure both in this world and in the next"
+  },
+  {
+    "num": 99,
+    "translation": "Who sees the sweets of sweetness here  To use harsh words how can he dare?",
+    "meaning_english": "Why does he use harsh words, who sees the pleasure which sweet speech yields ?"
+  },
+  {
+    "num": 100,
+    "translation": "Leaving ripe fruits the raw he eats  Who speaks harsh words when sweet word suits",
+    "meaning_english": "To say disagreeable things when agreeable are at hand is like eating unripe fruit when there is ripe"
+  },
+  {
+    "num": 101,
+    "translation": "Unhelped in turn good help given  Exceeds in worth earth and heaven",
+    "meaning_english": "(The gift of) heaven and earth is not an equivalent for a benefit which is conferred where none had been received"
+  },
+  {
+    "num": 102,
+    "translation": "A help rendered in hour of need  Though small is greater than the world",
+    "meaning_english": "A favour conferred in the time of need, though it be small (in itself), is (in value) much larger than the world"
+  },
+  {
+    "num": 103,
+    "translation": "Help rendered without weighing fruits  Outweighs the sea in grand effects",
+    "meaning_english": "If we weigh the excellence of a benefit which is conferred without weighing the return, it is larger than the sea"
+  },
+  {
+    "num": 104,
+    "translation": "Help given though millet-small  Knowers count its good palm-tree tall",
+    "meaning_english": "Though the benefit conferred be as small as a millet seed, those who know its advantage will consider it as large as a palmyra fruit"
+  },
+  {
+    "num": 105,
+    "translation": "A help is not the help's measure  It is gainer's worth and pleasure",
+    "meaning_english": "The benefit itself is not the measure of the benefit; the worth of those who have received it is its measure"
+  },
+  {
+    "num": 106,
+    "translation": "Forget not friendship of the pure  Forsake not timely helpers sure",
+    "meaning_english": "Forsake not the friendship of those who have been your staff in adversity Forget not be benevolence of the blameless"
+  },
+  {
+    "num": 107,
+    "translation": "Through sevenfold births, in memory fares  The willing friend who wiped one's tears",
+    "meaning_english": "(The wise) will remember throughout their seven-fold births the love of those who have wiped away their affliction"
+  },
+  {
+    "num": 108,
+    "translation": "To forget good turns is not good  Good it is over wrong not to brood",
+    "meaning_english": "It is not good to forget a benefit; it is good to forget an injury even in the very moment (in which it is inflicted)"
+  },
+  {
+    "num": 109,
+    "translation": "Let deadly harms be forgotten  While remembering one good-turn",
+    "meaning_english": "Though one inflict an injury great as murder, it will perish before the thought of one benefit (formerly) conferred"
+  },
+  {
+    "num": 110,
+    "translation": "The virtue-killer may be saved  Not benefit-killer who is damned",
+    "meaning_english": "He who has killed every virtue may yet escape; there is no escape for him who has killed a benefit"
+  },
+  {
+    "num": 111,
+    "translation": "Equity is supreme virtue  It is to give each man his due",
+    "meaning_english": "That equity which consists in acting with equal regard to each of (the three) divisions of men [enemies, strangers and friends] is a pre-eminent virtue"
+  },
+  {
+    "num": 112,
+    "translation": "Wealth of the man of equity  Grows and lasts to posterity",
+    "meaning_english": "The wealth of the man of rectitude will not perish, but will bring happiness also to his posterity"
+  },
+  {
+    "num": 113,
+    "translation": "Though profitable, turn away  From unjust gains without delay",
+    "meaning_english": "Forsake in the very moment (of acquisition) that gain which, though it should bring advantage, is without equity"
+  },
+  {
+    "num": 114,
+    "translation": "The worthy and the unworthy  Are seen in their posterity",
+    "meaning_english": "The worthy and unworthy may be known by the existence or otherwise of good offsprings"
+  },
+  {
+    "num": 115,
+    "translation": "Loss and gain by cause arise;  Equal mind adorns the wise",
+    "meaning_english": "Loss and gain come not without cause; it is the ornament of the wise to preserve evenness of mind (under both)"
+  },
+  {
+    "num": 116,
+    "translation": "Of perdition let him be sure  Who leaves justice to sinful lure",
+    "meaning_english": "Let him whose mind departing from equity commits sin well consider thus within himself, \"I shall perish.\""
+  },
+  {
+    "num": 117,
+    "translation": "The just reduced to poverty  Is not held down by equity",
+    "meaning_english": "The great will not regard as poverty the low estate of that man who dwells in the virtue of equity"
+  },
+  {
+    "num": 118,
+    "translation": "Like balance holding equal scales  A well poised mind is jewel of the wise",
+    "meaning_english": "To incline to neither side, but to rest impartial as the even-fixed scale is the ornament of the wise"
+  },
+  {
+    "num": 119,
+    "translation": "Justice is upright, unbending  And free from crooked word-twisting",
+    "meaning_english": "Freedom from obliquity of speech is rectitude, if there be (corresponding) freedom from bias of mind"
+  },
+  {
+    "num": 120,
+    "translation": "A trader's trade prospers fairly  When his dealings are neighbourly",
+    "meaning_english": "The true merchandize of merchants is to guard and do by the things of others as they do by their own"
+  },
+  {
+    "num": 121,
+    "translation": "Self-rule leads to realms of gods  Indulgence leads to gloomy hades",
+    "meaning_english": "Self-control will place (a man) among the Gods; the want of it will drive (him) into the thickest darkness (of hell)"
+  },
+  {
+    "num": 122,
+    "translation": "No gains with self-control measure  Guard with care this great treasure",
+    "meaning_english": "Let self-control be guarded as a treasure; there is no greater source of good for man than that"
+  },
+  {
+    "num": 123,
+    "translation": "Knowing wisdom who lives controlled  Name and fame seek him untold",
+    "meaning_english": "Knowing that self-control is knowledge, if a man should control himself, in the prescribed course, such self-control will bring him distinction among the wise"
+  },
+  {
+    "num": 124,
+    "translation": "Firmly fixed in self serene  The sage looks grander than mountain",
+    "meaning_english": "More lofty than a mountain will be the greatness of that man who without swerving from his domestic state, controls himself"
+  },
+  {
+    "num": 125,
+    "translation": "Humility is good for all  To the rich it adds a wealth special",
+    "meaning_english": "Humility is good in all; but especially in the rich it is (the excellence of) higher riches"
+  },
+  {
+    "num": 126,
+    "translation": "Who senses five like tortoise hold  Their joy prolongs to births sevenfold",
+    "meaning_english": "Should one throughout a single birth, like a tortoise keep in his five senses, the fruit of it will prove a safe-guard to him throughout the seven-fold births."
+  },
+  {
+    "num": 127,
+    "translation": "Rein the tongue if nothing else  Or slips of tongue bring all the woes",
+    "meaning_english": "Whatever besides you leave unguarded, guard your tongue; otherwise errors of speech and the consequent misery will ensue"
+  },
+  {
+    "num": 128,
+    "translation": "Even a single evil word  Will turn all good results to bad",
+    "meaning_english": "If a man's speech be productive of a single evil, all the good by him will be turned into evil"
+  },
+  {
+    "num": 129,
+    "translation": "The fire-burnt wounds do find a cure  Tongue-burnt wound rests a running sore",
+    "meaning_english": "The wound which has been burnt in by fire may heal, but a wound burnt in by the tongue will never heal"
+  },
+  {
+    "num": 130,
+    "translation": "Virtue seeks and peeps to see  Self-controlled savant anger free",
+    "meaning_english": "Virtue, seeking for an opportunity, will come into the path of that man who, possessed of learning and self-control, guards himself against anger"
+  },
+  {
+    "num": 131,
+    "translation": "Decorum does one dignity  More than life guard its purity",
+    "meaning_english": "Propriety of conduct leads to eminence, it should therefore be preserved more carefully than life"
+  },
+  {
+    "num": 132,
+    "translation": "Virtues of conduct all excel;  The soul aid should be guarded well",
+    "meaning_english": "Let propriety of conduct be laboriously preserved and guarded; though one know and practise and excel in many virtues, that will be an eminent aid"
+  },
+  {
+    "num": 133,
+    "translation": "Good conduct shows good family  Low manners mark anomaly",
+    "meaning_english": "Propriety of conduct is true greatness of birth, and impropriety will sink into a mean birth"
+  },
+  {
+    "num": 134,
+    "translation": "Readers recall forgotten lore,  But conduct lost returns no more",
+    "meaning_english": "A Brahman though he should forget the Vedas may recover it by reading; but, if he fail in propriety of conduct even his high birth will be destroyed"
+  },
+  {
+    "num": 135,
+    "translation": "The envious prosper but ill  The ill-behaved sinks lower still",
+    "meaning_english": "Just as the envious man will be without wealth, so will the man of destitute of propriety of conduct be without greatness"
+  },
+  {
+    "num": 136,
+    "translation": "The firm from virtue falter not  They know the ills of evil thought",
+    "meaning_english": "Those firm in mind will not slacken in their observance of the proprieties of life, knowing, as they do, the misery that flows from the transgression from them"
+  },
+  {
+    "num": 137,
+    "translation": "Conduct good ennobles man,  Bad conduct entails disgrace mean",
+    "meaning_english": "From propriety of conduct men obtain greatness; from impropriety comes insufferable disgrace"
+  },
+  {
+    "num": 138,
+    "translation": "Good conduct sows seeds of blessings  Bad conduct endless evil brings",
+    "meaning_english": "Propriety of conduct is the seed of virtue; impropriety will ever cause sorrow"
+  },
+  {
+    "num": 139,
+    "translation": "Foul words will never fall from lips  Of righteous men even by slips",
+    "meaning_english": "Those who study propriety of conduct will not speak evil, even forgetfully"
+  },
+  {
+    "num": 140,
+    "translation": "Though read much they are ignorant  Whose life is not world-accordant",
+    "meaning_english": "Those who know not how to act agreeably to the world, though they have learnt many things, are still ignorant"
+  },
+  {
+    "num": 141,
+    "translation": "Who know the wealth and virtue's way  After other's wife do not stray",
+    "meaning_english": "The folly of desiring her who is the property of another will not be found in those who know (the attributes of) virtue and (the rights of) property"
+  },
+  {
+    "num": 142,
+    "translation": "He is the worst law breaking boor  Who haunts around his neighbour's door",
+    "meaning_english": "Among all those who stand on the outside of virtue, there are no greater fools than those who stand outside their neighbour's door"
+  },
+  {
+    "num": 143,
+    "translation": "The vile are dead who evil aim  And put faithful friends' wives to shame",
+    "meaning_english": "Certainly they are no better than dead men who desire evil towards the wife of those who"
+  },
+  {
+    "num": 144,
+    "translation": "Their boasted greatness means nothing  When to another's wife they cling",
+    "meaning_english": "However great one may be, what does it avail if, without at all considering his guilt, he goes unto the wife of another ?"
+  },
+  {
+    "num": 145,
+    "translation": "Who trifles with another's wife  His guilty stain will last for life",
+    "meaning_english": "He who thinks lightly of going into the wife of another acquires guilt that will abide with him imperishably and for ever"
+  },
+  {
+    "num": 146,
+    "translation": "Hatred, sin, fear, and shame-these four  Stain adulterers ever more",
+    "meaning_english": "Hatred, sin, fear, disgrace; these four will never leave him who goes in to his neighbour's wife"
+  },
+  {
+    "num": 147,
+    "translation": "He is the righteous householder  His neighbour's wife who covets never",
+    "meaning_english": "He who desires not the womanhood of her who should walk according to the will of another will be praised as a virtuous house-holder"
+  },
+  {
+    "num": 148,
+    "translation": "They lead a high-souled manly life  The pure who eye not another's wife",
+    "meaning_english": "That noble manliness which looks not at the wife of another is the virtue and dignity of the great"
+  },
+  {
+    "num": 149,
+    "translation": "Good in storm bound earth is with those  Who clasp not arms of another's spouse",
+    "meaning_english": "Is it asked, \"who are those who shall obtain good in this world surrounded by the terror-producing sea ?\" Those who touch not the shoulder of her who belongs to another"
+  },
+  {
+    "num": 150,
+    "translation": "Sinners breaking virtue's behest  Lust not for another's wife at least",
+    "meaning_english": "Though a man perform no virtuous deeds and commit (every) vice, it will be well if he desire not the womanhood of her who is within the limit (of the house) of another"
+  },
+  {
+    "num": 151,
+    "translation": "As earth bears up with diggers too  To bear revilers is prime virtue",
+    "meaning_english": "To bear with those who revile us, just as the earth bears up those who dig it, is the first of virtues"
+  },
+  {
+    "num": 152,
+    "translation": "Forgive insults is a good habit  Better it is to forget it",
+    "meaning_english": "Bear with reproach even when you can retaliate; but to forget it will be still better than that"
+  },
+  {
+    "num": 153,
+    "translation": "Neglect the guest is dearth of dearth  To bear with fools is strength of strength",
+    "meaning_english": "To neglect hospitality is poverty of poverty To bear with the ignorant is might of might"
+  },
+  {
+    "num": 154,
+    "translation": "Practice of patient quality  Retains intact itegrity",
+    "meaning_english": "If you desire that greatness should never leave, you preserve in your conduct the exercise of patience"
+  },
+  {
+    "num": 155,
+    "translation": "Vengeance is not in esteem held  Patience is praised as hidden gold",
+    "meaning_english": "(The wise) will not at all esteem the resentful They will esteem the patient just as the gold which they lay up with care"
+  },
+  {
+    "num": 156,
+    "translation": "Revenge accords but one day's joy  Patience carries its praise for aye",
+    "meaning_english": "The pleasure of the resentful continues for a day The praise of the patient will continue until (the final destruction of) the world"
+  },
+  {
+    "num": 157,
+    "translation": "Though others cause you wanton pain  Grieve not; from unjust harm refrain",
+    "meaning_english": "Though others inflict injuries on you, yet compassionating the evil (that will come upon them) it will be well not to do them anything contrary to virtue"
+  },
+  {
+    "num": 158,
+    "translation": "By noble forbearance vanquish  The proud that have caused you anguish",
+    "meaning_english": "Let a man by patience overcome those who through pride commit excesses"
+  },
+  {
+    "num": 159,
+    "translation": "More than ascetics they are pure  Who bitter tongues meekly endure",
+    "meaning_english": "Those who bear with the uncourteous speech of the insolent are as pure as the ascetics"
+  },
+  {
+    "num": 160,
+    "translation": "Who fast are great to do penance  Greater are they who bear offence",
+    "meaning_english": "Those who endure abstinence from food are great, next to those who endure the uncourteous speech of others"
+  },
+  {
+    "num": 161,
+    "translation": "Deem your heart as virtuous  When your nature is not jealous",
+    "meaning_english": "Let a man esteem that disposition which is free from envy in the same manner as propriety of conduct"
+  },
+  {
+    "num": 162,
+    "translation": "No excellence excels the one  That by nature envies none",
+    "meaning_english": "Amongst all attainable excellences there is none equal to that of being free from envy towords others"
+  },
+  {
+    "num": 163,
+    "translation": "Who envies others' good fortune  Can't prosper in virtue of his own",
+    "meaning_english": "Of him who instead of rejoicing in the wealth of others, envies it, it will be said \"he neither desires virtue not wealth.\""
+  },
+  {
+    "num": 164,
+    "translation": "The wise through envy don't others wrong  Knowing that woes from evils throng",
+    "meaning_english": "(The wise) knowing the misery that comes from transgression will not through envy commit unrighteous deeds"
+  },
+  {
+    "num": 165,
+    "translation": "Man shall be wrecked by envy's whim  Even if enemies spare him",
+    "meaning_english": "To those who cherish envy that is enough Though free from enemies that (envy) will bring destruction"
+  },
+  {
+    "num": 166,
+    "translation": "Who envies gifts shall suffer ruin  Without food and clothes with his kin",
+    "meaning_english": "He who is envious at a gift (made to another) will with his relations utterly perish destitute of food and rainment"
+  },
+  {
+    "num": 167,
+    "translation": "Fortune deserts the envious  Leaving misfortune omnious",
+    "meaning_english": "Lakshmi envying (the prosperity) of the envious man will depart and introduce him to her sister"
+  },
+  {
+    "num": 168,
+    "translation": "Caitiff envy despoils wealth  And drags one into evil path",
+    "meaning_english": "Envy will destroy (a man's) wealth (in his world) and drive him into the pit of fire (in the world to come.)"
+  },
+  {
+    "num": 169,
+    "translation": "Why is envy rich, goodmen poor  People with surprise think over",
+    "meaning_english": "The wealth of a man of envious mind and the poverty of the righteous will be pondered"
+  },
+  {
+    "num": 170,
+    "translation": "The envious prosper never  The envyless prosper ever",
+    "meaning_english": "Never have the envious become great; never have those who are free from envy been without greatness"
+  },
+  {
+    "num": 171,
+    "translation": "Who covets others' honest wealth  That greed ruins his house forthwith",
+    "meaning_english": "If a man departing from equity covet the property (of others), at that very time will his family be destroyed and guilt be incurred"
+  },
+  {
+    "num": 172,
+    "translation": "Who shrink with shame from sin, refrain  From coveting which brings ruin",
+    "meaning_english": "Those who blush at the want of equity will not commit disgraceful acts through desire of the profit that may be gained"
+  },
+  {
+    "num": 173,
+    "translation": "For spiritual bliss who long  For fleeting joy commit no wrong",
+    "meaning_english": "Those who desire the higher pleasures (of heaven) will not act unjustly through desire of the trifling joy. (in this life.)"
+  },
+  {
+    "num": 174,
+    "translation": "The truth-knowers of sense-control  Though in want covet not at all",
+    "meaning_english": "The wise who have conquered their senses and are free from crime, will not covet (the things of others), with the thought \"we are destitute.\""
+  },
+  {
+    "num": 175,
+    "translation": "What is one's subtle wisdom worth  If it deals ill with all on earth",
+    "meaning_english": "What is the advantage of extensive and accurate knowledge if a man through covetousness act senselessly towards all ?"
+  },
+  {
+    "num": 176,
+    "translation": "Who seeks for grace on righteous path  Suffers by evil covetous wealth",
+    "meaning_english": "If he, who through desire of the virtue of kindness abides in the domestic state ie, the path in which it may be obtained, covet (the property of others) and think of evil methods (to obtain it), he will perish"
+  },
+  {
+    "num": 177,
+    "translation": "Shun the fruit of covetousness  All its yield is inglorious",
+    "meaning_english": "Desire not the gain of covetousness In the enjoyment of its fruits there is no glory"
+  },
+  {
+    "num": 178,
+    "translation": "The mark of lasting wealth is shown  By not coveting others' own",
+    "meaning_english": "If it is weighed, \"what is the indestructibility of wealth,\" it is freedom from covetousness"
+  },
+  {
+    "num": 179,
+    "translation": "Fortune seeks the just and wise  Who are free from coveting vice",
+    "meaning_english": "Lakshmi, knowing the manner (in which she may approach) will immediately come to those wise men who, knowing that it is virtue, covet not the property of others"
+  },
+  {
+    "num": 180,
+    "translation": "Desireless, greatness conquers all;  Coveting misers ruined fall",
+    "meaning_english": "To covet (the wealth of another) regardless of consequences will bring destruction That greatness (of mind) which covets not will give victory"
+  },
+  {
+    "num": 181,
+    "translation": "Though a man from virtue strays,  To keep from slander brings him praise",
+    "meaning_english": "Though one do not even speak of virtue and live in sin, it will be well if it be said of him \"he does not backbite.\""
+  },
+  {
+    "num": 182,
+    "translation": "Who bite behind, and before smile  Are worse than open traitors vile",
+    "meaning_english": "To smile deceitfully (in another's presence) after having reviled him to his destruction (behind his back) is a greater evil than the commission of (every other) sin and the destruction of (every) virtue"
+  },
+  {
+    "num": 183,
+    "translation": "Virtue thinks it better to die,  Than live to backbite and to lie",
+    "meaning_english": "Death rather than life will confer upon the deceitful backbiter the profit which (the treatises on) virtue point out"
+  },
+  {
+    "num": 184,
+    "translation": "Though harsh you speak in one's presence  Abuse is worse in his absence",
+    "meaning_english": "Though you speak without kindness before another's face speak not in his absence words which regard not the evil subsequently resulting from it"
+  },
+  {
+    "num": 185,
+    "translation": "Who turns to slander makes it plain  His praise of virtue is in vain",
+    "meaning_english": "The emptiness of that man's mind who (merely) praises virtue will be seen from the meanness of reviling another behind his back"
+  },
+  {
+    "num": 186,
+    "translation": "His failings will be found and shown,  Who makes another's failings known",
+    "meaning_english": "The character of the faults of that man who publishes abroad the faults of others will be sought out and published"
+  },
+  {
+    "num": 187,
+    "translation": "By pleasing words who make not friends  Sever their hearts by hostile trends",
+    "meaning_english": "Those who know not to live in friendship with amusing conversation will by back-biting estrange even their relatives"
+  },
+  {
+    "num": 188,
+    "translation": "What will they not to strangers do  Who bring their friends' defects to view?",
+    "meaning_english": "What will those not do to strangers whose nature leads them to publish abroad the faults of their intimate friends ?"
+  },
+  {
+    "num": 189,
+    "translation": "The world in mercy bears his load  Who rants behind words untoward",
+    "meaning_english": "The world through charity supports the weight of those who reproach others observing their absence"
+  },
+  {
+    "num": 190,
+    "translation": "No harm would fall to any man  If each his own defect could scan",
+    "meaning_english": "If they observed their own faults as they observe the faults of others, would any evil happen to men ?"
+  }
+]

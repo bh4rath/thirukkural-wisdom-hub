@@ -1,0 +1,962 @@
+You are simplifying Thirukkural explanations so a 10-year-old child can easily read and understand them.
+
+For EVERY kural in the list below, rewrite TWO fields:
+1. "translation" — one clear sentence (max 20 words) in everyday English, capturing what the couplet says.
+2. "meaning_english" — 2-3 short sentences in simple, friendly language. Relate it to everyday life a child knows (school, family, friends, sports, food). No formal or old-fashioned words like "virtue", "righteousness", "thee", "thou", "conducive", "celestial", "temporal", "hath".
+
+Return ONLY a valid JSON array — no markdown, no code fences, no extra text:
+[{"num": <number>, "translation": "...", "meaning_english": "..."}, ...]
+
+Kurals to simplify:
+[
+  {
+    "num": 761,
+    "translation": "The daring well-armed winning force Is king's treasure and main resource",
+    "meaning_english": "The army which is complete in (its) parts and conquers without fear of wounds is the chief wealth of the king"
+  },
+  {
+    "num": 762,
+    "translation": "Through shots and wounds brave heroes hold Quailing not in fall, the field",
+    "meaning_english": "Ancient army can alone have the valour which makes it stand by its king at the time of defeat, fearless of wounds and unmindful of its reduced strength"
+  },
+  {
+    "num": 763,
+    "translation": "Sea-like ratfoes roar What if? They perish at a cobra's whiff",
+    "meaning_english": "What if (a host of) hostile rats roar like the sea ? They will perish at the mere breath of the cobra"
+  },
+  {
+    "num": 764,
+    "translation": "The army guards its genial flame Not crushed, routed nor marred in name",
+    "meaning_english": "That indeed is an army which has stood firm of old without suffering destruction or deserting (to the enemy)"
+  },
+  {
+    "num": 765,
+    "translation": "The real army with rallied force Resists even Death-God fierce",
+    "meaning_english": "That indeed is an army which is capable of offering a united resistance, even if Yama advances against it with fury"
+  },
+  {
+    "num": 766,
+    "translation": "Manly army has merits four:- Stately-march, faith, honour, valour",
+    "meaning_english": "Valour, honour, following in the excellent-footsteps (of its predecessors) and trust-worthiness; these four alone constitute the safeguard of an army"
+  },
+  {
+    "num": 767,
+    "translation": "Army sets on to face to foes Knowing how the trend of war goes",
+    "meaning_english": "That is an army which knowing the art of warding off an impending struggle, can bear against the dust-van (of a hostile force)"
+  },
+  {
+    "num": 768,
+    "translation": "Army gains force by grand array Lacking in stay or dash in fray",
+    "meaning_english": "Though destitute of courage to fight and strength (to endure), an army may yet gain renown by the splendour of its appearance"
+  },
+  {
+    "num": 769,
+    "translation": "Army shall win if it is free From weakness, aversion, poverty",
+    "meaning_english": "An army can triumph (over its foes) if it is free from diminution; irremediable aversion and poverty"
+  },
+  {
+    "num": 770,
+    "translation": "With troops in large numbers on rolls Army can't march missing gen'rals",
+    "meaning_english": "Though an army may contain a large number of permanent soldiers, it cannot last if it has no generals"
+  },
+  {
+    "num": 771,
+    "translation": "Stand not before my chief, O foes! Many who stood, in stones repose",
+    "meaning_english": "O my foes, stand not before my leader; (for) many are those who did so but afterwards stood (in the shape of) statues"
+  },
+  {
+    "num": 772,
+    "translation": "To lift a lance that missed a tusker Is prouder than shaft that hit a hare",
+    "meaning_english": "It is more pleasant to hold the dart that has missed an elephant than that which has hit hare in the forest"
+  },
+  {
+    "num": 773,
+    "translation": "Valour is fight with fierce courage Mercy to the fallen is its edge",
+    "meaning_english": "The learned say that fierceness (incontest with a foe) is indeed great valour; but to become a benefactor in case of accident (to a foe) is the extreme (limit) of that valour"
+  },
+  {
+    "num": 774,
+    "translation": "At the tusker he flings his lance One in body smiles another chance",
+    "meaning_english": "The hero who after casting the lance in his hand on an elephant, comes (in search of another) will pluck the one (that sticks) in his body and laugh (exultingly)"
+  },
+  {
+    "num": 775,
+    "translation": "When lances dart if heroes wink \\\"It is a rout\\\" the world will think",
+    "meaning_english": "Is it not a defeat to the valiant to wink and destroy their ferocious look when a lance in cast at them (by their foe) ?"
+  },
+  {
+    "num": 776,
+    "translation": "The brave shall deem the days as vain Which did not battle-wounds sustain",
+    "meaning_english": "The hero will reckon among wasted days all those on which he had not received severe wounds"
+  },
+  {
+    "num": 777,
+    "translation": "Their anklets aloud jingle their name Who sacrifice their life for fame",
+    "meaning_english": "The fastening of ankle-ring by those who disire a world-wide renown and not (the safety of) their lives is like adorning (themselves)"
+  },
+  {
+    "num": 778,
+    "translation": "The king may chide, they pursue strife; They fear loss of glory; not life",
+    "meaning_english": "The heroes who are not afraid of losing their life in a contest will not cool their ardour, even if the king prohibits (their fighting)"
+  },
+  {
+    "num": 779,
+    "translation": "Who will blame the heroes that lose Their lives in war to keep their vows?",
+    "meaning_english": "Who would reproach with failure those who seal their oath with their death ?"
+  },
+  {
+    "num": 780,
+    "translation": "Such a death shall be prayed for Which draws the the tears of the ruler",
+    "meaning_english": "If (heroes) can so die as to fill with tears the eyes of their rulers, such a death deserves to be obtained even by begging"
+  },
+  {
+    "num": 781,
+    "translation": "Like friendship what's so hard to gain? That guards one against acts villain?",
+    "meaning_english": "What so sure defence 'gainst all that foe can do?"
+  },
+  {
+    "num": 782,
+    "translation": "Good friendship shines like waxing moon, The bad withers like waning moon",
+    "meaning_english": "The friendship of the wise waxes like the new moon; (but) that of fools wanes like the full moon"
+  },
+  {
+    "num": 783,
+    "translation": "Like taste in books good friendship grows The more one moves the more he knows",
+    "meaning_english": "Like learning, the friendship of the noble, the more it is cultivated, the more delightful does it become"
+  },
+  {
+    "num": 784,
+    "translation": "Not to laugh is friendship made But to hit when faults exceed",
+    "meaning_english": "Friendship is to be practised not for the purpose of laughing but for that of being beforehand in giving one another sharp rebukes in case of transgression"
+  },
+  {
+    "num": 785,
+    "translation": "No close living nor clasping grip Friendship's feeling heart's fellowship",
+    "meaning_english": "Living together and holding frequent intercourse are not necessary (for friendship); (mutual) understanding can alone create a claim for it"
+  },
+  {
+    "num": 786,
+    "translation": "Friendship is not more smile on face It is the smiling heart's embrace",
+    "meaning_english": "The love that dwells (merely in the smiles of the face is not friendship; (but) that which dwells deep in the smiles of the heart is true friendship"
+  },
+  {
+    "num": 787,
+    "translation": "From ruin friendship saves and shares The load of pain and right path shows",
+    "meaning_english": "(True) friendship turns aside from evil (ways) makes (him) walk in the (good) way, and, in case of loss if shares his sorrow (with him)"
+  },
+  {
+    "num": 788,
+    "translation": "Friendship hastens help in mishaps Like hands picking up dress that slips",
+    "meaning_english": "(True) friendship hastens to the rescue of the afflicted (as readily) as the hand of one whose garment is loosened (before an assembly)"
+  },
+  {
+    "num": 789,
+    "translation": "Friendship is enthroned on the strength That always helps with utmost warmth",
+    "meaning_english": "Friendship may be said to be on its throne when it possesses the power of supporting one at all times and under all circumstances, (in the practice or virtue and wealth)"
+  },
+  {
+    "num": 790,
+    "translation": "\\\"Such we are and such they are!\\\" Ev'n this boast will friendship mar",
+    "meaning_english": "Though friends may praise one another saying, \"He is so intimate with us, and we so much (with him)\"; (still) such friendship will appear mean"
+  },
+  {
+    "num": 791,
+    "translation": "Than testless friendship nought is worse For contacts formed will scarcely cease",
+    "meaning_english": "As those who are of a friendly nature will not forsake (a friend) after once loving (him), there is no evil so great as contracting a friendship without due inquiry"
+  },
+  {
+    "num": 792,
+    "translation": "Friendship made without frequent test Shall end in grief and death at last",
+    "meaning_english": "The friendship contracted by him who has not made repeated inquiry will in the end grieve (him) to death"
+  },
+  {
+    "num": 793,
+    "translation": "Temper, descent, defects and kins Trace well and take companions",
+    "meaning_english": "Make friendship (with one) after ascertaining (his) character, birth, defects and the whole of one's relations"
+  },
+  {
+    "num": 794,
+    "translation": "Take as good friend at any price The nobly born who shun disgrace",
+    "meaning_english": "The friendship of one who belongs to a (good) family and is afraid of (being charged with) guilt, is worth even purchasing"
+  },
+  {
+    "num": 795,
+    "translation": "Who make you weep and chide wrong trends And lead you right are worthy friends",
+    "meaning_english": "You should examine and secure the friendship of those who can speak so as to make you weep over a crime (before its commission) or rebuke you severely (after you have done it) and are able to teach"
+  },
+  {
+    "num": 796,
+    "translation": "Is there a test like misfortune A rod to measure out kinsmen?",
+    "meaning_english": "Even in ruin there is some good; (for) it is a rod by which one may measure fully (the affection of one's) relations"
+  },
+  {
+    "num": 797,
+    "translation": "Keep off contacts with fools; that is The greatest gain so say the wise",
+    "meaning_english": "It is indead a gain for one to renounce the friendship of fools"
+  },
+  {
+    "num": 798,
+    "translation": "Off with thoughts that depress the heart Off with friends that in woe depart",
+    "meaning_english": "Do not think of things that discourage your mind, nor contract friendship with those who would forsake you in adversity"
+  },
+  {
+    "num": 799,
+    "translation": "Friends who betray at ruin's brink Burn our mind ev'n at death to think",
+    "meaning_english": "The very thought of the friendship of those who have deserted one at the approach of adversity will burn one's mind at the time of death"
+  },
+  {
+    "num": 800,
+    "translation": "The blameless ones as friends embarace; Give something and give up the base",
+    "meaning_english": "Continue to enjoy the friendship of the pure; (but) renounce even with a gift, the friendship of those who do not agree (with the world)"
+  },
+  {
+    "num": 801,
+    "translation": "That friendship is good amity Which restrains not one's liberty",
+    "meaning_english": "Imtimate friendship is that which cannot in the least be injured by (things done through the) right (of longstanding intimacy)"
+  },
+  {
+    "num": 802,
+    "translation": "Friendship's heart is freedom close; Wise men's duty is such to please",
+    "meaning_english": "The constituents of friendship are (things done through) the right of intimacy; to be pleased with such a right is the duty of the wise"
+  },
+  {
+    "num": 803,
+    "translation": "Of long friendship what is the use Righteous freedom if men refuse?",
+    "meaning_english": "Of what avail is long-standing friendship, if friends do not admit as their own actions done through the right of intimacy ?"
+  },
+  {
+    "num": 804,
+    "translation": "Things done unasked by loving friends Please the wise as familiar trends!",
+    "meaning_english": "If friends, through the right of friendship, do (anything) without being asked, the wise will be pleased with them on account of its desirability"
+  },
+  {
+    "num": 805,
+    "translation": "Offence of friends feel it easy As folloy or close intimacy",
+    "meaning_english": "If friends should perform what is painful, understand that it is owing not only to ignorance, but also to the strong claims of intimacy"
+  },
+  {
+    "num": 806,
+    "translation": "They forsake not but continue In friendship's bounds though loss ensue",
+    "meaning_english": "Those who stand within the limits (of true friendship) will not even in adversity give up the intimacy of long-standing friends"
+  },
+  {
+    "num": 807,
+    "translation": "Comrades established in firm love Though ruin comes waive not their vow",
+    "meaning_english": "Those who have (long) stood in the path of affection will not give it up even if their friends cause (them) their ruin"
+  },
+  {
+    "num": 808,
+    "translation": "Fast friends who list not tales of ill Though wronged they say \\\"that day is well\\\"",
+    "meaning_english": "To those who understand that by which they should not listen to (tales about) the faults of their friends, that is a (profitable) day on which the latter may commit a fault"
+  },
+  {
+    "num": 809,
+    "translation": "To love such friends the world desires Whose friendship has unbroken ties",
+    "meaning_english": "They will be loved by the world, who have not forsaken the friendship of those with whom they have kept up an unbroken long-standing intimacy"
+  },
+  {
+    "num": 810,
+    "translation": "Even foes love for better ends Those who leave not long-standing friends",
+    "meaning_english": "Even enemies will love those who have never changed in their affection to their long-standingfriends"
+  },
+  {
+    "num": 811,
+    "translation": "Swallowing love of soulless men Had better wane than wax anon",
+    "meaning_english": "The decrease of friendship with those who look as if they would eat you up (through excess of love) while they are really destitute of goodness is far better than its increase"
+  },
+  {
+    "num": 812,
+    "translation": "Who fawn in wealth and fail in dearth Gain or lose; such friends have no worth",
+    "meaning_english": "Of what avail is it to get or lose the friendship of those who love when there is gain and leave when there is none ?"
+  },
+  {
+    "num": 813,
+    "translation": "Cunning friends who calculate  Are like thieves and whores wicked",
+    "meaning_english": "Friendship who calculate the profits (of their friendship), prostitutes who are bent on obtaining their gains, and thieves are (all) of the same character"
+  },
+  {
+    "num": 814,
+    "translation": "Better be alone than trust in those That throw in field like faithless horse",
+    "meaning_english": "Solitude is more to be desired than the society of those who resemble the untrained horses which throw down (their riders) in the fields of battle"
+  },
+  {
+    "num": 815,
+    "translation": "Friends low and mean that give no help- Leave them is better than to keep",
+    "meaning_english": "It is far better to avoid that to contract the evil friendship of the base who cannot protect (their friends) even when appointed to do so"
+  },
+  {
+    "num": 816,
+    "translation": "Million times the wise man's hate Is better than a fool intimate",
+    "meaning_english": "The hatred of the wise is ten-million times more profitable than the excessive intimacy of the fool"
+  },
+  {
+    "num": 817,
+    "translation": "Ten-fold crore you gain from foes Than from friends who are vain laughers",
+    "meaning_english": "What comes from enemies is a hundred million times more profitable than what comes from the friendship of those who cause only laughter"
+  },
+  {
+    "num": 818,
+    "translation": "Without a word those friends eschew Who spoil deeds which they can do",
+    "meaning_english": "Gradually abandon without revealing (beforehand) the friendship of those who pretend inability to carry out what they (really) could do"
+  },
+  {
+    "num": 819,
+    "translation": "Even in dreams the tie is bad With those whose deed is far from word",
+    "meaning_english": "The friendship of those whose actions do not agree with their words will distress (one) even in (one's) dreams"
+  },
+  {
+    "num": 820,
+    "translation": "Keep aloof from those that smile At home and in public revile",
+    "meaning_english": "Avoid even the least approach to a contraction of friendship with those who would love you in private but ridicule you in public"
+  },
+  {
+    "num": 821,
+    "translation": "The friendship by an enemy shown Is anvil in time, to strike you down",
+    "meaning_english": "The friendship of those who behave like friends without inward affection is a weapon that may be thrown when a favourable opportunity presents itself"
+  },
+  {
+    "num": 822,
+    "translation": "Who pretend kinship but are not Their friendship's fickle like woman's heart",
+    "meaning_english": "The friendship of those who seem to be friends while they are not, will change like the love of women"
+  },
+  {
+    "num": 823,
+    "translation": "They may be vast in good studies But heartfelt-love is hard for foes",
+    "meaning_english": "Though (one's) enemies may have mastered many good books, it will be impossible for them to become truly loving at heart"
+  },
+  {
+    "num": 824,
+    "translation": "Fear foes whose face has winning smiles Whose heart is full of cunning guiles",
+    "meaning_english": "One should fear the deceitful who smile sweetly with their face but never love with their heart"
+  },
+  {
+    "num": 825,
+    "translation": "Do not trust in what they tell Whose mind with your mind goes ill",
+    "meaning_english": "In nothing whatever is it proper to rely on the words of those who do not love with their heart"
+  },
+  {
+    "num": 826,
+    "translation": "The words of foes is quickly seen Though they speak like friends in fine",
+    "meaning_english": "Though (one's) foes may utter good things as though they were friends, once will at once understand (their evil, import)"
+  },
+  {
+    "num": 827,
+    "translation": "Trust not the humble words of foes Danger darts from bending bows",
+    "meaning_english": "Since the bending of the bow bespeaks evil, one should not accept (as good) the humiliating speeches of one's foes"
+  },
+  {
+    "num": 828,
+    "translation": "Adoring hands of foes hide arms Their sobbing tears have lurking harms",
+    "meaning_english": "A weapon may be hid in the very hands with which (one's) foes adore (him) (and) the tears they shed are of the same nature"
+  },
+  {
+    "num": 829,
+    "translation": "In open who praise, at heart despise Cajole and crush them in friendly guise",
+    "meaning_english": "It is the duty of kings to affect great love but make it die (inwardly); as regard those foes who shew them great friendship but despise them (in their heart)"
+  },
+  {
+    "num": 830,
+    "translation": "When foes, in time, play friendship's part Feign love on face but not in heart",
+    "meaning_english": "When one's foes begin to affect friendship, one should love them with one's looks, and, cherishing no love in the heart, give up (even the former)"
+  },
+  {
+    "num": 831,
+    "translation": "This is folly's prominent vein To favour loss and forego gain",
+    "meaning_english": "Folly is one (of the chief defects); it is that which (makes one) incur loss and forego gain"
+  },
+  {
+    "num": 832,
+    "translation": "Folly of follies is to lead A lewd and lawless life so bad",
+    "meaning_english": "The greatest folly is that which leads one to take delight in doing what is forbidden"
+  },
+  {
+    "num": 833,
+    "translation": "Shameless, aimless, callous, listless Such are the marks of foolishness",
+    "meaning_english": "Shamelessness indifference (to what must be sought after), harshness, and aversion for everything (that ought to be desired) are the qualities of the fool"
+  },
+  {
+    "num": 834,
+    "translation": "No fool equals the fool who learns Knows, teaches, but self-control spurns",
+    "meaning_english": "There are no greater fools than he who, though he has read and understood (a great deal) and even taught it to others, does not walk according to his own teaching"
+  },
+  {
+    "num": 835,
+    "translation": "The fool suffers seven fold hells In single birth of hellish ills",
+    "meaning_english": "A fool can procure in a single birth a hell into which he may enter and suffer through all the seven births"
+  },
+  {
+    "num": 836,
+    "translation": "A know-nothing fool daring a deed Not only fails but feels fettered",
+    "meaning_english": "If the fool, who knows not how to act undertakes a work, he will (certainly) fail (But) is it all ? He will even adorn himself with fetters"
+  },
+  {
+    "num": 837,
+    "translation": "Strangers feast and kinsmen fast  When fools mishandle fortunes vast",
+    "meaning_english": "If a fool happens to get an immense fortune, his neighbours will enjoy it while his relations starve"
+  },
+  {
+    "num": 838,
+    "translation": "Fools possessing something on hand Like dazed and drunken stupids stand",
+    "meaning_english": "A fool happening to possess something is like the intoxication of one who is (already) giddy"
+  },
+  {
+    "num": 839,
+    "translation": "Friendship with fools is highly sweet For without a groan we part",
+    "meaning_english": "The friendship between fools is exceedingly delightful (to each other): for at parting there will be"
+  },
+  {
+    "num": 840,
+    "translation": "Entrance of fools where Savants meet Looks like couch trod by unclean feet",
+    "meaning_english": "The appearance of a fool in an assembly of the learned is like placing (one's) unwashed feet on a bed"
+  },
+  {
+    "num": 841,
+    "translation": "Want of wisdom is want of wants Want of aught else the world nev'r counts",
+    "meaning_english": "The want of wisdom is the greatest of all wants; but that of wealth the world will not regard as such"
+  },
+  {
+    "num": 842,
+    "translation": "When fool bestows with glee a gift It comes but by getter's merit",
+    "meaning_english": "(The cause of) a fool cheerfully giving (something) is nothing else but the receiver's merit (in a former birth)"
+  },
+  {
+    "num": 843,
+    "translation": "The self-torments of fools exceed Ev'n tortures of their foes indeed",
+    "meaning_english": "The suffering that fools inflict upon themselves is hardly possible even to foes"
+  },
+  {
+    "num": 844,
+    "translation": "Stupidity is vanity That cries \\\"We have sagacity\\\"",
+    "meaning_english": "What is called want of wisdom is the vanity which says, \"We are wise\""
+  },
+  {
+    "num": 845,
+    "translation": "Feigning knowledge that one has not Leads to doubt ev'n that he has got",
+    "meaning_english": "Fools pretending to know what has not been read (by them) will rouse suspicion even as to what they have thoroughly mastered"
+  },
+  {
+    "num": 846,
+    "translation": "Fools their nakedness conceal And yet their glaring faults reveal",
+    "meaning_english": "Even to cover one's nakedness would be folly, if (one's) faults were not covered (by forsaking them)"
+  },
+  {
+    "num": 847,
+    "translation": "The fool that slights sacred counsels Upon himself great harm entails",
+    "meaning_english": "The fool who neglects precious counsel does, of his own accord, a great injury to himself"
+  },
+  {
+    "num": 848,
+    "translation": "He listens not nor himself knows Plague is his life until it goes",
+    "meaning_english": "The fool will not perform (his duties) even when advised nor ascertain them himself; such a soul is a"
+  },
+  {
+    "num": 849,
+    "translation": "Sans Self-sight in vain one opens Sight To the blind who bet their sight as right",
+    "meaning_english": "One who would teach a fool will (simply) betray his folly; and the fool would (still) think himself \"wise in his own conceit\""
+  },
+  {
+    "num": 850,
+    "translation": "To people's \\\"Yes\\\" who proffer \\\"No\\\" Deemed as ghouls on earth they go",
+    "meaning_english": "He who denies the existence of what the world believes in will be regarded as a demon on earth"
+  },
+  {
+    "num": 851,
+    "translation": "Hatred is a plague that divides And rouses illwill on all sides",
+    "meaning_english": "The disease which fosters the evil of disunion among all creatures is termed hatred by the wise"
+  },
+  {
+    "num": 852,
+    "translation": "Rouse not hatred and confusion Though foes provoke disunion",
+    "meaning_english": "Though disagreeable things may be done from (a feeling of) disunion, it is far better that nothing painful be done from (that of) hatred"
+  },
+  {
+    "num": 853,
+    "translation": "Shun the plague of enmity And win everlasting glory",
+    "meaning_english": "To rid one-self of the distressing dtsease of hatred will bestow (on one) a never-decreasing imperishable fame"
+  },
+  {
+    "num": 854,
+    "translation": "Hate-the woe of woes destroy; Then joy of joys you can enjoy",
+    "meaning_english": "If hatred which is the greatest misery is destroyed, it will yield the greatest delight"
+  },
+  {
+    "num": 855,
+    "translation": "Who can overcome them in glory That are free from enmity?",
+    "meaning_english": "Who indeed would think of conquering those who naturally shrink back from hatred ?"
+  },
+  {
+    "num": 856,
+    "translation": "His fall and ruin are quite near Who holds enmity sweet and dear",
+    "meaning_english": "Failure and ruin are not far from him who says it is sweet to excel in hatred"
+  },
+  {
+    "num": 857,
+    "translation": "They cannot see the supreme Truth Who hate and injure without ruth",
+    "meaning_english": "Who only know to work men woe, fulfilled of enmity"
+  },
+  {
+    "num": 858,
+    "translation": "To turn from enmity is gain Fomenting it brings fast ruin",
+    "meaning_english": "Shrinking back from hatred will yield wealth; indulging in its increase will hasten ruin"
+  },
+  {
+    "num": 859,
+    "translation": "Fortune favours when hate recedes Hatred exceeding ruin breeds",
+    "meaning_english": "At the approach of wealth one will not think of hatred (but) to secure one's ruin, one will look to its increase"
+  },
+  {
+    "num": 860,
+    "translation": "All evils come from enmity All goodness flow from amity",
+    "meaning_english": "All calamities are caused by hatred; but by the delight (of friendship) is caused the great wealth of good virtues"
+  },
+  {
+    "num": 861,
+    "translation": "Turn from strife with foes too strong With the feeble for battle long",
+    "meaning_english": "Avoid offering resistance to the strong; (but) never fail to cherish enmity towards the weak"
+  },
+  {
+    "num": 862,
+    "translation": "Loveless, aidless, powerless king Can he withstand an enemy strong?",
+    "meaning_english": "How can he who is unloving, destitute of powerful aids, and himself without strength overcome the might of his foe ?"
+  },
+  {
+    "num": 863,
+    "translation": "Unskilled, timid, miser, misfit He is easy for foes to hit",
+    "meaning_english": "In the estimation of foes miserably weak is he, who is timid, ignorant, unsociable and niggardly"
+  },
+  {
+    "num": 864,
+    "translation": "The wrathful restive man is prey To any, anywhere any day",
+    "meaning_english": "He who neither refrains from anger nor keeps his secrets will at all times and in all places be easily conquered by all"
+  },
+  {
+    "num": 865,
+    "translation": "Crooked, cruel, tactless and base Any foe can fell him with ease",
+    "meaning_english": "(A) pleasing (object) to his foes is he who reads not moral works, does nothing that is enjoined by them cares not for reproach and is not possessed of good qualities"
+  },
+  {
+    "num": 866,
+    "translation": "Blind in rage and mad in lust To have his hatred is but just",
+    "meaning_english": "Highly to be desired is the hatred of him whose anger is blind, and whose lust increases beyond measure"
+  },
+  {
+    "num": 867,
+    "translation": "Pay and buy his enmity Who muddles chance with oddity",
+    "meaning_english": "It is indeed necessary to obtain even by purchase the hatred of him who having begun (a work) does what is not conductive (to its accomplishment)"
+  },
+  {
+    "num": 868,
+    "translation": "With no virtue but full of vice He loses friends and delights foes",
+    "meaning_english": "He will become friendless who is without (any good) qualities and whose faults are many; (such a character) is a help to (his) foes"
+  },
+  {
+    "num": 869,
+    "translation": "The joy of heroes knows no bounds When timid fools are opponents",
+    "meaning_english": "There will be no end of lofty delights to the victorious, if their foes are (both) ignorant and timid"
+  },
+  {
+    "num": 870,
+    "translation": "Glory's light he will not gain Who fails to fight a fool and win",
+    "meaning_english": "The light (of fame) will never be gained by him who gains not the trifling reputation of having fought an unlearned (foe)"
+  },
+  {
+    "num": 871,
+    "translation": "Let not one even as a sport The ill-natured enmity court",
+    "meaning_english": "The evil of hatred is not of a nature to be desired by one even in sport"
+  },
+  {
+    "num": 872,
+    "translation": "Incur the hate of bow-ploughers But not the hate of word-ploughers",
+    "meaning_english": "Though you may incur the hatred of warriors whose ploughs are bows, incur not that of ministers whose ploughs are words"
+  },
+  {
+    "num": 873,
+    "translation": "Forlorn, who rouses many foes The worst insanity betrays",
+    "meaning_english": "He who being alone, incurs the hatred of many is more infatuated than even mad men"
+  },
+  {
+    "num": 874,
+    "translation": "This world goes safely in his grace Whose heart makes friends even of foes",
+    "meaning_english": "Whose worthy rule can change his foes to friends"
+  },
+  {
+    "num": 875,
+    "translation": "Alone, if two foes you oppose Make one of them your ally close",
+    "meaning_english": "He who is alone and helpless while his foes are two should secure one of them as an agreeable help (to himself)"
+  },
+  {
+    "num": 876,
+    "translation": "Trust or distrust; during distress Keep aloof; don't mix with foes",
+    "meaning_english": "Though (one's foe is) aware or not of one's misfortune one should act so as neither to join nor separate (from him)"
+  },
+  {
+    "num": 877,
+    "translation": "To those who know not, tell not your pain Nor your weakness to foes explain",
+    "meaning_english": "Relate not your suffering even to friends who are ignorant of it, nor refer to your weakness in the presence of your foes"
+  },
+  {
+    "num": 878,
+    "translation": "Know how and act and defend well The pride of enemies shall fall",
+    "meaning_english": "The joy of one's foes will be destroyed if one guards oneself by knowing the way (of acting) and securing assistance"
+  },
+  {
+    "num": 879,
+    "translation": "Cut off thorn-trees when young they are; Grown hard, they cut your hands beware",
+    "meaning_english": "A thorny tree should be felled while young, (for) when it is grown it will destroy the hand of the feller"
+  },
+  {
+    "num": 880,
+    "translation": "To breathe on earth they are not fit Defying foes who don't defeat",
+    "meaning_english": "Those who do not destroy the pride of those who hate (them) will certainly not exist even to breathe"
+  },
+  {
+    "num": 881,
+    "translation": "Traitorous kinsmen will make you sad As water and shade do harm when bad",
+    "meaning_english": "Shade and water are not pleasant, (if) they cause disease; so are the qualities of (one's) relations not agreeable, (if) they cause pain"
+  },
+  {
+    "num": 882,
+    "translation": "You need not sword-like kinsmen fear Fear foes who feign as kinsmen dear",
+    "meaning_english": "Fear not foes (who say they would cut) like a sword; (but) fear the friendship of foes (who seemingly"
+  },
+  {
+    "num": 883,
+    "translation": "The secret foe in days evil Will cut you, beware, like potters' steel",
+    "meaning_english": "Fear internal enmity and guard yourself; (if not) it will destroy (you) in an evil hour, as surely as the tool which cuts the potter's clay"
+  },
+  {
+    "num": 884,
+    "translation": "The evil-minded foe within Foments trouble, spoils kinsmen!",
+    "meaning_english": "The secret enmity of a person whose mind in unreformed will lead to many evils causing disaffection among (one's) relations"
+  },
+  {
+    "num": 885,
+    "translation": "A traitor among kinsmen will Bring life-endangering evil",
+    "meaning_english": "If there appears internal hatred in a (king's) family; it will lead to many a fatal crime"
+  },
+  {
+    "num": 886,
+    "translation": "Discord in kings' circle entails Life-destroying deadly evils",
+    "meaning_english": "If hatred arises among (one's) own people, it will be hardly possible (for one) to escape death"
+  },
+  {
+    "num": 887,
+    "translation": "A house hiding hostiles in core Just seems on like the lid in jar",
+    "meaning_english": "Never indeed will a family subject to internal hatred unite (really) though it may present an apparent union like that of a casket and its lid"
+  },
+  {
+    "num": 888,
+    "translation": "By secret spite the house wears out Like gold crumbling by file's contact",
+    "meaning_english": "A family subject to internal hatred will wear out and lose its strength like iron that has been filed away"
+  },
+  {
+    "num": 889,
+    "translation": "Ruin lurks in enmity As slit in sesame though it be",
+    "meaning_english": "Although internal hatred be as small as the fragment of the sesamum (seed), still does destruction dwell in it"
+  },
+  {
+    "num": 890,
+    "translation": "Dwell with traitors that hate in heart Is dwelling with snake in selfsame hut",
+    "meaning_english": "Living with those who do not agree (with one) is like dwelling with a cobra (in the same) hut"
+  },
+  {
+    "num": 891,
+    "translation": "Not to spite the mighty ones Safest safeguard to living brings",
+    "meaning_english": "Not to disregard the power of those who can carry out (their wishes) is more important than all the watchfulness of those who guard (themselves against evil)"
+  },
+  {
+    "num": 892,
+    "translation": "To walk unmindful of the great Shall great troubles ceaseless create",
+    "meaning_english": "To behave without respect for the great (rulers) will make them do (us) irremediable evils"
+  },
+  {
+    "num": 893,
+    "translation": "Heed not and do, if ruin you want Offence against the mighty great",
+    "meaning_english": "If a person desires ruin, let him not listen to the righteous dictates of law, but commit crimes against those who are able to slay (other sovereigns)"
+  },
+  {
+    "num": 894,
+    "translation": "The weak who insult men of might Death with their own hands invite",
+    "meaning_english": "The weak doing evil to the strong is like beckoning Yama to come (and destroy them)"
+  },
+  {
+    "num": 895,
+    "translation": "Where can they go and thrive where Pursued by powerful monarch's ire?",
+    "meaning_english": "Those who have incurred the wrath of a cruel and mighty potentate will not prosper wherever they may go"
+  },
+  {
+    "num": 896,
+    "translation": "One can escape in fire caught The great who offends escapes not",
+    "meaning_english": "Though burnt by a fire (from a forest), one may perhaps live; (but) never will he live who has shown disrespect to the great (devotees)"
+  },
+  {
+    "num": 897,
+    "translation": "If holy mighty sages frown Stately gifts and stores who can own?",
+    "meaning_english": "If a king incurs the wrath of the righteous great, what will become of his government with its splendid auxiliaries and (all) its untold wealth ?"
+  },
+  {
+    "num": 898,
+    "translation": "When hill-like sages are held small The firm on earth lose home and all",
+    "meaning_english": "If (the) hill-like (devotees) resolve on destruction, those who seemed to be everlasting will be destroyed root and branch from the earth"
+  },
+  {
+    "num": 899,
+    "translation": "Before the holy sage's rage Ev'n Indra's empire meets damage",
+    "meaning_english": "Kings even fall from high estate and perish in the flame"
+  },
+  {
+    "num": 900,
+    "translation": "Even mighty aided men shall quail If the enraged holy seers will",
+    "meaning_english": "Though in possession of numerous auxiliaries, they will perish who are-exposed to the wrath of the noble whose penance is boundless"
+  },
+  {
+    "num": 901,
+    "translation": "Who dote on wives lose mighty gain That lust, dynamic men disdain",
+    "meaning_english": "Those who lust after their wives will not attain the excellence of virtue; and it is just this that is not desired by those who are bent on acquiring wealth"
+  },
+  {
+    "num": 902,
+    "translation": "Who dotes, unmanly, on his dame His wealth to him and all is shame",
+    "meaning_english": "The wealth of him who, regardless (of his manliness), devotes himself to his wife's feminine nature will cause great shame (to ali men) and to himself;"
+  },
+  {
+    "num": 903,
+    "translation": "Who's servile to his wife always Shy he feels before the wise",
+    "meaning_english": "The frailty that stoops to a wife will always make (her husband) feel ashamed among the good"
+  },
+  {
+    "num": 904,
+    "translation": "Fearing his wife salvationless The weaklings' action has no grace",
+    "meaning_english": "The undertaking of one, who fears his wife and is therefore destitute of (bliss), will never be applauded"
+  },
+  {
+    "num": 905,
+    "translation": "Who fears his wife fears always Good to do to the good and wise",
+    "meaning_english": "He that fears his wife will always be afraid of doing good deeds (even) to the good"
+  },
+  {
+    "num": 906,
+    "translation": "Who fear douce arms of their wives Look petty even with god-like lives",
+    "meaning_english": "They that fear the bamboo-like shoulders of their wives will be destitute of manliness though they may flourish like the Gods"
+  },
+  {
+    "num": 907,
+    "translation": "Esteemed more is women bashful Than man servile unto her will",
+    "meaning_english": "Even shame faced womanhood is more to be esteemed than the shameless manhood that performs"
+  },
+  {
+    "num": 908,
+    "translation": "By fair-browed wives who are governed Help no friends nor goodness tend",
+    "meaning_english": "Those who yield to the wishes of their wives will neither relieve the wants of (their) friends nor perform virtuous deeds"
+  },
+  {
+    "num": 909,
+    "translation": "No virtue riches nor joy is seen In those who submit to women",
+    "meaning_english": "From those who obey the commands of their wives are to be expected neither deeds of virtue, nor those of wealth nor (even) those of pleasure"
+  },
+  {
+    "num": 910,
+    "translation": "Thinkers strong and broad of heart By folly on fair sex do not dote",
+    "meaning_english": "The foolishness that results from devotion to a wife will never be found in those who possess a reflecting mind and a prosperity (flowing) therefrom"
+  },
+  {
+    "num": 911,
+    "translation": "For gold, not love their tongue cajoles Men are ruined by bangled belles",
+    "meaning_english": "The sweet words of elegant braceleted (prostitutes) who desire (a man) not from affection but from avarice, will cause sorrow"
+  },
+  {
+    "num": 912,
+    "translation": "Avoid ill-natured whores who feign Love only for their selfish gain",
+    "meaning_english": "One must ascertain the character of the ill-natured women who after ascertaining the wealth (of a man) speak (as if they were) good natured-ones, and avoid intercourse (with them)"
+  },
+  {
+    "num": 913,
+    "translation": "The false embrace of whores is like That of a damned corpse in the dark",
+    "meaning_english": "The false embraces of wealth-loving women are like (hired men) embracing a strange corpse in a dark room"
+  },
+  {
+    "num": 914,
+    "translation": "The wise who seek the wealth of grace Look not for harlots' low embrace",
+    "meaning_english": "The wise who seek the wealth of grace will not desire the base favours of those who regard wealth (and not pleasure) as (their) riches"
+  },
+  {
+    "num": 915,
+    "translation": "The lofty wise will never covet The open charms of a vile harlot",
+    "meaning_english": "Those whose knowledge is made excellent by their (natural) sense will not covet the trffling delights"
+  },
+  {
+    "num": 916,
+    "translation": "Those who guard their worthy fame Shun the wanton's vaunting charm",
+    "meaning_english": "Those who would spread (the fame of) their own goodness will not desire the shoulders of those,who rejoice in their accomplishments and bestow their despicable favours (on all who pay)"
+  },
+  {
+    "num": 917,
+    "translation": "Hollow hearts alone desire The arms of whores with hearts elsewere",
+    "meaning_english": "Those who are destitute of a perfectly (reformed) mind will covet the shoulders of those who embrace (them) while their hearts covet other things"
+  },
+  {
+    "num": 918,
+    "translation": "Senseless fools are lured away By arms of sirens who lead astray",
+    "meaning_english": "The wise say that to such as are destitute of discerning sense the embraces of faithless women are (as ruinous as those of) the celestail female"
+  },
+  {
+    "num": 919,
+    "translation": "The soft jewelled arms of whores are hell Into which the degraded fall",
+    "meaning_english": "The delicate shoulders of prostitutes with excellent jewels are a hell into which are plunged the ignorant base"
+  },
+  {
+    "num": 920,
+    "translation": "Double-minded whores, wine and dice Are lures of those whom fortune flies",
+    "meaning_english": "Treacherous women, liquor, and gambling are the associates of such as have forsaken by Fortune"
+  },
+  {
+    "num": 921,
+    "translation": "Foes fear not who for toddy craze The addicts daily their glory lose",
+    "meaning_english": "Those who always thirst after drink will neither inspire fear (in others) nor retain the light (of their fame)"
+  },
+  {
+    "num": 922,
+    "translation": "Drink not liquor; but let them drink Whom with esteem the wise won't think",
+    "meaning_english": "Let no liquor be drunk; if it is desired, let it be drunk by those who care not for esteem of the great"
+  },
+  {
+    "num": 923,
+    "translation": "The drunkard's joy pains ev'n mother's face How vile must it look for the wise?",
+    "meaning_english": "Intoxication is painful even in the presence of (one's) mother; what will it not then be in that of the wise ?"
+  },
+  {
+    "num": 924,
+    "translation": "Good shame turns back from him ashamed Who is guilty of wine condemned",
+    "meaning_english": "The fair maid of modesty will turn her back on those who are guilty of the great and abominable crime of drunkenness"
+  },
+  {
+    "num": 925,
+    "translation": "To pay and drink and lose the sense Is nothing but rank ignorance",
+    "meaning_english": "To give money and purchase unconsciousness is the result of one's ignorance of (one's own actions)"
+  },
+  {
+    "num": 926,
+    "translation": "They take poison who take toddy And doze ev'n like a dead body",
+    "meaning_english": "They that sleep resemble the deed; (likewise) they that drink are no other than poison-eaters"
+  },
+  {
+    "num": 927,
+    "translation": "The secret drunkards' senses off Make the prying public laugh",
+    "meaning_english": "Those who always intoxicate themselves by a private (indulgence in) drink; will have their secrets detected and laughed at by their fellow-townsmen"
+  },
+  {
+    "num": 928,
+    "translation": "Don't say I'm not a drunkard hard The hidden fraud is known abroad",
+    "meaning_english": "Let (the drunkard) give up saying \"I have never drunk\"; (for) the moment (he drinks) he will simply betray his former attempt to conceal"
+  },
+  {
+    "num": 929,
+    "translation": "Can torch search one in water sunk?  Can reason reach the raving drunk?",
+    "meaning_english": "Reasoning with a drunkard is like going under water with a torch in search of a drowned man"
+  },
+  {
+    "num": 930,
+    "translation": "The sober seeing the drunkard's plight On selves can't they feel same effect?",
+    "meaning_english": "When (a drunkard) who is sober sees one who is not, it looks as if he remembered not the evil effects of his (own) drink"
+  },
+  {
+    "num": 931,
+    "translation": "Avoid gambling, albeit you win Gulping bait-hook what does fish gain?",
+    "meaning_english": "Though able to win, let not one desire gambling; (for) even what is won is like a fish swallowing the iron in fish-hook"
+  },
+  {
+    "num": 932,
+    "translation": "Can gamblers in life good obtain Who lose a hundred one to gain?",
+    "meaning_english": "That they may good obtain, and see a prosperous day? Is there indeed a means of livelihood that can bestow happiness on gamblers who gain one and lose a hundred?"
+  },
+  {
+    "num": 933,
+    "translation": "If kings indulge in casting dice All their fortune will flow to foes",
+    "meaning_english": "If the king is incessantly addicted to the rolling dice in the hope of gain, his wealth and the resources thereof will take their departure and fall into other's hands"
+  },
+  {
+    "num": 934,
+    "translation": "Nothing will make you poor like game Which adds to woes and ruins fame",
+    "meaning_english": "There is nothing else that brings (us) poverty like gambling which causes many a misery and destroys (one's) reputation"
+  },
+  {
+    "num": 935,
+    "translation": "The game, game-hall and gambler's art Who sought with glee have come to nought",
+    "meaning_english": "Penniless are those who by reason of their attachment would never forsake gambling, the gamblingplace and the handling (of dice)"
+  },
+  {
+    "num": 936,
+    "translation": "Men swallowed by the ogress, dice Suffer grief and want by that vice",
+    "meaning_english": "Those who are swallowed by the goddess called \"gambling\" will never have their hunger satisfied, but suffer the pangs of hell in the next world"
+  },
+  {
+    "num": 937,
+    "translation": "If men their time in game-den spend Ancestral wealth and virtues end",
+    "meaning_english": "To waste time at the place of gambling will destroy inherited wealth and goodness of character"
+  },
+  {
+    "num": 938,
+    "translation": "Game ruins wealth and spoils grace Leads to lies and wretched woes",
+    "meaning_english": "Gambling destroys property, teaches falsehood, puts an end to benevolence, and brings in misery (here and hereafter)"
+  },
+  {
+    "num": 939,
+    "translation": "Dress, wealth, food, fame, learning-these five In gambler's hand will never thrive",
+    "meaning_english": "The habit of gambling prevents the attainment of these five: clothing, wealth, food, fame and learning"
+  },
+  {
+    "num": 940,
+    "translation": "Love for game grows with every loss As love for life with sorrows grows",
+    "meaning_english": "As the gambler loves (his vice) the more he loses by it, so does the soul love (the body) the more it suffers through it"
+  },
+  {
+    "num": 941,
+    "translation": "Wind, bile and phlegm three cause disease So doctors deem it more or less",
+    "meaning_english": "If (food and work are either) excessive or deficient, the three things enumerated by (medical) writers, flatulence, biliousness, and phlegm, will cause (one) disease"
+  },
+  {
+    "num": 942,
+    "translation": "After digestion one who feeds His body no medicine needs",
+    "meaning_english": "No medicine is necessary for him who eats after assuring (himself) that what he has (already) eaten has been digested"
+  },
+  {
+    "num": 943,
+    "translation": "Eat food to digestive measure Life in body lasts with pleasure",
+    "meaning_english": "If (one's food has been) digested let one eat with moderation; (for) that is the way to prolong the life of an embodied soul"
+  },
+  {
+    "num": 944,
+    "translation": "Know digestion; with keen appetite Eat what is suitable and right",
+    "meaning_english": "(First) assure yourself that your food has been digested and never fail to eat, when very hungry, whatever is not disagreeable (to you)"
+  },
+  {
+    "num": 945,
+    "translation": "With fasting adjusted food right Cures ills of life and makes you bright",
+    "meaning_english": "There will be no disaster to one's life if one eats with moderation, food that is not disagreeable"
+  },
+  {
+    "num": 946,
+    "translation": "Who eats with clean stomach gets health With greedy glutton abides ill-health",
+    "meaning_english": "As pleasure dwells with him who eats moderately, so disease (dwells) with the glutton who eats voraciously"
+  },
+  {
+    "num": 947,
+    "translation": "who glut beyond the hunger's fire Suffer from untold diseases here",
+    "meaning_english": "He will be afflicted with numberless diseases, who eats immoderately, ignorant (of the rules of health)"
+  },
+  {
+    "num": 948,
+    "translation": "Test disease, its cause and cure And apply remedy that is sure",
+    "meaning_english": "Let the physician enquire into the (nature of the) disease, its cause and its method of cure and treat it faithfully according to (medical rule)"
+  },
+  {
+    "num": 949,
+    "translation": "Let the skilful doctor note The sickmen, sickness, season and treat",
+    "meaning_english": "The learned (physician) should ascertain the condition of his patient; the nature of his disease, and the season (of the year) and (then) proceed (with his treatment)"
+  },
+  {
+    "num": 950,
+    "translation": "Patient, doctor, medicine and nurse Are four-fold codes of treating course",
+    "meaning_english": "Medical science consists of four parts, viz, patient, physician, medicine and compounder; and each of these (again) contains four sub-divisions"
+  }
+]
