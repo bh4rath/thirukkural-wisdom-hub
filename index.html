@@ -828,6 +828,28 @@
     box-shadow: 0 4px 16px rgba(201,168,76,0.3);
   }
 
+  .explain-btn[aria-expanded="true"] {
+    background: var(--bg-card-hover);
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .explain-btn[aria-expanded="true"]:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-muted);
+    box-shadow: none;
+  }
+
+  /* ===== INLINE EXPLANATION ===== */
+  .inline-explanation {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   /* ===== EXPLANATION PANEL ===== */
   .panel-overlay {
     display: none;
@@ -1749,7 +1771,12 @@ function showKurals(chapterNum, highlightNum) {
       <div class="kural-translation">${k.translation}</div>
       ${k.meaning_tamil ? `<div class="kural-meaning-tamil tamil" lang="ta">${k.meaning_tamil}</div>` : ''}
       ${k.meaning_english ? `<div class="kural-meaning-english">${k.meaning_english}</div>` : ''}
-      <button class="explain-btn tamil" onclick="openPanel(${k.number})" aria-label="Get AI explanation for Kural ${k.number}">✨ விளக்கம் பெறு / Get Explanation</button>
+      <button class="explain-btn tamil"
+              onclick="toggleExplanation(${k.number}, this)"
+              aria-expanded="false"
+              aria-controls="exp-${k.number}"
+              aria-label="Get AI explanation for Kural ${k.number}">✨ விளக்கம் பெறு / Get Explanation</button>
+      <div class="inline-explanation" id="exp-${k.number}" hidden aria-live="polite"></div>
     `;
     list.appendChild(card);
   });
@@ -1766,67 +1793,69 @@ function showKurals(chapterNum, highlightNum) {
   }
 }
 
-// ===== PANEL =====
-function openPanel(kuralNum) {
-  const k = allKurals.find(x => x.number === kuralNum);
-  if (!k) return;
-  currentKuralForPanel = k;
+// ===== INLINE EXPLANATION =====
+const explanationCache = {};
 
-  // Remember which button opened the panel so we can return focus on close
-  lastFocusedElement = document.activeElement;
+async function toggleExplanation(kuralNum, btn) {
+  const container = document.getElementById(`exp-${kuralNum}`);
+  const isOpen = !container.hidden;
 
-  document.getElementById('ph-num').textContent = `குறள் #${k.number}`;
-  document.getElementById('ph-chapter-tamil').textContent = k.chapter_tamil;
-  document.getElementById('ph-chapter-english').textContent = k.chapter_english;
-  document.getElementById('pk-lines').innerHTML = `${k.line1}<br>${k.line2}`;
-  document.getElementById('pk-translation').textContent = k.translation;
-  document.getElementById('pk-translit').textContent = [k.transliteration1, k.transliteration2].filter(Boolean).join(' / ');
+  if (isOpen) {
+    container.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '✨ விளக்கம் பெறு / Get Explanation';
+    return;
+  }
 
-  document.getElementById('panel-content').innerHTML = `
-    <div class="loading-state" role="status" aria-live="polite">
+  container.hidden = false;
+  btn.setAttribute('aria-expanded', 'true');
+  btn.innerHTML = '✕ மூடு / Hide Explanation';
+
+  if (explanationCache[kuralNum]) {
+    container.innerHTML = explanationCache[kuralNum];
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="loading-state" role="status">
       <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="loading-text-tamil tamil" lang="ta">குறளை விளக்குகிறோம்...</div>
       <div class="loading-text-english">Generating explanation...</div>
     </div>
   `;
 
-  document.getElementById('panelOverlay').classList.add('open');
-  document.getElementById('explanationPanel').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  const k = allKurals.find(x => x.number === kuralNum);
+  if (!k) return;
 
-  setTimeout(() => {
-    document.querySelector('.close-btn').focus();
-  }, 350);
-
-  callAnthropicAPI(k);
-}
-
-function closePanel() {
-  document.getElementById('panelOverlay').classList.remove('open');
-  document.getElementById('explanationPanel').classList.remove('open');
-  document.body.style.overflow = '';
-  // Return focus to the button that opened the panel
-  if (lastFocusedElement) {
-    lastFocusedElement.focus();
-    lastFocusedElement = null;
+  try {
+    const html = await fetchExplanationHTML(k);
+    explanationCache[kuralNum] = html;
+    if (!container.hidden) container.innerHTML = html;
+    announce('Explanation loaded');
+  } catch(err) {
+    console.error('API error:', err);
+    if (!container.hidden) {
+      container.innerHTML = `
+        <div class="error-state" role="alert">
+          <p class="tamil" lang="ta">மீண்டும் முயற்சிக்கவும் / Please try again</p>
+          <button class="retry-btn tamil" onclick="retryExplanation(${kuralNum}, this)" lang="ta">மீண்டும் முயற்சி / Retry</button>
+        </div>
+      `;
+    }
   }
 }
 
-// Focus trap inside modal
-document.getElementById('explanationPanel').addEventListener('keydown', (e) => {
-  if (e.key !== 'Tab') return;
-  const panel = document.getElementById('explanationPanel');
-  const focusable = panel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-  if (e.shiftKey) {
-    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-  } else {
-    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
-});
+function retryExplanation(kuralNum, retryBtn) {
+  delete explanationCache[kuralNum];
+  const btn = document.getElementById(`exp-${kuralNum}`).previousElementSibling;
+  const container = document.getElementById(`exp-${kuralNum}`);
+  container.hidden = true;
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '✨ விளக்கம் பெறு / Get Explanation';
+  toggleExplanation(kuralNum, btn);
+}
 
-async function callAnthropicAPI(k) {
+async function fetchExplanationHTML(k) {
   const bookMeta = BOOK_META[k.book] || {};
   const prompt = `Please explain this Thirukkural:
 
@@ -1838,18 +1867,17 @@ Book: ${bookMeta.tamil || ''} (${bookMeta.english || ''})
 
 Give me the full bilingual explanation.`;
 
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1500,
-        system: `You are a Thirukkural wisdom guide who explains ancient Tamil wisdom to modern readers. You always respond in BOTH Tamil and English — Tamil first, English second for every section. Use simple, warm, conversational language — like explaining to a curious 10-year-old. Never be academic or preachy. Be practical, relatable, and human.
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1500,
+      system: `You are a Thirukkural wisdom guide who explains ancient Tamil wisdom to modern readers. You always respond in BOTH Tamil and English — Tamil first, English second for every section. Use simple, warm, conversational language — like explaining to a curious 10-year-old. Never be academic or preachy. Be practical, relatable, and human.
 
 Respond in EXACTLY this format — use these exact headers:
 
@@ -1878,31 +1906,21 @@ Respond in EXACTLY this format — use these exact headers:
 [Same action in English]
 
 Keep each section to 3 sentences maximum. Do not add any other text outside these 8 sections.`,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
+      messages: [{ role: 'user', content: prompt }],
+    }),
+  });
 
-    if (!resp.ok) throw new Error(`API error: ${resp.status}`);
-    const data = await resp.json();
-    const text = data.content[0].text;
-    renderExplanation(text);
-  } catch(err) {
-    console.error('API error:', err);
-    document.getElementById('panel-content').innerHTML = `
-      <div class="error-state" role="alert">
-        <p class="tamil" lang="ta">மீண்டும் முயற்சிக்கவும் / Please try again</p>
-        <button class="retry-btn tamil" onclick="callAnthropicAPI(currentKuralForPanel)" lang="ta">மீண்டும் முயற்சி / Retry</button>
-      </div>
-    `;
-  }
+  if (!resp.ok) throw new Error(`API error: ${resp.status}`);
+  const data = await resp.json();
+  return buildExplanationHTML(data.content[0].text);
 }
 
-function renderExplanation(text) {
+function buildExplanationHTML(text) {
   const sections = [
     { labelTamil: '🧒 எளிய விளக்கம் (Tamil):', labelEnglish: '🧒 Simply Put (English):', keyTa: '🧒 எளிய விளக்கம் (Tamil):', keyEn: '🧒 Simply Put (English):' },
     { labelTamil: '🌍 நடைமுறை உதாரணம் (Tamil):', labelEnglish: '🌍 Real World Example (English):', keyTa: '🌍 நடைமுறை உதாரணம் (Tamil):', keyEn: '🌍 Real World Example (English):' },
     { labelTamil: '⚡ ஏன் முக்கியம்? (Tamil):', labelEnglish: '⚡ Why It Matters (English):', keyTa: '⚡ ஏன் முக்கியம்? (Tamil):', keyEn: '⚡ Why It Matters (English):' },
-    { labelTamil: '🎯 என்னால் என்ன செய்யலாம்? (Tamil):', labelEnglish: '🎯 What\'s In It For Me (English):', keyTa: '🎯 என்னால் என்ன செய்யலாம்? (Tamil):', keyEn: '🎯 What\'s In It For Me (English):' },
+    { labelTamil: '🎯 என்னால் என்ன செய்யலாம்? (Tamil):', labelEnglish: "🎯 What's In It For Me (English):", keyTa: '🎯 என்னால் என்ன செய்யலாம்? (Tamil):', keyEn: "🎯 What's In It For Me (English):" },
   ];
 
   const html = sections.map((s, si) => {
@@ -1912,20 +1930,17 @@ function renderExplanation(text) {
 
     if (taIdx !== -1) {
       const taStart = taIdx + s.keyTa.length;
-      let taEnd = text.length;
-      if (enIdx !== -1 && enIdx > taIdx) taEnd = enIdx;
+      let taEnd = enIdx !== -1 && enIdx > taIdx ? enIdx : text.length;
       taContent = text.slice(taStart, taEnd).trim();
     }
     if (enIdx !== -1) {
       const enStart = enIdx + s.keyEn.length;
-      let enEnd = text.length;
       const nextSiTa = si + 1 < sections.length ? text.indexOf(sections[si + 1].keyTa, enStart) : -1;
-      if (nextSiTa !== -1) enEnd = nextSiTa;
-      enContent = text.slice(enStart, enEnd).trim();
+      enContent = text.slice(enStart, nextSiTa !== -1 ? nextSiTa : text.length).trim();
     }
 
     return `
-      <div class="exp-section" style="animation-delay:${si*50}ms">
+      <div class="exp-section" style="animation-delay:${si * 60}ms">
         <div class="exp-label tamil" lang="ta">${s.labelTamil.replace(':','')}</div>
         <div class="exp-text-tamil tamil" lang="ta">${taContent || '—'}</div>
         <div class="exp-label-en">${s.labelEnglish.replace(':','')}</div>
@@ -1934,8 +1949,7 @@ function renderExplanation(text) {
     `;
   }).join('');
 
-  document.getElementById('panel-content').innerHTML = `<div class="explanation-sections">${html}</div>`;
-  announce('Explanation loaded');
+  return `<div class="explanation-sections">${html}</div>`;
 }
 
 // ===== SEARCH =====
@@ -2061,7 +2075,10 @@ function selectKural(num) {
   if (k) {
     currentBook = k.book;
     showKurals(k.chapter_number, num);
-    setTimeout(() => openPanel(num), 500);
+    setTimeout(() => {
+      const btn = document.querySelector(`#exp-${num}`);
+      if (btn) btn.previousElementSibling.click();
+    }, 500);
   }
 }
 
