@@ -1127,6 +1127,109 @@
   .scroll-top-btn.visible { display: flex; }
   .scroll-top-btn:hover { background: var(--gold); color: #0A0A0A; transform: translateY(-2px); }
 
+  /* ===== API KEY MODAL ===== */
+  .api-key-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(6px);
+  }
+
+  .api-key-dialog {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-dim);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  }
+
+  .api-key-dialog h2 {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .api-key-dialog p {
+    font-size: 0.92rem;
+    color: var(--text-english);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .api-key-dialog a { color: var(--gold-dim); text-decoration: underline; }
+
+  .api-key-input {
+    width: 100%;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text-tamil);
+    font-size: 0.88rem;
+    font-family: monospace;
+    margin: 1rem 0;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    height: 44px;
+  }
+
+  .api-key-input:focus {
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+  }
+
+  .api-key-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .api-key-save-btn {
+    flex: 1;
+    padding: 0.65rem 1.2rem;
+    background: var(--gold);
+    border: none;
+    border-radius: 8px;
+    color: #0A0A0A;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 44px;
+    font-family: 'Noto Serif Tamil', serif;
+    transition: opacity 0.2s;
+  }
+
+  .api-key-save-btn:hover { opacity: 0.88; }
+
+  .api-key-cancel-btn {
+    padding: 0.65rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    cursor: pointer;
+    min-height: 44px;
+    font-family: inherit;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .api-key-cancel-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+  .api-key-note {
+    font-size: 0.78rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 0.75rem !important;
+  }
+
   /* ===== FOOTER ===== */
   footer {
     background: var(--bg-card);
@@ -1238,6 +1341,7 @@
     <button class="a11y-btn" onclick="resetFontSize()"   aria-label="Reset text size"    title="Reset text size (A)">A</button>
     <button class="a11y-btn" onclick="increaseFontSize()" aria-label="Increase text size" title="Increase text size (A+)">A+</button>
     <button class="a11y-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">☀️</button>
+    <button class="a11y-btn" onclick="showApiKeyModal()" aria-label="Set Anthropic API key" title="Set API key">🔑</button>
   </div>
 </header>
 
@@ -1417,6 +1521,27 @@
 
 <!-- Scroll to top -->
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top of page" title="Back to top">↑</button>
+
+<!-- API Key Modal -->
+<div class="api-key-overlay" id="apiKeyOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="api-key-title">
+  <div class="api-key-dialog">
+    <h2 id="api-key-title">🔑 Anthropic API Key Required</h2>
+    <p>To generate AI explanations for each Kural, enter your Anthropic API key below.</p>
+    <p>Don't have one? <a href="https://console.anthropic.com/" target="_blank" rel="noopener">Get one free at console.anthropic.com</a></p>
+    <input type="password"
+           id="apiKeyInput"
+           class="api-key-input"
+           placeholder="sk-ant-api03-..."
+           aria-label="Anthropic API key"
+           autocomplete="off"
+           spellcheck="false">
+    <div class="api-key-actions">
+      <button class="api-key-save-btn" onclick="saveApiKey()">Save Key &amp; Continue</button>
+      <button class="api-key-cancel-btn" onclick="closeApiKeyModal()">Cancel</button>
+    </div>
+    <p class="api-key-note">🔒 Your key is stored only in this browser (localStorage) and sent directly to Anthropic — never stored on any server.</p>
+  </div>
+</div>
 
 <script>
 // ===== DATA =====
@@ -1793,6 +1918,44 @@ function showKurals(chapterNum, highlightNum) {
   }
 }
 
+// ===== API KEY MANAGEMENT =====
+function getApiKey() {
+  return localStorage.getItem('anthropic_api_key') || '';
+}
+
+function showApiKeyModal(pendingKuralNum) {
+  document.getElementById('apiKeyOverlay').hidden = false;
+  document.getElementById('apiKeyInput').value = getApiKey();
+  setTimeout(() => document.getElementById('apiKeyInput').focus(), 50);
+  if (pendingKuralNum) {
+    document.getElementById('apiKeyOverlay').dataset.pending = pendingKuralNum;
+  }
+}
+
+function closeApiKeyModal() {
+  document.getElementById('apiKeyOverlay').hidden = true;
+  delete document.getElementById('apiKeyOverlay').dataset.pending;
+}
+
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (!key) { alert('Please enter your Anthropic API key.'); return; }
+  if (!key.startsWith('sk-')) { alert('That doesn\'t look like a valid Anthropic API key (should start with "sk-").'); return; }
+  localStorage.setItem('anthropic_api_key', key);
+  const pending = document.getElementById('apiKeyOverlay').dataset.pending;
+  closeApiKeyModal();
+  announce('API key saved');
+  if (pending) {
+    const btn = document.querySelector(`#kural-${pending} .explain-btn`);
+    if (btn) btn.click();
+  }
+}
+
+document.getElementById('apiKeyInput')?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') saveApiKey();
+  if (e.key === 'Escape') closeApiKeyModal();
+});
+
 // ===== INLINE EXPLANATION =====
 const explanationCache = {};
 
@@ -1834,11 +1997,21 @@ async function toggleExplanation(kuralNum, btn) {
     announce('Explanation loaded');
   } catch(err) {
     console.error('API error:', err);
+    if (err.message === 'No API key configured') {
+      container.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '✨ விளக்கம் பெறு / Get Explanation';
+      return;
+    }
     if (!container.hidden) {
+      const is401 = err.message.includes('401');
       container.innerHTML = `
         <div class="error-state" role="alert">
-          <p class="tamil" lang="ta">மீண்டும் முயற்சிக்கவும் / Please try again</p>
-          <button class="retry-btn tamil" onclick="retryExplanation(${kuralNum}, this)" lang="ta">மீண்டும் முயற்சி / Retry</button>
+          <p>${is401 ? '🔑 Invalid API key. Please check your key and try again.' : 'Something went wrong. Please try again.'}</p>
+          ${is401
+            ? `<button class="retry-btn" onclick="showApiKeyModal(${kuralNum})" style="margin-bottom:0.5rem">Update API Key</button>`
+            : `<button class="retry-btn tamil" onclick="retryExplanation(${kuralNum}, this)">மீண்டும் முயற்சி / Retry</button>`
+          }
         </div>
       `;
     }
@@ -1856,6 +2029,12 @@ function retryExplanation(kuralNum, retryBtn) {
 }
 
 async function fetchExplanationHTML(k) {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    showApiKeyModal(k.number);
+    throw new Error('No API key configured');
+  }
+
   const bookMeta = BOOK_META[k.book] || {};
   const prompt = `Please explain this Thirukkural:
 
@@ -1871,11 +2050,12 @@ Give me the full bilingual explanation.`;
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'x-api-key': apiKey,
       'anthropic-version': '2023-06-01',
       'anthropic-dangerous-direct-browser-access': 'true',
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 1500,
       system: `You are a Thirukkural wisdom guide who explains ancient Tamil wisdom to modern readers. You always respond in BOTH Tamil and English — Tamil first, English second for every section. Use simple, warm, conversational language — like explaining to a curious 10-year-old. Never be academic or preachy. Be practical, relatable, and human.
 
@@ -1910,7 +2090,7 @@ Keep each section to 3 sentences maximum. Do not add any other text outside thes
     }),
   });
 
-  if (!resp.ok) throw new Error(`API error: ${resp.status}`);
+  if (!resp.ok) throw new Error(`${resp.status}`);
   const data = await resp.json();
   return buildExplanationHTML(data.content[0].text);
 }
