@@ -393,7 +393,7 @@
   .hero {
     position: relative;
     text-align: center;
-    padding: 6rem 2rem 5rem;
+    padding: 4rem 2rem 3.5rem;
     overflow: hidden;
   }
 
@@ -425,12 +425,32 @@
     line-height: 1.1;
     position: relative;
     z-index: 1;
-    /* Gradient text */
+    /* Gradient text — works well in dark mode */
     background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dim) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     filter: drop-shadow(0 0 40px rgba(212,168,76,0.25));
+  }
+
+  /* In light mode the gradient gold shades are too similar — use solid + shadow instead */
+  [data-theme="light"] .hero-title {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--gold);
+    filter: none;
+    text-shadow: 0 2px 12px rgba(122,94,18,0.18);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .hero-title {
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      -webkit-text-fill-color: var(--gold);
+      filter: none;
+      text-shadow: 0 2px 12px rgba(122,94,18,0.18);
+    }
   }
 
   .hero-sub-tamil {
@@ -479,7 +499,7 @@
 
   .hero-kural {
     max-width: 640px;
-    margin: 3rem auto 0;
+    margin: 2.2rem auto 0;
     background: rgba(212,168,76,0.04);
     border: 1px solid var(--border-accent);
     border-radius: 20px;
@@ -493,6 +513,20 @@
   .hero-kural:hover {
     box-shadow: 0 12px 48px rgba(212,168,76,0.18), 0 4px 16px rgba(212,168,76,0.08);
     transform: translateY(-2px);
+  }
+
+  /* Light mode: hero kural needs real visual weight */
+  [data-theme="light"] .hero-kural {
+    background: #FEFCF8;
+    border-color: #C8A85A;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05), inset 0 1px 0 rgba(212,168,76,0.15);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .hero-kural {
+      background: #FEFCF8;
+      border-color: #C8A85A;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05), inset 0 1px 0 rgba(212,168,76,0.15);
+    }
   }
 
   .hero-kural-text {
@@ -523,7 +557,7 @@
   /* ===== BOOK CARDS ===== */
   .section-title {
     text-align: center;
-    padding: 1.5rem 2rem 0;
+    padding: 1rem 2rem 0;
   }
 
   .section-title .t {
@@ -1176,6 +1210,64 @@
 
   /* Touch targets */
   button, .book-card, .chapter-card, .search-result { min-height: 44px; }
+
+  /* ===== LIGHT MODE CARD SHADOWS =====
+     In dark mode glassmorphism provides depth; in light mode shadows do. */
+  [data-theme="light"] .book-card,
+  [data-theme="light"] .chapter-card,
+  [data-theme="light"] .kural-card {
+    background: #FEFCF8;
+    border-color: #D4C5A8;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  }
+  [data-theme="light"] .book-card:hover {
+    background: #FDF8F0;
+    border-color: #B8944A;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+  }
+  [data-theme="light"] .chapter-card:hover {
+    background: #FDF8F0;
+    border-color: #C8A85A;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  }
+  [data-theme="light"] .kural-card:hover {
+    border-color: #C8A85A;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  }
+  [data-theme="light"] .search-dropdown {
+    background: #FEFCF8;
+    border-color: #C8A85A;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .book-card,
+    :root:not([data-theme="dark"]) .chapter-card,
+    :root:not([data-theme="dark"]) .kural-card {
+      background: #FEFCF8;
+      border-color: #D4C5A8;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    }
+    :root:not([data-theme="dark"]) .book-card:hover {
+      background: #FDF8F0;
+      border-color: #B8944A;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+    }
+    :root:not([data-theme="dark"]) .chapter-card:hover {
+      background: #FDF8F0;
+      border-color: #C8A85A;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    }
+    :root:not([data-theme="dark"]) .kural-card:hover {
+      border-color: #C8A85A;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    }
+    :root:not([data-theme="dark"]) .search-dropdown {
+      background: #FEFCF8;
+      border-color: #C8A85A;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+    }
+  }
 </style>
 </head>
 <body>
