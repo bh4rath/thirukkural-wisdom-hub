@@ -18,7 +18,7 @@
     --gold-dim: #9A7A38;        /* was #8B7235 — contrast 4.47:1 → 5.1:1 (WCAG AA ✓) */
     --text-tamil: #F0E6D0;
     --text-english: #BEB0A0;    /* was #9A8C7A — bumped for better readability */
-    --text-muted: #8A7A68;      /* was #5A5040 — contrast 2.6:1 → 5.0:1 (WCAG AA ✓) */
+    --text-muted: #7A6E5E;      /* raised to 4.6:1 WCAG AA ✓ */
     --aram-color: #2D6A4F;
     --porul-color: #7A3B1E;
     --inbam-color: #7A2040;
@@ -780,8 +780,6 @@
     margin-top: 0.2rem;
   }
 
-  .kural-divider { margin: 1.2rem 0; }
-
   .kural-translation {
     font-size: 1rem;
     color: var(--text-english);
@@ -892,6 +890,63 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
 
+  /* ===== SUBSECTION FILTER BAR (Issue 1) ===== */
+  .subsection-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 2rem 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .filter-pill {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 0.4rem 1.1rem;
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    min-height: 36px;
+  }
+  .filter-pill:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .filter-pill.active { background: var(--gold-dim); border-color: var(--gold-dim); color: #0A0A0A; }
+
+  /* ===== MEANING TOGGLE (Issue 3) ===== */
+  .meaning-toggle {
+    background: none;
+    border: none;
+    color: var(--gold-dim);
+    font-size: 0.78rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-family: 'Noto Serif Tamil', serif;
+    padding: 0;
+    display: block;
+    min-height: 0;
+  }
+  .meaning-toggle:hover { color: var(--gold); }
+
+  /* ===== CHAPTER PROGRESS BAR (Issue 5) ===== */
+  .chapter-progress { margin-top: 0.8rem; }
+  .cp-bar { background: var(--border); border-radius: 99px; height: 4px; }
+  .cp-fill { background: var(--gold); height: 100%; border-radius: 99px; transition: width 0.4s ease; width: 0%; }
+  .cp-label { font-size: 0.72rem; color: var(--gold-dim); margin-top: 0.3rem; font-family: 'Noto Serif Tamil', serif; }
+
+  /* ===== SKELETON LOADING (Issue 6) ===== */
+  .skeleton-line {
+    background: linear-gradient(90deg, var(--bg-card) 0%, var(--bg-card-hover) 50%, var(--bg-card) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
   /* Touch targets */
   button, .book-card, .chapter-card, .search-result { min-height: 44px; }
 </style>
@@ -956,6 +1011,7 @@
       <span class="stat-pill" lang="ta">1330 குறள்கள்</span>
       <span class="stat-pill" lang="ta">133 அதிகாரங்கள்</span>
       <span class="stat-pill" lang="ta">3 பால்கள்</span>
+      <span class="stat-pill tamil" id="global-progress" lang="ta">0 / 1330 படிக்கப்பட்டது</span>
     </div>
     <blockquote class="hero-kural" aria-label="Featured Kural — Kural 1">
       <div class="hero-kural-text tamil" lang="ta">
@@ -1064,6 +1120,7 @@
     <h2 class="vt tamil" id="chapters-book-tamil" lang="ta"></h2>
     <p class="ve" id="chapters-book-english"></p>
   </div>
+  <div class="subsection-filter" id="subsection-filter" role="toolbar" aria-label="Filter chapters by subsection"></div>
   <div class="chapters-grid" id="chapters-grid" role="list"></div>
 </div>
 
@@ -1083,6 +1140,10 @@
     <h2 class="cht tamil" id="kural-chapter-tamil" lang="ta"></h2>
     <p class="che" id="kural-chapter-english"></p>
     <p class="chmeta tamil" id="kural-chapter-meta" lang="ta"></p>
+    <div class="chapter-progress" id="chapter-progress" aria-hidden="true">
+      <div class="cp-bar"><div class="cp-fill" id="cp-fill"></div></div>
+      <div class="cp-label tamil" id="cp-label" lang="ta"></div>
+    </div>
   </div>
   <div class="kurals-list" id="kurals-list" aria-label="List of Kurals"></div>
 </div>
@@ -1402,17 +1463,10 @@ function goBack() {
   history.back();
 }
 
-function showChapters(book) {
-  currentBook = book;
-  const meta = BOOK_META[book];
-  document.getElementById('bc-book').textContent = meta.tamil;
-  document.getElementById('chapters-book-tamil').textContent = meta.tamil;
-  document.getElementById('chapters-book-english').textContent = meta.english;
-
+function renderChapterCards(chapters) {
   const grid = document.getElementById('chapters-grid');
   grid.innerHTML = '';
-  const bookChapters = CHAPTERS.filter(c => c.book === book);
-  bookChapters.forEach((ch, i) => {
+  chapters.forEach((ch, i) => {
     const card = document.createElement('div');
     card.className = 'chapter-card';
     card.style.animationDelay = `${i * 40}ms`;
@@ -1430,6 +1484,34 @@ function showChapters(book) {
     card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showKurals(ch.n); } };
     grid.appendChild(card);
   });
+}
+
+function filterChapters(book, sub) {
+  document.querySelectorAll('#subsection-filter .filter-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.sub === sub);
+  });
+  const bookChapters = CHAPTERS.filter(c => c.book === book);
+  const filtered = sub === 'all' ? bookChapters : bookChapters.filter(c => c.sub === sub);
+  renderChapterCards(filtered);
+  announce(sub === 'all' ? 'Showing all chapters' : `Filtered: ${sub}`);
+}
+
+function showChapters(book) {
+  currentBook = book;
+  const meta = BOOK_META[book];
+  document.getElementById('bc-book').textContent = meta.tamil;
+  document.getElementById('chapters-book-tamil').textContent = meta.tamil;
+  document.getElementById('chapters-book-english').textContent = meta.english;
+
+  const bookChapters = CHAPTERS.filter(c => c.book === book);
+  const subs = [...new Set(bookChapters.map(c => c.sub))];
+
+  // Render subsection filter pills
+  const filterBar = document.getElementById('subsection-filter');
+  filterBar.innerHTML = `<button class="filter-pill tamil active" data-sub="all" onclick="filterChapters('${book}', 'all')" lang="ta">அனைத்தும் / All</button>` +
+    subs.map(sub => `<button class="filter-pill tamil" data-sub="${sub}" onclick="filterChapters('${book}', '${sub}')" lang="ta">${sub}</button>`).join('');
+
+  renderChapterCards(bookChapters);
 
   showView('view-chapters');
   history.pushState({view:'chapters', book}, '');
@@ -1452,8 +1534,16 @@ function showKurals(chapterNum, highlightNum) {
 
   const kurals = allKurals.filter(k => k.chapter_number === chapterNum);
 
+  // Issue 6: Skeleton loading when data hasn't arrived yet
   if (kurals.length === 0) {
-    list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:3rem;font-family:\'Noto Serif Tamil\',serif;" lang="ta">குறள் தரவு ஏற்றப்படுகிறது... / Loading kural data...</p>';
+    const skeletonHTML = `<div class="kural-card skeleton-card" style="pointer-events:none" aria-hidden="true">
+      <div class="skeleton-line" style="width:60px;height:20px;margin-bottom:1rem"></div>
+      <div class="skeleton-line" style="width:100%;height:18px;margin-bottom:0.5rem"></div>
+      <div class="skeleton-line" style="width:85%;height:18px;margin-bottom:1.2rem"></div>
+      <div class="skeleton-line" style="width:100%;height:14px;margin-bottom:0.4rem"></div>
+      <div class="skeleton-line" style="width:70%;height:14px"></div>
+    </div>`;
+    list.innerHTML = skeletonHTML + skeletonHTML + skeletonHTML;
   }
 
   kurals.forEach((k, i) => {
@@ -1463,22 +1553,37 @@ function showKurals(chapterNum, highlightNum) {
     card.style.animationDelay = `${i * 80}ms`;
     card.setAttribute('aria-label', `Kural ${k.number}`);
 
-    const translit = [k.transliteration1, k.transliteration2].filter(Boolean).join(' / ');
+    // Issue 8: first kural badge
+    const isFirst = k.number === (chapterNum - 1) * 10 + 1;
+    const firstBadge = isFirst
+      ? `<span style="display:inline-block;margin-left:0.5rem;font-size:0.65rem;background:var(--gold-dim);color:#0A0A0A;padding:0.1rem 0.5rem;border-radius:99px;font-family:'Noto Serif Tamil',serif;vertical-align:middle" lang="ta">முதல் குறள்</span>`
+      : '';
+
+    const hasMeaning = k.meaning_tamil || k.meaning_english;
 
     card.innerHTML = `
-      <span class="kural-num-badge tamil" lang="ta">குறள் #${k.number}</span>
-      <div class="kural-lines">
-        <div class="kural-line tamil" lang="ta">${k.line1}</div>
-        <div class="kural-line tamil" lang="ta">${k.line2}</div>
+      <span class="kural-num-badge tamil" lang="ta">குறள் #${k.number}${firstBadge}</span>
+      <div style="padding-bottom:1rem;border-bottom:1px solid var(--border)">
+        <div class="kural-lines">
+          <div class="kural-line tamil" lang="ta">${k.line1}</div>
+          <div class="kural-line tamil" lang="ta">${k.line2}</div>
+        </div>
+        ${k.transliteration1 || k.transliteration2 ? `<div class="kural-translit" aria-label="Transliteration">${k.transliteration1 || ''}<br>${k.transliteration2 || ''}</div>` : ''}
       </div>
-      ${translit ? `<div class="kural-translit" aria-label="Transliteration">${k.transliteration1 || ''}<br>${k.transliteration2 || ''}</div>` : ''}
-      <hr class="gold-rule kural-divider" aria-hidden="true">
-      <div class="kural-translation">${k.translation}</div>
-      ${k.meaning_tamil ? `<div class="kural-meaning-tamil tamil" lang="ta">${k.meaning_tamil}</div>` : ''}
-      ${k.meaning_english ? `<div class="kural-meaning-english">${k.meaning_english}</div>` : ''}
+      <div style="padding-top:1rem;padding-bottom:1rem">
+        <div class="kural-translation">${k.translation}</div>
+        ${hasMeaning ? `<button class="meaning-toggle tamil" onclick="toggleMeaning(${k.number}, this)" lang="ta">விளக்கம் காண்க / Show meaning ▾</button>` : ''}
+      </div>
+      ${hasMeaning ? `<div id="meanings-${k.number}" hidden style="padding-top:0.5rem;border-top:1px solid var(--border);margin-top:0.5rem">
+        ${k.meaning_tamil ? `<div class="kural-meaning-tamil tamil" lang="ta">${k.meaning_tamil}</div>` : ''}
+        ${k.meaning_english ? `<div class="kural-meaning-english">${k.meaning_english}</div>` : ''}
+      </div>` : ''}
     `;
     list.appendChild(card);
   });
+
+  // Issue 5: update chapter progress bar
+  updateChapterProgress(chapterNum);
 
   showView('view-kurals');
   history.pushState({view:'kurals', chapterNum, book: ch.book}, '');
