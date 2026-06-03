@@ -1739,6 +1739,60 @@ window.addEventListener('popstate', (e) => {
 });
 
 
+// ===== READING PROGRESS (Issue 5) =====
+let seenKurals = new Set();
+
+function loadSeenKurals() {
+  try {
+    const raw = localStorage.getItem('tk_seen_kurals');
+    if (raw) seenKurals = new Set(JSON.parse(raw));
+  } catch(_) {}
+}
+
+function saveSeenKurals() {
+  try {
+    localStorage.setItem('tk_seen_kurals', JSON.stringify([...seenKurals]));
+  } catch(_) {}
+}
+
+function markKuralSeen(num) {
+  if (seenKurals.has(num)) return;
+  seenKurals.add(num);
+  saveSeenKurals();
+  updateGlobalProgress();
+  if (currentChapter) updateChapterProgress(currentChapter);
+}
+
+function updateChapterProgress(chapterNum) {
+  const chKurals = allKurals.filter(k => k.chapter_number === chapterNum);
+  if (!chKurals.length) return;
+  const seen = chKurals.filter(k => seenKurals.has(k.number)).length;
+  const total = chKurals.length;
+  const pct = (seen / total) * 100;
+  const fill = document.getElementById('cp-fill');
+  const label = document.getElementById('cp-label');
+  if (fill) fill.style.width = pct + '%';
+  if (label) label.textContent = `${seen} / ${total} குறள்கள் படிக்கப்பட்டது`;
+}
+
+function updateGlobalProgress() {
+  const pill = document.getElementById('global-progress');
+  if (pill) pill.textContent = `${seenKurals.size} / 1330 படிக்கப்பட்டது`;
+}
+
+// ===== MEANING TOGGLE (Issue 3) =====
+function toggleMeaning(kuralNum, btn) {
+  const div = document.getElementById(`meanings-${kuralNum}`);
+  const wasHidden = div.hidden;
+  div.hidden = !wasHidden;
+  if (wasHidden) {
+    btn.textContent = 'மறை / Hide ▴';
+    markKuralSeen(kuralNum);
+  } else {
+    btn.textContent = 'விளக்கம் காண்க / Show meaning ▾';
+  }
+}
+
 // ===== UTILS =====
 function debounce(fn, ms) {
   let t;
@@ -1747,6 +1801,8 @@ function debounce(fn, ms) {
 
 // ===== INIT =====
 history.replaceState({view:'home'}, '');
+loadSeenKurals();
+updateGlobalProgress();
 fetchKurals();
 </script>
 </body>
