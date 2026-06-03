@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>திருக்குறள் ஞான தளம் | Thirukkural Wisdom Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0A0A0A;
+    --bg-card: #141414;
+    --bg-card-hover: #1E1E1E;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B7235;
+    --text-tamil: #F0E6D0;
+    --text-english: #9A8C7A;
+    --text-muted: #5A5040;
+    --aram-color: #2D6A4F;
+    --porul-color: #7A3B1E;
+    --inbam-color: #7A2040;
+    --border: #252525;
+    --panel-bg: #0F0F0F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-tamil);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Kolam background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, #C9A84C 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .tamil { font-family: 'Noto Serif Tamil', serif; }
+
+  /* ===== HEADER ===== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .header-brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .header-brand .brand-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+
+  .header-brand .brand-english {
+    font-size: 0.72rem;
+    color: var(--text-english);
+    letter-spacing: 0.05em;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 480px;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;
+    color: var(--text-tamil);
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-wrap input:focus { border-color: var(--gold-dim); }
+  .search-wrap input::placeholder { color: var(--text-muted); font-family: 'Noto Serif Tamil', serif; }
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+
+  .search-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    max-height: 380px;
+    overflow-y: auto;
+    z-index: 200;
+    display: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+
+  .search-dropdown.open { display: block; }
+
+  .search-result {
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .search-result:last-child { border-bottom: none; }
+  .search-result:hover { background: var(--bg-card-hover); }
+
+  .search-result .sr-type {
+    font-size: 0.65rem;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+  }
+
+  .search-result .sr-main {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.9rem;
+    color: var(--text-tamil);
+  }
+
+  .search-result .sr-sub {
+    font-size: 0.75rem;
+    color: var(--text-english);
+    font-style: italic;
+  }
+
+  .highlight { color: var(--gold); }
+
+  /* ===== GOLD RULE ===== */
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    border: none;
+    margin: 2.5rem 0;
+  }
+
+  /* ===== VIEWS ===== */
+  .view { display: none; position: relative; z-index: 1; }
+  .view.active { display: block; }
+
+  /* ===== HOME VIEW ===== */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 60px rgba(201,168,76,0.3);
+  }
+
+  .hero-sub-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.1rem;
+    color: var(--text-english);
+    margin-top: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-sub-english {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-pills {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-pill {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-dim);
+    border-radius: 99px;
+    padding: 0.4rem 1.1rem;
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+  }
+
+  .hero-kural {
+    max-width: 680px;
+    margin: 2.5rem auto 0;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-dim);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-kural-text {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.3rem;
+    color: var(--text-tamil);
+    line-height: 2;
+    font-weight: 600;
+  }
+
+  .hero-kural-english {
+    font-size: 1rem;
+    color: var(--text-english);
+    font-style: italic;
+    margin-top: 0.8rem;
+    line-height: 1.7;
+  }
+
+  .hero-kural-attr {
+    font-size: 0.78rem;
+    color: var(--gold-dim);
+    margin-top: 0.8rem;
+    font-family: 'Noto Serif Tamil', serif;
+  }
+
+  /* ===== BOOK CARDS ===== */
+  .section-title {
+    text-align: center;
+    padding: 1rem 2rem 0;
+  }
+
+  .section-title .t { font-family: 'Noto Serif Tamil', serif; font-size: 1.5rem; color: var(--text-tamil); }
+  .section-title .e { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 0.3rem; }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+
+  .book-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem 1.8rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .book-card.aram::before { background: var(--aram-color); }
+  .book-card.porul::before { background: var(--porul-color); }
+  .book-card.inbam::before { background: var(--inbam-color); }
+
+  .book-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+
+  .book-name-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-tamil);
+    line-height: 1.3;
+  }
+
+  .book-name-english {
+    font-size: 0.9rem;
+    color: var(--text-english);
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+
+  .book-subsections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .subsection-tag {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .book-desc-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.88rem;
+    color: var(--text-english);
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+
+  .book-desc-english {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.7;
+    margin-top: 0.4rem;
+  }
+
+  .book-meta {
+    margin-top: 1.2rem;
+    font-size: 0.8rem;
+    color: var(--gold-dim);
+    font-family: 'Noto Serif Tamil', serif;
+  }
+
+  .book-btn {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-family: 'Noto Serif Tamil', serif;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    background: transparent;
+    width: 100%;
+    text-align: center;
+  }
+
+  .book-btn:hover { background: var(--gold); color: #0A0A0A; }
+
+  /* ===== BREADCRUMB & BACK ===== */
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem 0.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .back-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-english);
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: 'Noto Serif Tamil', serif;
+    flex-shrink: 0;
+  }
+
+  .back-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: 'Noto Serif Tamil', serif;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb span { cursor: pointer; transition: color 0.15s; }
+  .breadcrumb span:hover { color: var(--gold); }
+  .breadcrumb .sep { color: var(--border); }
+  .breadcrumb .current { color: var(--text-english); cursor: default; }
+
+  /* ===== CHAPTERS VIEW ===== */
+  .view-heading {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem 1.5rem;
+  }
+
+  .view-heading .vt { font-family: 'Noto Serif Tamil', serif; font-size: 1.8rem; font-weight: 700; color: var(--text-tamil); }
+  .view-heading .ve { font-size: 0.95rem; color: var(--text-english); font-style: italic; margin-top: 0.3rem; }
+
+  .chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .chapter-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid transparent;
+    border-radius: 10px;
+    padding: 1.2rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s, border-left-color 0.2s, transform 0.15s;
+  }
+
+  .chapter-card:hover {
+    background: var(--bg-card-hover);
+    border-left-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .chapter-num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .chapter-card:hover .chapter-num-badge {
+    box-shadow: 0 0 12px rgba(201,168,76,0.4);
+  }
+
+  .chapter-name-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-tamil);
+    line-height: 1.4;
+  }
+
+  .chapter-name-english {
+    font-size: 0.75rem;
+    color: var(--text-english);
+    margin-top: 0.3rem;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .chapter-subsection {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    background: var(--bg-primary);
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+  }
+
+  .chapter-kural-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.68rem;
+    color: var(--gold-dim);
+    border: 1px solid var(--gold-dim);
+    padding: 0.15rem 0.5rem;
+    border-radius: 99px;
+  }
+
+  /* ===== KURALS VIEW ===== */
+  .chapter-header {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .chapter-header .cht { font-family: 'Noto Serif Tamil', serif; font-size: 2rem; font-weight: 700; color: var(--text-tamil); }
+  .chapter-header .che { font-size: 1rem; color: var(--text-english); font-style: italic; margin-top: 0.3rem; }
+  .chapter-header .chmeta { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem; font-family: 'Noto Serif Tamil', serif; }
+
+  .kurals-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .kural-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .kural-card.highlighted {
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 24px rgba(201,168,76,0.15);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .kural-num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.8rem;
+    border-radius: 99px;
+    background: var(--bg-primary);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'Noto Serif Tamil', serif;
+    cursor: default;
+    transition: box-shadow 0.2s;
+  }
+
+  .kural-num-badge:hover { box-shadow: 0 0 14px rgba(201,168,76,0.4); }
+
+  .kural-lines { margin-bottom: 0.6rem; }
+
+  .kural-line {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.35rem;
+    color: var(--text-tamil);
+    line-height: 2;
+    font-weight: 600;
+  }
+
+  .kural-translit {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.8;
+    margin-top: 0.2rem;
+  }
+
+  .kural-divider { margin: 1.2rem 0; }
+
+  .kural-translation {
+    font-size: 1rem;
+    color: var(--text-english);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .kural-meaning-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.88rem;
+    color: var(--text-english);
+    line-height: 1.8;
+    margin-top: 0.8rem;
+  }
+
+  .kural-meaning-english {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.7;
+    margin-top: 0.4rem;
+  }
+
+  .explain-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.4rem;
+    padding: 0.65rem 1.4rem;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    color: var(--gold);
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .explain-btn:hover {
+    background: var(--gold);
+    color: #0A0A0A;
+    box-shadow: 0 4px 16px rgba(201,168,76,0.3);
+  }
+
+  /* ===== EXPLANATION PANEL ===== */
+  .panel-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 300;
+    backdrop-filter: blur(4px);
+  }
+
+  .panel-overlay.open { display: block; }
+
+  .explanation-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 480px;
+    max-width: 100vw;
+    background: var(--panel-bg);
+    border-left: 1px solid var(--border);
+    z-index: 301;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .explanation-panel.open { transform: translateX(0); }
+
+  .panel-header {
+    padding: 1.4rem 1.6rem;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .panel-header-info .ph-num {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.82rem;
+    color: var(--gold);
+    margin-bottom: 0.2rem;
+  }
+
+  .panel-header-info .ph-chapter-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-tamil);
+  }
+
+  .panel-header-info .ph-chapter-english {
+    font-size: 0.78rem;
+    color: var(--text-english);
+    font-style: italic;
+  }
+
+  .close-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+  .panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.6rem;
+  }
+
+  .panel-kural-text .pkl {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    line-height: 2;
+    font-weight: 700;
+  }
+
+  .panel-kural-text .pkt {
+    font-size: 0.9rem;
+    color: var(--text-english);
+    font-style: italic;
+    margin-top: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .panel-kural-text .pkt-translit {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+
+  .ai-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1.8rem 0 1.2rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .ai-divider::before,
+  .ai-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+
+  /* Loading */
+  .loading-state {
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .loading-dots {
+    display: inline-flex;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .loading-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 1.2s ease infinite;
+  }
+
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  .loading-text-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.95rem;
+    color: var(--text-english);
+  }
+
+  .loading-text-english {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+
+  /* Error */
+  .error-state {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .error-state p { color: var(--text-english); font-size: 0.9rem; margin-bottom: 1rem; font-family: 'Noto Serif Tamil', serif; }
+
+  .retry-btn {
+    padding: 0.6rem 1.4rem;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    color: var(--gold);
+    cursor: pointer;
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  .retry-btn:hover { background: var(--gold-dim); }
+
+  /* Explanation sections */
+  .explanation-sections { display: flex; flex-direction: column; gap: 1rem; }
+
+  .exp-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.3rem;
+    opacity: 0;
+    animation: fadeUp 0.35s ease forwards;
+  }
+
+  .exp-section:nth-child(1) { animation-delay: 0.05s; }
+  .exp-section:nth-child(2) { animation-delay: 0.1s; }
+  .exp-section:nth-child(3) { animation-delay: 0.15s; }
+  .exp-section:nth-child(4) { animation-delay: 0.2s; }
+
+  .exp-label {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-text-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.9rem;
+    color: var(--text-tamil);
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+
+  .exp-label-en {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gold-dim);
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-text-english {
+    font-size: 0.88rem;
+    color: var(--text-english);
+    font-style: italic;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-brand { font-family: 'Noto Serif Tamil', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 0.4rem; }
+  .footer-stats { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .footer-kural { max-width: 560px; margin: 0 auto 1.5rem; }
+  .footer-kural .fkt { font-family: 'Noto Serif Tamil', serif; font-size: 0.95rem; color: var(--text-english); font-style: italic; line-height: 1.8; }
+  .footer-kural .fke { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-top: 0.3rem; }
+  .footer-kural .fka { font-size: 0.72rem; color: var(--gold-dim); margin-top: 0.4rem; font-family: 'Noto Serif Tamil', serif; }
+  .footer-credit { font-size: 0.78rem; color: var(--text-muted); }
+  .footer-credit a { color: var(--gold-dim); text-decoration: none; }
+
+  /* ===== FOCUS STYLES ===== */
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .books-grid { grid-template-columns: 1fr; }
+    .chapters-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 0 1rem; }
+    .search-wrap { max-width: none; }
+    .header-brand .brand-tamil { font-size: 0.95rem; }
+    .books-grid { padding: 0 1rem; gap: 1rem; }
+    .chapters-grid { grid-template-columns: 1fr; padding: 0 1rem 3rem; }
+    .kurals-list { padding: 0 1rem 3rem; }
+    .nav-bar { padding: 1rem 1rem 0.5rem; }
+    .chapter-header { padding: 0.5rem 1rem 1.5rem; }
+    .explanation-panel { width: 100vw; }
+    .hero { padding: 3rem 1rem 2.5rem; }
+    .hero-kural { padding: 1.4rem 1.2rem; }
+  }
+
+  @media (max-width: 420px) {
+    .chapters-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Stagger card animations */
+  .chapter-card { opacity: 0; transform: translateY(10px); animation: fadeUp 0.35s ease forwards; }
+  .book-card { opacity: 0; animation: fadeUp 0.4s ease forwards; }
+  .book-card:nth-child(1) { animation-delay: 0.0s; }
+  .book-card:nth-child(2) { animation-delay: 0.08s; }
+  .book-card:nth-child(3) { animation-delay: 0.16s; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+  /* Touch targets */
+  button, .book-card, .chapter-card, .search-result { min-height: 44px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-brand tamil" onclick="goHome()" tabindex="0" role="button" aria-label="Go to home" onkeydown="if(event.key==='Enter')goHome()">
+    <span class="brand-tamil">🕉️ திருக்குறள் ஞான தளம்</span>
+    <span class="brand-english">Thirukkural Wisdom Hub</span>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="குறள் அல்லது அதிகாரம் தேடுங்கள் / Search Kurals or Chapters" aria-label="Search Kurals or Chapters" autocomplete="off">
+    <div class="search-dropdown" id="searchDropdown" role="listbox"></div>
+  </div>
+</header>
+
+<!-- HOME VIEW -->
+<div class="view active" id="view-home">
+  <section class="hero">
+    <div class="hero-title tamil">திருக்குறள்</div>
+    <div class="hero-sub-tamil tamil">திருவள்ளுவர் இயற்றிய உலகப் பொதுமறை</div>
+    <div class="hero-sub-english">The Universal Scripture by Thiruvalluvar</div>
+    <div class="stat-pills">
+      <span class="stat-pill">1330 குறள்கள்</span>
+      <span class="stat-pill">133 அதிகாரங்கள்</span>
+      <span class="stat-pill">3 பால்கள்</span>
+    </div>
+    <div class="hero-kural">
+      <div class="hero-kural-text tamil">
+        அகர முதல எழுத்தெல்லாம் ஆதி<br>
+        பகவன் முதற்றே உலகு
+      </div>
+      <div class="hero-kural-english">"A leads all letters; the Primal Deity leads the entire world."</div>
+      <div class="hero-kural-attr tamil">— குறள் 1, கடவுள் வாழ்த்து</div>
+    </div>
+  </section>
+
+  <hr class="gold-rule" style="max-width:1200px;margin:0 auto 2rem;">
+
+  <div class="section-title">
+    <div class="t tamil">மூன்று பால்கள்</div>
+    <div class="e">The Three Books of Thirukkural</div>
+  </div>
+
+  <div class="books-grid">
+    <div class="book-card aram" onclick="showChapters('aram')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showChapters('aram')">
+      <div class="book-name-tamil tamil">அறத்துப்பால்</div>
+      <div class="book-name-english">Aram — Virtue</div>
+      <div class="book-subsections">
+        <span class="subsection-tag tamil">பாயிரவியல்</span>
+        <span class="subsection-tag tamil">இல்லறவியல்</span>
+        <span class="subsection-tag tamil">துறவறவியல்</span>
+      </div>
+      <div class="book-desc-tamil tamil">ஒழுக்கம், அறநெறி மற்றும் மனித கடமைகளை விளக்குகிறது. குடும்ப வாழ்க்கை மற்றும் துறவு வாழ்க்கை இரண்டையும் உள்ளடக்கியது.</div>
+      <div class="book-desc-english">Covers moral conduct, righteousness, and human duties — encompassing both domestic life and the ascetic life.</div>
+      <div class="book-meta tamil">அதிகாரங்கள் 1–38 | 380 குறள்கள்</div>
+      <button class="book-btn tamil">அதிகாரங்களைக் காண்க / View Chapters →</button>
+    </div>
+
+    <div class="book-card porul" onclick="showChapters('porul')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showChapters('porul')">
+      <div class="book-name-tamil tamil">பொருட்பால்</div>
+      <div class="book-name-english">Porul — Wealth</div>
+      <div class="book-subsections">
+        <span class="subsection-tag tamil">அரசியல்</span>
+        <span class="subsection-tag tamil">அமைச்சியல்</span>
+        <span class="subsection-tag tamil">அங்கவியல்</span>
+        <span class="subsection-tag tamil">ஒழிபியல்</span>
+      </div>
+      <div class="book-desc-tamil tamil">அரசியல், பொருளாதாரம் மற்றும் சமூக நடத்தை பற்றி கூறுகிறது. ஆட்சி, தந்திரோபாயம் மற்றும் நடைமுறை வாழ்க்கைக்கான வழிகாட்டி.</div>
+      <div class="book-desc-english">A guide to governance, diplomacy, economics, and societal conduct for rulers and citizens alike.</div>
+      <div class="book-meta tamil">அதிகாரங்கள் 39–108 | 700 குறள்கள்</div>
+      <button class="book-btn tamil">அதிகாரங்களைக் காண்க / View Chapters →</button>
+    </div>
+
+    <div class="book-card inbam" onclick="showChapters('inbam')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showChapters('inbam')">
+      <div class="book-name-tamil tamil">இன்பத்துப்பால்</div>
+      <div class="book-name-english">Inbam — Love</div>
+      <div class="book-subsections">
+        <span class="subsection-tag tamil">களவியல்</span>
+        <span class="subsection-tag tamil">கற்பியல்</span>
+      </div>
+      <div class="book-desc-tamil tamil">காதல், மனித உணர்வுகள் மற்றும் ஆண்-பெண் உறவுகளை அழகுற சித்தரிக்கிறது.</div>
+      <div class="book-desc-english">Explores the beauty and depth of love, human emotions, and relationships between man and woman.</div>
+      <div class="book-meta tamil">அதிகாரங்கள் 109–133 | 250 குறள்கள்</div>
+      <button class="book-btn tamil">அதிகாரங்களைக் காண்க / View Chapters →</button>
+    </div>
+  </div>
+
+  <hr class="gold-rule" style="max-width:1200px;margin:2rem auto 0;">
+  <footer>
+    <div class="footer-brand tamil">திருக்குறள் ஞான தளம் | Thirukkural Wisdom Hub</div>
+    <div class="footer-stats">1330 குறள்கள் · 133 அதிகாரங்கள் · 3 பால்கள்</div>
+    <div class="footer-kural">
+      <div class="fkt tamil">"வையத்துள் வாழ்வாங்கு வாழ்பவன் வானுறையும்<br>தெய்வத்துள் வைக்கப்படும்"</div>
+      <div class="fke">"He who lives as he ought to live on earth shall be placed among the gods in heaven."</div>
+      <div class="fka tamil">— குறள் 50</div>
+    </div>
+    <div class="footer-credit">
+      Built with ❤️ by Bharath S | She Vibes AI Cohort 2026<br>
+      Kural data: Open source | No trackers | No ads<br>
+      Reference: <a href="https://thirukkural.io" target="_blank" rel="noopener">thirukkural.io</a>
+    </div>
+  </footer>
+</div>
+
+<!-- CHAPTERS VIEW -->
+<div class="view" id="view-chapters">
+  <div class="nav-bar">
+    <button class="back-btn tamil" onclick="goBack()" aria-label="Go back">← மீண்டும் / Back</button>
+    <nav class="breadcrumb tamil" aria-label="Breadcrumb">
+      <span onclick="goHome()" tabindex="0" onkeydown="if(event.key==='Enter')goHome()">🏠 முகப்பு</span>
+      <span class="sep">›</span>
+      <span class="current" id="bc-book"></span>
+    </nav>
+  </div>
+  <div class="view-heading">
+    <div class="vt tamil" id="chapters-book-tamil"></div>
+    <div class="ve" id="chapters-book-english"></div>
+  </div>
+  <div class="chapters-grid" id="chapters-grid"></div>
+</div>
+
+<!-- KURALS VIEW -->
+<div class="view" id="view-kurals">
+  <div class="nav-bar">
+    <button class="back-btn tamil" onclick="goBack()" aria-label="Go back">← மீண்டும் / Back</button>
+    <nav class="breadcrumb tamil" aria-label="Breadcrumb">
+      <span onclick="goHome()" tabindex="0" onkeydown="if(event.key==='Enter')goHome()">🏠 முகப்பு</span>
+      <span class="sep">›</span>
+      <span id="bc-book2" onclick="goToBook()" tabindex="0" onkeydown="if(event.key==='Enter')goToBook()" style="cursor:pointer"></span>
+      <span class="sep">›</span>
+      <span class="current" id="bc-chapter"></span>
+    </nav>
+  </div>
+  <div class="chapter-header">
+    <div class="cht tamil" id="kural-chapter-tamil"></div>
+    <div class="che" id="kural-chapter-english"></div>
+    <div class="chmeta tamil" id="kural-chapter-meta"></div>
+  </div>
+  <div class="kurals-list" id="kurals-list"></div>
+</div>
+
+<!-- EXPLANATION PANEL -->
+<div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+<aside class="explanation-panel" id="explanationPanel" role="dialog" aria-modal="true" aria-label="Kural Explanation">
+  <div class="panel-header">
+    <div class="panel-header-info">
+      <div class="ph-num tamil" id="ph-num"></div>
+      <div class="ph-chapter-tamil tamil" id="ph-chapter-tamil"></div>
+      <div class="ph-chapter-english" id="ph-chapter-english"></div>
+    </div>
+    <button class="close-btn" onclick="closePanel()" aria-label="Close panel">✕</button>
+  </div>
+  <div class="panel-body" id="panelBody">
+    <div class="panel-kural-text">
+      <div class="pkl tamil" id="pk-lines"></div>
+      <div class="pkt" id="pk-translation"></div>
+      <div class="pkt-translit" id="pk-translit"></div>
+    </div>
+    <div class="ai-divider">AI விளக்கம் / AI Explanation</div>
+    <div id="panel-content"></div>
+  </div>
+</aside>
+
+<script>
+// ===== DATA =====
+const CHAPTERS = [
+  // Book 1 — Aram
+  {n:1, t:"கடவுள் வாழ்த்து", e:"The Praise of God", book:"aram", sub:"பாயிரவியல்"},
+  {n:2, t:"வான் சிறப்பு", e:"The Excellence of Rain", book:"aram", sub:"பாயிரவியல்"},
+  {n:3, t:"நீத்தார் பெருமை", e:"The Greatness of Ascetics", book:"aram", sub:"பாயிரவியல்"},
+  {n:4, t:"அறன்வலியுறுத்தல்", e:"Assertion of the Strength of Virtue", book:"aram", sub:"பாயிரவியல்"},
+  {n:5, t:"இல்வாழ்க்கை", e:"Domestic Life", book:"aram", sub:"இல்லறவியல்"},
+  {n:6, t:"வாழ்க்கைத் துணைநலம்", e:"The Goodness of the Help to Domestic Life", book:"aram", sub:"இல்லறவியல்"},
+  {n:7, t:"புதல்வரைப் பெறுதல்", e:"The Obtaining of Sons", book:"aram", sub:"இல்லறவியல்"},
+  {n:8, t:"அன்புடைமை", e:"The Possession of Love", book:"aram", sub:"இல்லறவியல்"},
+  {n:9, t:"விருந்தோம்பல்", e:"Cherishing Guests", book:"aram", sub:"இல்லறவியல்"},
+  {n:10, t:"இனியவைகூறல்", e:"The Utterance of Pleasant Words", book:"aram", sub:"இல்லறவியல்"},
+  {n:11, t:"செய்ந்நன்றி அறிதல்", e:"Gratitude", book:"aram", sub:"இல்லறவியல்"},
+  {n:12, t:"நடுவு நிலைமை", e:"Impartiality", book:"aram", sub:"இல்லறவியல்"},
+  {n:13, t:"அடக்கமுடைமை", e:"The Possession of Self-restraint", book:"aram", sub:"இல்லறவியல்"},
+  {n:14, t:"ஒழுக்கமுடைமை", e:"The Possession of Decorum", book:"aram", sub:"இல்லறவியல்"},
+  {n:15, t:"பிறனில் விழையாமை", e:"Not coveting another's Wife", book:"aram", sub:"இல்லறவியல்"},
+  {n:16, t:"பொறையுடைமை", e:"The Possession of Patience", book:"aram", sub:"இல்லறவியல்"},
+  {n:17, t:"அழுக்காறாமை", e:"Not Envying", book:"aram", sub:"இல்லறவியல்"},
+  {n:18, t:"வெஃகாமை", e:"Not Coveting", book:"aram", sub:"இல்லறவியல்"},
+  {n:19, t:"புறங்கூறாமை", e:"Not Backbiting", book:"aram", sub:"இல்லறவியல்"},
+  {n:20, t:"பயனில சொல்லாமை", e:"Not Speaking Profitless Words", book:"aram", sub:"இல்லறவியல்"},
+  {n:21, t:"தீவினையச்சம்", e:"Dread of Evil Deeds", book:"aram", sub:"இல்லறவியல்"},
+  {n:22, t:"ஒப்புரவறிதல்", e:"Knowing What is Befitting", book:"aram", sub:"இல்லறவியல்"},
+  {n:23, t:"ஈகை", e:"Giving", book:"aram", sub:"இல்லறவியல்"},
+  {n:24, t:"புகழ்", e:"Renown", book:"aram", sub:"இல்லறவியல்"},
+  {n:25, t:"அருளுடைமை", e:"The Possession of Benevolence", book:"aram", sub:"துறவறவியல்"},
+  {n:26, t:"புலான்மறுத்தல்", e:"The Renunciation of Flesh", book:"aram", sub:"துறவறவியல்"},
+  {n:27, t:"தவம்", e:"Penance", book:"aram", sub:"துறவறவியல்"},
+  {n:28, t:"கூடாவொழுக்கம்", e:"Inconsistent Conduct", book:"aram", sub:"துறவறவியல்"},
+  {n:29, t:"கள்ளாமை", e:"The Absence of Fraud", book:"aram", sub:"துறவறவியல்"},
+  {n:30, t:"வாய்மை", e:"Veracity", book:"aram", sub:"துறவறவியல்"},
+  {n:31, t:"வெகுளாமை", e:"Not being Angry", book:"aram", sub:"துறவறவியல்"},
+  {n:32, t:"இன்னாசெய்யாமை", e:"Not doing Evil", book:"aram", sub:"துறவறவியல்"},
+  {n:33, t:"கொல்லாமை", e:"Not killing", book:"aram", sub:"துறவறவியல்"},
+  {n:34, t:"நிலையாமை", e:"Instability", book:"aram", sub:"துறவறவியல்"},
+  {n:35, t:"துறவு", e:"Renunciation", book:"aram", sub:"துறவறவியல்"},
+  {n:36, t:"மெய்யுணர்தல்", e:"Knowledge of the True", book:"aram", sub:"துறவறவியல்"},
+  {n:37, t:"அவாவறுத்தல்", e:"The Extirpation of Desire", book:"aram", sub:"துறவறவியல்"},
+  {n:38, t:"ஊழ்", e:"Fate", book:"aram", sub:"துறவறவியல்"},
+  // Book 2 — Porul
+  {n:39, t:"இறைமாட்சி", e:"The Greatness of a King", book:"porul", sub:"அரசியல்"},
+  {n:40, t:"கல்வி", e:"Learning", book:"porul", sub:"அரசியல்"},
+  {n:41, t:"கல்லாமை", e:"Ignorance", book:"porul", sub:"அரசியல்"},
+  {n:42, t:"கேள்வி", e:"Hearing", book:"porul", sub:"அரசியல்"},
+  {n:43, t:"அறிவுடைமை", e:"The Possession of Knowledge", book:"porul", sub:"அரசியல்"},
+  {n:44, t:"குற்றங்கடிதல்", e:"The Correction of Faults", book:"porul", sub:"அரசியல்"},
+  {n:45, t:"பெரியாரைத் துணைக்கோடல்", e:"Seeking the Aid of Great Men", book:"porul", sub:"அரசியல்"},
+  {n:46, t:"சிற்றினஞ்சேராமை", e:"Avoiding mean Associations", book:"porul", sub:"அரசியல்"},
+  {n:47, t:"தெரிந்துசெயல்வகை", e:"Acting after due Consideration", book:"porul", sub:"அரசியல்"},
+  {n:48, t:"வலியறிதல்", e:"The Knowledge of Power", book:"porul", sub:"அரசியல்"},
+  {n:49, t:"காலமறிதல்", e:"Knowing the fitting Time", book:"porul", sub:"அரசியல்"},
+  {n:50, t:"இடனறிதல்", e:"Knowing the Place", book:"porul", sub:"அரசியல்"},
+  {n:51, t:"தெரிந்துதெளிதல்", e:"Selection and Confidence", book:"porul", sub:"அரசியல்"},
+  {n:52, t:"தெரிந்துவினையாடல்", e:"Selection and Employment", book:"porul", sub:"அரசியல்"},
+  {n:53, t:"சுற்றந்தழால்", e:"Cherishing one's Kindred", book:"porul", sub:"அரசியல்"},
+  {n:54, t:"பொச்சாவாமை", e:"Unforgetfulness", book:"porul", sub:"அரசியல்"},
+  {n:55, t:"செங்கோன்மை", e:"The Right Sceptre", book:"porul", sub:"அரசியல்"},
+  {n:56, t:"கொடுங்கோன்மை", e:"The Cruel Sceptre", book:"porul", sub:"அரசியல்"},
+  {n:57, t:"வெருவந்தசெய்யாமை", e:"Absence of Terrorism", book:"porul", sub:"அரசியல்"},
+  {n:58, t:"கண்ணோட்டம்", e:"Benignity", book:"porul", sub:"அரசியல்"},
+  {n:59, t:"ஒற்றாடல்", e:"Detectives", book:"porul", sub:"அரசியல்"},
+  {n:60, t:"ஊக்கமுடைமை", e:"Energy", book:"porul", sub:"அரசியல்"},
+  {n:61, t:"மடியின்மை", e:"Unsluggishness", book:"porul", sub:"அரசியல்"},
+  {n:62, t:"ஆள்வினையுடைமை", e:"Manly Effort", book:"porul", sub:"அரசியல்"},
+  {n:63, t:"இடுக்கணழியாமை", e:"Hopefulness in Trouble", book:"porul", sub:"அரசியல்"},
+  {n:64, t:"அமைச்சு", e:"The Office of Minister of State", book:"porul", sub:"அமைச்சியல்"},
+  {n:65, t:"சொல்வன்மை", e:"Power in Speech", book:"porul", sub:"அமைச்சியல்"},
+  {n:66, t:"வினைத்தூய்மை", e:"Purity in Action", book:"porul", sub:"அமைச்சியல்"},
+  {n:67, t:"வினைத்திட்பம்", e:"Power in Action", book:"porul", sub:"அமைச்சியல்"},
+  {n:68, t:"வினைசெயல்வகை", e:"The Method of Acting", book:"porul", sub:"அமைச்சியல்"},
+  {n:69, t:"தூது", e:"The Envoy", book:"porul", sub:"அமைச்சியல்"},
+  {n:70, t:"மன்னரைச் சேர்ந்தொழுதல்", e:"Conduct in the Presence of the King", book:"porul", sub:"அமைச்சியல்"},
+  {n:71, t:"குறிப்பறிதல்", e:"The Knowledge of Indications", book:"porul", sub:"அமைச்சியல்"},
+  {n:72, t:"அவையறிதல்", e:"The Knowledge of the Council Chamber", book:"porul", sub:"அமைச்சியல்"},
+  {n:73, t:"அவையஞ்சாமை", e:"Not to dread the Council", book:"porul", sub:"அமைச்சியல்"},
+  {n:74, t:"நாடு", e:"The Land", book:"porul", sub:"அங்கவியல்"},
+  {n:75, t:"அரண்", e:"The Fortification", book:"porul", sub:"அங்கவியல்"},
+  {n:76, t:"பொருள்செயல்வகை", e:"Way of Accumulating Wealth", book:"porul", sub:"அங்கவியல்"},
+  {n:77, t:"படைமாட்சி", e:"The Excellence of an Army", book:"porul", sub:"அங்கவியல்"},
+  {n:78, t:"படைச்செருக்கு", e:"Military Spirit", book:"porul", sub:"அங்கவியல்"},
+  {n:79, t:"நட்பு", e:"Friendship", book:"porul", sub:"அங்கவியல்"},
+  {n:80, t:"நட்பாராய்தல்", e:"Investigation in forming Friendships", book:"porul", sub:"அங்கவியல்"},
+  {n:81, t:"பழைமை", e:"Familiarity", book:"porul", sub:"அங்கவியல்"},
+  {n:82, t:"தீ நட்பு", e:"Evil Friendship", book:"porul", sub:"அங்கவியல்"},
+  {n:83, t:"கூடாநட்பு", e:"Unreal Friendship", book:"porul", sub:"அங்கவியல்"},
+  {n:84, t:"பேதைமை", e:"Folly", book:"porul", sub:"அங்கவியல்"},
+  {n:85, t:"புல்லறிவாண்மை", e:"Ignorance", book:"porul", sub:"அங்கவியல்"},
+  {n:86, t:"இகல்", e:"Hostility", book:"porul", sub:"அங்கவியல்"},
+  {n:87, t:"பகைமாட்சி", e:"The Might of Hatred", book:"porul", sub:"அங்கவியல்"},
+  {n:88, t:"பகைத்திறந்தெரிதல்", e:"Knowing the Quality of Hate", book:"porul", sub:"அங்கவியல்"},
+  {n:89, t:"உட்பகை", e:"Enmity within", book:"porul", sub:"அங்கவியல்"},
+  {n:90, t:"பெரியாரைப் பிழையாமை", e:"Not Offending the Great", book:"porul", sub:"அங்கவியல்"},
+  {n:91, t:"பெண்வழிச்சேறல்", e:"Being led by Women", book:"porul", sub:"அங்கவியல்"},
+  {n:92, t:"வரைவின்மகளிர்", e:"Wanton Women", book:"porul", sub:"அங்கவியல்"},
+  {n:93, t:"கள்ளுண்ணாமை", e:"Not Drinking Palm-Wine", book:"porul", sub:"அங்கவியல்"},
+  {n:94, t:"சூது", e:"Gaming", book:"porul", sub:"அங்கவியல்"},
+  {n:95, t:"மருந்து", e:"Medicine", book:"porul", sub:"அங்கவியல்"},
+  {n:96, t:"குடிமை", e:"Nobility", book:"porul", sub:"ஒழிபியல்"},
+  {n:97, t:"மானம்", e:"Honour", book:"porul", sub:"ஒழிபியல்"},
+  {n:98, t:"பெருமை", e:"Greatness", book:"porul", sub:"ஒழிபியல்"},
+  {n:99, t:"சான்றாண்மை", e:"Perfectness", book:"porul", sub:"ஒழிபியல்"},
+  {n:100, t:"பண்புடைமை", e:"Courtesy", book:"porul", sub:"ஒழிபியல்"},
+  {n:101, t:"நன்றியில்செல்வம்", e:"Wealth without Benefaction", book:"porul", sub:"ஒழிபியல்"},
+  {n:102, t:"நாணுடைமை", e:"Shame", book:"porul", sub:"ஒழிபியல்"},
+  {n:103, t:"குடிசெயல்வகை", e:"The Way of Maintaining the Family", book:"porul", sub:"ஒழிபியல்"},
+  {n:104, t:"உழவு", e:"Agriculture", book:"porul", sub:"ஒழிபியல்"},
+  {n:105, t:"நல்குரவு", e:"Poverty", book:"porul", sub:"ஒழிபியல்"},
+  {n:106, t:"இரவு", e:"Mendicancy", book:"porul", sub:"ஒழிபியல்"},
+  {n:107, t:"இரவச்சம்", e:"The Dread of Mendicancy", book:"porul", sub:"ஒழிபியல்"},
+  {n:108, t:"கயமை", e:"Baseness", book:"porul", sub:"ஒழிபியல்"},
+  // Book 3 — Inbam
+  {n:109, t:"தகையணங்குறுத்தல்", e:"Mental Disturbance caused by the Beauty of the Princess", book:"inbam", sub:"களவியல்"},
+  {n:110, t:"குறிப்பறிதல்", e:"Recognition of the Signs of Mutual Love", book:"inbam", sub:"களவியல்"},
+  {n:111, t:"புணர்ச்சிமகிழ்தல்", e:"Rejoicing in the Embrace", book:"inbam", sub:"களவியல்"},
+  {n:112, t:"நலம்புனைந்துரைத்தல்", e:"The Praise of her Beauty", book:"inbam", sub:"களவியல்"},
+  {n:113, t:"காதற்சிறப்புரைத்தல்", e:"Declaration of Love's special Excellence", book:"inbam", sub:"களவியல்"},
+  {n:114, t:"நாணுத்துறவுரைத்தல்", e:"The Abandonment of Reserve", book:"inbam", sub:"களவியல்"},
+  {n:115, t:"அலரறிவுறுத்தல்", e:"The Announcement of the Rumour", book:"inbam", sub:"களவியல்"},
+  {n:116, t:"பிரிவாற்றாமை", e:"Separation unendurable", book:"inbam", sub:"கற்பியல்"},
+  {n:117, t:"படர்மெலிந்திரங்கல்", e:"Complainings", book:"inbam", sub:"கற்பியல்"},
+  {n:118, t:"கண்விதுப்பழிதல்", e:"Eyes consumed with Grief", book:"inbam", sub:"கற்பியல்"},
+  {n:119, t:"பசப்புறுபருவரல்", e:"The Pallid Hue", book:"inbam", sub:"கற்பியல்"},
+  {n:120, t:"தனிப்படர்மிகுதி", e:"The Solitary Anguish", book:"inbam", sub:"கற்பியல்"},
+  {n:121, t:"நினைந்தவர்புலம்பல்", e:"Sad Memories", book:"inbam", sub:"கற்பியல்"},
+  {n:122, t:"கனவுநிலையுரைத்தல்", e:"The Visions of the Night", book:"inbam", sub:"கற்பியல்"},
+  {n:123, t:"பொழுதுகண்டிரங்கல்", e:"Lamentations at Eventide", book:"inbam", sub:"கற்பியல்"},
+  {n:124, t:"உறுப்புநலனழிதல்", e:"Wasting Away", book:"inbam", sub:"கற்பியல்"},
+  {n:125, t:"நெஞ்சொடுகிளத்தல்", e:"Soliloquy", book:"inbam", sub:"கற்பியல்"},
+  {n:126, t:"நிறையழிதல்", e:"Reserve Overcome", book:"inbam", sub:"கற்பியல்"},
+  {n:127, t:"அவர்வயின்விதும்பல்", e:"Mutual Desire", book:"inbam", sub:"கற்பியல்"},
+  {n:128, t:"குறிப்பறிவுறுத்தல்", e:"The Reading of the Signs", book:"inbam", sub:"கற்பியல்"},
+  {n:129, t:"புணர்ச்சிவிதும்பல்", e:"Desire for Reunion", book:"inbam", sub:"கற்பியல்"},
+  {n:130, t:"நெஞ்சொடுபுலத்தல்", e:"Expostulation with Oneself", book:"inbam", sub:"கற்பியல்"},
+  {n:131, t:"புலவி", e:"Pouting", book:"inbam", sub:"கற்பியல்"},
+  {n:132, t:"புலவி நுணுக்கம்", e:"Feigned Anger", book:"inbam", sub:"கற்பியல்"},
+  {n:133, t:"ஊடலுவகை", e:"The Pleasures of Temporary Variance", book:"inbam", sub:"கற்பியல்"},
+];
+
+const BOOK_META = {
+  aram:  { tamil:"அறத்துப்பால்", english:"Aram — Virtue" },
+  porul: { tamil:"பொருட்பால்",   english:"Porul — Wealth" },
+  inbam: { tamil:"இன்பத்துப்பால்", english:"Inbam — Love" },
+};
+
+// ===== STATE =====
+let allKurals = [];
+let currentBook = null;
+let currentChapter = null;
+let currentKuralForPanel = null;
+let scrollHistory = {};
+
+// ===== FETCH =====
+async function fetchKurals() {
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/tk120404/thirukkural/master/thirukkural.json');
+    const data = await res.json();
+    const rawList = data.kural || data;
+    allKurals = rawList.map((k, i) => {
+      const num = i + 1;
+      const chNum = Math.ceil(num / 10);
+      const ch = CHAPTERS[chNum - 1] || {};
+      return {
+        number: num,
+        line1: k.Line1 || '',
+        line2: k.Line2 || '',
+        transliteration1: k.transliteration1 || '',
+        transliteration2: k.transliteration2 || '',
+        translation: k.translation || k.Translation || '',
+        meaning_tamil: k.mk && k.mk.mkural ? k.mk.mkural : '',
+        meaning_english: k.explanation || '',
+        chapter_number: chNum,
+        chapter_tamil: ch.t || '',
+        chapter_english: ch.e || '',
+        book: ch.book || 'aram',
+      };
+    });
+    console.log('Loaded', allKurals.length, 'kurals');
+  } catch(err) {
+    console.error('Failed to fetch kurals:', err);
+    allKurals = [];
+  }
+}
+
+// ===== NAVIGATION =====
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function goHome() {
+  currentBook = null;
+  currentChapter = null;
+  showView('view-home');
+  history.pushState({view:'home'}, '');
+}
+
+function goToBook() {
+  if (currentBook) showChapters(currentBook);
+}
+
+function goBack() {
+  history.back();
+}
+
+function showChapters(book) {
+  currentBook = book;
+  const meta = BOOK_META[book];
+  document.getElementById('bc-book').textContent = meta.tamil;
+  document.getElementById('chapters-book-tamil').textContent = meta.tamil;
+  document.getElementById('chapters-book-english').textContent = meta.english;
+
+  const grid = document.getElementById('chapters-grid');
+  grid.innerHTML = '';
+  const bookChapters = CHAPTERS.filter(c => c.book === book);
+  bookChapters.forEach((ch, i) => {
+    const card = document.createElement('div');
+    card.className = 'chapter-card';
+    card.style.animationDelay = `${i * 40}ms`;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `Chapter ${ch.n}: ${ch.t}`);
+    card.innerHTML = `
+      <div class="chapter-num-badge">${ch.n}</div>
+      <div class="chapter-name-tamil tamil">${ch.t}</div>
+      <div class="chapter-name-english">${ch.e}</div>
+      <div class="chapter-subsection tamil">${ch.sub}</div><br>
+      <span class="chapter-kural-pill tamil">10 குறள்கள்</span>
+    `;
+    card.onclick = () => showKurals(ch.n);
+    card.onkeydown = (e) => { if (e.key === 'Enter') showKurals(ch.n); };
+    grid.appendChild(card);
+  });
+
+  showView('view-chapters');
+  history.pushState({view:'chapters', book}, '');
+}
+
+function showKurals(chapterNum, highlightNum) {
+  currentChapter = chapterNum;
+  const ch = CHAPTERS[chapterNum - 1];
+  const meta = BOOK_META[ch.book];
+
+  document.getElementById('bc-book2').textContent = meta.tamil;
+  document.getElementById('bc-chapter').textContent = ch.t;
+  document.getElementById('kural-chapter-tamil').textContent = ch.t;
+  document.getElementById('kural-chapter-english').textContent = ch.e;
+  document.getElementById('kural-chapter-meta').textContent = `${ch.sub} | ${meta.tamil} (${meta.english})`;
+
+  const list = document.getElementById('kurals-list');
+  list.innerHTML = '';
+
+  const kurals = allKurals.filter(k => k.chapter_number === chapterNum);
+
+  if (kurals.length === 0) {
+    list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:3rem;font-family:\'Noto Serif Tamil\',serif;">குறள் தரவு ஏற்றப்படுகிறது... / Loading kural data...</p>';
+  }
+
+  kurals.forEach((k, i) => {
+    const card = document.createElement('div');
+    card.className = 'kural-card' + (highlightNum === k.number ? ' highlighted' : '');
+    card.id = `kural-${k.number}`;
+    card.style.animationDelay = `${i * 80}ms`;
+
+    const translit = [k.transliteration1, k.transliteration2].filter(Boolean).join(' / ');
+
+    card.innerHTML = `
+      <span class="kural-num-badge tamil">குறள் #${k.number}</span>
+      <div class="kural-lines">
+        <div class="kural-line tamil">${k.line1}</div>
+        <div class="kural-line tamil">${k.line2}</div>
+      </div>
+      ${translit ? `<div class="kural-translit">${k.transliteration1 || ''}<br>${k.transliteration2 || ''}</div>` : ''}
+      <hr class="gold-rule kural-divider">
+      <div class="kural-translation">${k.translation}</div>
+      ${k.meaning_tamil ? `<div class="kural-meaning-tamil tamil">${k.meaning_tamil}</div>` : ''}
+      ${k.meaning_english ? `<div class="kural-meaning-english">${k.meaning_english}</div>` : ''}
+      <button class="explain-btn tamil" onclick="openPanel(${k.number})">✨ விளக்கம் பெறு / Get Explanation</button>
+    `;
+    list.appendChild(card);
+  });
+
+  showView('view-kurals');
+  history.pushState({view:'kurals', chapterNum, book: ch.book}, '');
+
+  if (highlightNum) {
+    setTimeout(() => {
+      const el = document.getElementById(`kural-${highlightNum}`);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 300);
+  }
+}
+
+// ===== PANEL =====
+function openPanel(kuralNum) {
+  const k = allKurals.find(x => x.number === kuralNum);
+  if (!k) return;
+  currentKuralForPanel = k;
+
+  document.getElementById('ph-num').textContent = `குறள் #${k.number}`;
+  document.getElementById('ph-chapter-tamil').textContent = k.chapter_tamil;
+  document.getElementById('ph-chapter-english').textContent = k.chapter_english;
+  document.getElementById('pk-lines').innerHTML = `${k.line1}<br>${k.line2}`;
+  document.getElementById('pk-translation').textContent = k.translation;
+  document.getElementById('pk-translit').textContent = [k.transliteration1, k.transliteration2].filter(Boolean).join(' / ');
+
+  document.getElementById('panel-content').innerHTML = `
+    <div class="loading-state">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <div class="loading-text-tamil tamil">குறளை விளக்குகிறோம்...</div>
+      <div class="loading-text-english">Generating explanation...</div>
+    </div>
+  `;
+
+  document.getElementById('panelOverlay').classList.add('open');
+  document.getElementById('explanationPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Trap focus
+  setTimeout(() => {
+    document.querySelector('.close-btn').focus();
+  }, 350);
+
+  callAnthropicAPI(k);
+}
+
+function closePanel() {
+  document.getElementById('panelOverlay').classList.remove('open');
+  document.getElementById('explanationPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+async function callAnthropicAPI(k) {
+  const bookMeta = BOOK_META[k.book] || {};
+  const prompt = `Please explain this Thirukkural:
+
+Kural Number: ${k.number}
+Tamil: ${k.line1} / ${k.line2}
+English Translation: ${k.translation}
+Chapter: ${k.chapter_tamil} / ${k.chapter_english}
+Book: ${bookMeta.tamil || ''} (${bookMeta.english || ''})
+
+Give me the full bilingual explanation.`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        system: `You are a Thirukkural wisdom guide who explains ancient Tamil wisdom to modern readers. You always respond in BOTH Tamil and English — Tamil first, English second for every section. Use simple, warm, conversational language — like explaining to a curious 10-year-old. Never be academic or preachy. Be practical, relatable, and human.
+
+Respond in EXACTLY this format — use these exact headers:
+
+🧒 எளிய விளக்கம் (Tamil):
+[2-3 sentences in simple Tamil]
+
+🧒 Simply Put (English):
+[2-3 sentences in simple English]
+
+🌍 நடைமுறை உதாரணம் (Tamil):
+[A relatable modern scenario — office, family, school, daily life — in Tamil]
+
+🌍 Real World Example (English):
+[Same scenario in English]
+
+⚡ ஏன் முக்கியம்? (Tamil):
+[The deeper life truth this Kural teaches, in Tamil]
+
+⚡ Why It Matters (English):
+[Same in English]
+
+🎯 என்னால் என்ன செய்யலாம்? (Tamil):
+[One concrete action the reader can take today, in Tamil]
+
+🎯 What's In It For Me (English):
+[Same action in English]
+
+Keep each section to 3 sentences maximum. Do not add any other text outside these 8 sections.`,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (!resp.ok) throw new Error(`API error: ${resp.status}`);
+    const data = await resp.json();
+    const text = data.content[0].text;
+    renderExplanation(text);
+  } catch(err) {
+    console.error('API error:', err);
+    document.getElementById('panel-content').innerHTML = `
+      <div class="error-state">
+        <p class="tamil">மீண்டும் முயற்சிக்கவும் / Please try again</p>
+        <button class="retry-btn tamil" onclick="callAnthropicAPI(currentKuralForPanel)">மீண்டும் முயற்சி / Retry</button>
+      </div>
+    `;
+  }
+}
+
+function renderExplanation(text) {
+  const sections = [
+    { labelTamil: '🧒 எளிய விளக்கம் (Tamil):', labelEnglish: '🧒 Simply Put (English):', keyTa: '🧒 எளிய விளக்கம் (Tamil):', keyEn: '🧒 Simply Put (English):' },
+    { labelTamil: '🌍 நடைமுறை உதாரணம் (Tamil):', labelEnglish: '🌍 Real World Example (English):', keyTa: '🌍 நடைமுறை உதாரணம் (Tamil):', keyEn: '🌍 Real World Example (English):' },
+    { labelTamil: '⚡ ஏன் முக்கியம்? (Tamil):', labelEnglish: '⚡ Why It Matters (English):', keyTa: '⚡ ஏன் முக்கியம்? (Tamil):', keyEn: '⚡ Why It Matters (English):' },
+    { labelTamil: '🎯 என்னால் என்ன செய்யலாம்? (Tamil):', labelEnglish: '🎯 What\'s In It For Me (English):', keyTa: '🎯 என்னால் என்ன செய்யலாம்? (Tamil):', keyEn: '🎯 What\'s In It For Me (English):' },
+  ];
+
+  // Parse all section contents
+  const allKeys = sections.flatMap(s => [s.keyTa, s.keyEn]);
+  function extractSection(text, key, nextKeys) {
+    const idx = text.indexOf(key);
+    if (idx === -1) return '';
+    const start = idx + key.length;
+    let end = text.length;
+    for (const nk of nextKeys) {
+      const ni = text.indexOf(nk, start);
+      if (ni !== -1 && ni < end) end = ni;
+    }
+    return text.slice(start, end).trim();
+  }
+
+  const html = sections.map((s, si) => {
+    const nextTaKeys = sections.slice(si+1).map(x => x.keyTa);
+    const nextEnKeys = sections.slice(si).map(x => x.keyEn).filter(k => k !== s.keyEn);
+    // Find tamil content
+    const taIdx = text.indexOf(s.keyTa);
+    const enIdx = text.indexOf(s.keyEn);
+    let taContent = '', enContent = '';
+
+    if (taIdx !== -1) {
+      const taStart = taIdx + s.keyTa.length;
+      let taEnd = text.length;
+      if (enIdx !== -1 && enIdx > taIdx) taEnd = enIdx;
+      taContent = text.slice(taStart, taEnd).trim();
+    }
+    if (enIdx !== -1) {
+      const enStart = enIdx + s.keyEn.length;
+      let enEnd = text.length;
+      const nextSiTa = si+1 < sections.length ? text.indexOf(sections[si+1].keyTa, enStart) : -1;
+      if (nextSiTa !== -1) enEnd = nextSiTa;
+      enContent = text.slice(enStart, enEnd).trim();
+    }
+
+    return `
+      <div class="exp-section" style="animation-delay:${si*50}ms">
+        <div class="exp-label tamil">${s.labelTamil.replace(':','')}</div>
+        <div class="exp-text-tamil tamil">${taContent || '—'}</div>
+        <div class="exp-label-en">${s.labelEnglish.replace(':','')}</div>
+        <div class="exp-text-english">${enContent || '—'}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('panel-content').innerHTML = `<div class="explanation-sections">${html}</div>`;
+}
+
+// ===== SEARCH =====
+const searchInput = document.getElementById('searchInput');
+const searchDropdown = document.getElementById('searchDropdown');
+
+searchInput.addEventListener('input', debounce(doSearch, 200));
+searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) doSearch(); });
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.search-wrap')) searchDropdown.classList.remove('open');
+});
+
+function doSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchDropdown.classList.remove('open'); return; }
+
+  const results = [];
+  const num = parseInt(q);
+
+  // Chapter matches
+  CHAPTERS.forEach(ch => {
+    if (
+      ch.t.toLowerCase().includes(q) ||
+      ch.e.toLowerCase().includes(q) ||
+      ch.sub.toLowerCase().includes(q)
+    ) {
+      results.push({ type: 'chapter', ch, score: 2 });
+    }
+  });
+
+  // Kural number match
+  if (!isNaN(num) && num >= 1 && num <= 1330) {
+    const k = allKurals.find(x => x.number === num);
+    if (k) results.unshift({ type: 'kural', k, score: 3 });
+  }
+
+  // Kural text matches (limit)
+  let textCount = 0;
+  for (const k of allKurals) {
+    if (textCount >= 5) break;
+    if (
+      k.line1.toLowerCase().includes(q) ||
+      k.line2.toLowerCase().includes(q) ||
+      k.translation.toLowerCase().includes(q)
+    ) {
+      results.push({ type: 'kural', k, score: 1 });
+      textCount++;
+    }
+  }
+
+  const top = results.slice(0, 10);
+  if (top.length === 0) {
+    searchDropdown.innerHTML = '<div class="search-result"><div class="sr-main" style="color:var(--text-muted);font-size:0.82rem;">தேடல் முடிவு இல்லை / No results found</div></div>';
+    searchDropdown.classList.add('open');
+    return;
+  }
+
+  searchDropdown.innerHTML = top.map((r, i) => {
+    if (r.type === 'chapter') {
+      return `<div class="search-result" onclick="selectChapter(${r.ch.n})" tabindex="0" role="option">
+        <div class="sr-type">அதிகாரம் / CHAPTER ${r.ch.n}</div>
+        <div class="sr-main tamil">${highlight(r.ch.t, q)}</div>
+        <div class="sr-sub">${highlight(r.ch.e, q)}</div>
+      </div>`;
+    } else {
+      return `<div class="search-result" onclick="selectKural(${r.k.number})" tabindex="0" role="option">
+        <div class="sr-type">குறள் / KURAL #${r.k.number}</div>
+        <div class="sr-main tamil">${highlight(r.k.line1, q)} ${highlight(r.k.line2, q)}</div>
+        <div class="sr-sub">${highlight(r.k.translation.slice(0,60), q)}...</div>
+      </div>`;
+    }
+  }).join('');
+  searchDropdown.classList.add('open');
+}
+
+function highlight(text, q) {
+  if (!text) return '';
+  const re = new RegExp(`(${escapeRegex(q)})`, 'gi');
+  return text.replace(re, '<span class="highlight">$1</span>');
+}
+
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function selectChapter(n) {
+  searchDropdown.classList.remove('open');
+  searchInput.value = '';
+  const ch = CHAPTERS[n-1];
+  if (ch) {
+    currentBook = ch.book;
+    showChapters(ch.book);
+    setTimeout(() => showKurals(n), 100);
+  }
+}
+
+function selectKural(num) {
+  searchDropdown.classList.remove('open');
+  searchInput.value = '';
+  const k = allKurals.find(x => x.number === num);
+  if (k) {
+    currentBook = k.book;
+    showKurals(k.chapter_number, num);
+    setTimeout(() => openPanel(num), 500);
+  }
+}
+
+// ===== HISTORY =====
+window.addEventListener('popstate', (e) => {
+  const state = e.state;
+  if (!state || state.view === 'home') {
+    currentBook = null; currentChapter = null;
+    showView('view-home');
+  } else if (state.view === 'chapters') {
+    currentBook = state.book;
+    showChapters(state.book);
+  } else if (state.view === 'kurals') {
+    currentBook = state.book;
+    showKurals(state.chapterNum);
+  }
+});
+
+// ===== KEYBOARD: ESC closes panel =====
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePanel();
+});
+
+// ===== UTILS =====
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+// ===== INIT =====
+history.replaceState({view:'home'}, '');
+fetchKurals();
+</script>
+</body>
+</html>
