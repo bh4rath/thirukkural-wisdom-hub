@@ -21,9 +21,12 @@
     --text-tamil: #F2E8D2;
     --text-english: #C4B4A2;
     --text-muted: #7A7068;
-    --aram-color: #3D8C6A;
-    --porul-color: #A0613A;
-    --inbam-color: #A03260;
+    --aram-color: #4ADE80;
+    --porul-color: #FB923C;
+    --inbam-color: #F472B6;
+    --aram-bg: rgba(74,222,128,0.08);
+    --porul-bg: rgba(251,146,60,0.08);
+    --inbam-bg: rgba(244,114,182,0.08);
     --border: #252525;
     --border-accent: rgba(212,168,76,0.18);
     --panel-bg: #0C0C0C;
@@ -50,9 +53,12 @@
     --text-tamil: #1A1208;
     --text-english: #3A2C1E;
     --text-muted: #5C4A34;
-    --aram-color: #1B5E40;
-    --porul-color: #6B2E16;
-    --inbam-color: #6B1832;
+    --aram-color: #15803d;
+    --porul-color: #c2410c;
+    --inbam-color: #be185d;
+    --aram-bg: rgba(21,128,61,0.08);
+    --porul-bg: rgba(194,65,12,0.08);
+    --inbam-bg: rgba(190,24,93,0.08);
     --border: #C8B898;
     --border-accent: rgba(122,94,18,0.25);
     --panel-bg: #F8F2E6;
@@ -76,9 +82,12 @@
       --text-tamil: #1A1208;
       --text-english: #3A2C1E;
       --text-muted: #5C4A34;
-      --aram-color: #1B5E40;
-      --porul-color: #6B2E16;
-      --inbam-color: #6B1832;
+      --aram-color: #15803d;
+      --porul-color: #c2410c;
+      --inbam-color: #be185d;
+      --aram-bg: rgba(21,128,61,0.08);
+      --porul-bg: rgba(194,65,12,0.08);
+      --inbam-bg: rgba(190,24,93,0.08);
       --border: #C8B898;
       --border-accent: rgba(122,94,18,0.25);
       --panel-bg: #F8F2E6;
@@ -615,13 +624,13 @@
     pointer-events: none;
   }
 
-  .book-card.aram::before { background: linear-gradient(90deg, var(--aram-color), #5DB392); }
-  .book-card.porul::before { background: linear-gradient(90deg, var(--porul-color), #D4845A); }
-  .book-card.inbam::before { background: linear-gradient(90deg, var(--inbam-color), #D4608A); }
+  .book-card.aram::before { background: linear-gradient(90deg, var(--aram-color), rgba(74,222,128,0.5)); }
+  .book-card.porul::before { background: linear-gradient(90deg, var(--porul-color), rgba(251,146,60,0.5)); }
+  .book-card.inbam::before { background: linear-gradient(90deg, var(--inbam-color), rgba(244,114,182,0.5)); }
 
-  .book-card.aram::after { background: radial-gradient(ellipse at top, rgba(61,140,106,0.06) 0%, transparent 60%); }
-  .book-card.porul::after { background: radial-gradient(ellipse at top, rgba(160,97,58,0.06) 0%, transparent 60%); }
-  .book-card.inbam::after { background: radial-gradient(ellipse at top, rgba(160,50,96,0.06) 0%, transparent 60%); }
+  .book-card.aram::after { background: radial-gradient(ellipse at top, rgba(74,222,128,0.08) 0%, transparent 60%); }
+  .book-card.porul::after { background: radial-gradient(ellipse at top, rgba(251,146,60,0.08) 0%, transparent 60%); }
+  .book-card.inbam::after { background: radial-gradient(ellipse at top, rgba(244,114,182,0.08) 0%, transparent 60%); }
 
   .book-card:hover {
     background: var(--bg-card-hover);
@@ -1268,6 +1277,95 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
     }
   }
+
+  /* ===== HERO EYEBROW ===== */
+  .hero-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== BOOK CARD — PER-BOOK ACCENTS ===== */
+  .book-card.aram .book-name-english  { color: var(--aram-color); }
+  .book-card.porul .book-name-english { color: var(--porul-color); }
+  .book-card.inbam .book-name-english { color: var(--inbam-color); }
+
+  .book-card.aram .subsection-tag  { color: var(--aram-color);  border-color: rgba(74,222,128,0.3);   background: rgba(74,222,128,0.07); }
+  .book-card.porul .subsection-tag { color: var(--porul-color); border-color: rgba(251,146,60,0.3);   background: rgba(251,146,60,0.07); }
+  .book-card.inbam .subsection-tag { color: var(--inbam-color); border-color: rgba(244,114,182,0.3);  background: rgba(244,114,182,0.07); }
+
+  .book-card.aram:hover  { border-color: rgba(74,222,128,0.3); }
+  .book-card.porul:hover { border-color: rgba(251,146,60,0.3); }
+  .book-card.inbam:hover { border-color: rgba(244,114,182,0.3); }
+
+  .book-card.aram  .book-btn { color: var(--aram-color);  border-color: rgba(74,222,128,0.25);  background: rgba(74,222,128,0.06); }
+  .book-card.porul .book-btn { color: var(--porul-color); border-color: rgba(251,146,60,0.25);  background: rgba(251,146,60,0.06); }
+  .book-card.inbam .book-btn { color: var(--inbam-color); border-color: rgba(244,114,182,0.25); background: rgba(244,114,182,0.06); }
+
+  .book-card.aram  .book-btn:hover { background: var(--aram-color);  color: #030d05; border-color: var(--aram-color); }
+  .book-card.porul .book-btn:hover { background: var(--porul-color); color: #180900; border-color: var(--porul-color); }
+  .book-card.inbam .book-btn:hover { background: var(--inbam-color); color: #1a0010; border-color: var(--inbam-color); }
+
+  /* ===== CHAPTER CARD — PER-BOOK ACCENTS ===== */
+  .chapter-card.book-aram::after  { background: linear-gradient(to bottom, var(--aram-color),  rgba(74,222,128,0.35)); }
+  .chapter-card.book-porul::after { background: linear-gradient(to bottom, var(--porul-color), rgba(251,146,60,0.35)); }
+  .chapter-card.book-inbam::after { background: linear-gradient(to bottom, var(--inbam-color), rgba(244,114,182,0.35)); }
+
+  .chapter-card.book-aram:hover  { border-color: rgba(74,222,128,0.4); }
+  .chapter-card.book-porul:hover { border-color: rgba(251,146,60,0.4); }
+  .chapter-card.book-inbam:hover { border-color: rgba(244,114,182,0.4); }
+
+  .chapter-card.book-aram  .chapter-num-badge { background: rgba(74,222,128,0.12);  border-color: rgba(74,222,128,0.28);  color: var(--aram-color); }
+  .chapter-card.book-porul .chapter-num-badge { background: rgba(251,146,60,0.12);  border-color: rgba(251,146,60,0.28);  color: var(--porul-color); }
+  .chapter-card.book-inbam .chapter-num-badge { background: rgba(244,114,182,0.12); border-color: rgba(244,114,182,0.28); color: var(--inbam-color); }
+
+  .chapter-card.book-aram:hover  .chapter-num-badge { box-shadow: 0 0 14px rgba(74,222,128,0.35); }
+  .chapter-card.book-porul:hover .chapter-num-badge { box-shadow: 0 0 14px rgba(251,146,60,0.35); }
+  .chapter-card.book-inbam:hover .chapter-num-badge { box-shadow: 0 0 14px rgba(244,114,182,0.35); }
+
+  /* Vivid filled subsection tags (the core "category badge" from overtounder aesthetic) */
+  .chapter-card.book-aram  .chapter-subsection { color: rgba(0,0,0,0.85); background: var(--aram-color);  border-color: var(--aram-color);  font-weight: 600; }
+  .chapter-card.book-porul .chapter-subsection { color: rgba(0,0,0,0.85); background: var(--porul-color); border-color: var(--porul-color); font-weight: 600; }
+  .chapter-card.book-inbam .chapter-subsection { color: rgba(0,0,0,0.85); background: var(--inbam-color); border-color: var(--inbam-color); font-weight: 600; }
+
+  .chapter-card.book-aram  .chapter-kural-pill { color: var(--aram-color);  border-color: rgba(74,222,128,0.25);  background: rgba(74,222,128,0.07); }
+  .chapter-card.book-porul .chapter-kural-pill { color: var(--porul-color); border-color: rgba(251,146,60,0.25);  background: rgba(251,146,60,0.07); }
+  .chapter-card.book-inbam .chapter-kural-pill { color: var(--inbam-color); border-color: rgba(244,114,182,0.25); background: rgba(244,114,182,0.07); }
+
+  /* Subsection filter pill active state per book */
+  [data-book="aram"]  .filter-pill.active { background: linear-gradient(135deg, var(--aram-color),  rgba(74,222,128,0.7));  border-color: var(--aram-color);  color: #030d05; }
+  [data-book="porul"] .filter-pill.active { background: linear-gradient(135deg, var(--porul-color), rgba(251,146,60,0.7));  border-color: var(--porul-color); color: #180900; }
+  [data-book="inbam"] .filter-pill.active { background: linear-gradient(135deg, var(--inbam-color), rgba(244,114,182,0.7)); border-color: var(--inbam-color); color: #1a0010; }
+
+  /* Filter pill hover per book */
+  [data-book="aram"]  .filter-pill:hover { border-color: rgba(74,222,128,0.4);  color: var(--aram-color);  background: rgba(74,222,128,0.08); }
+  [data-book="porul"] .filter-pill:hover { border-color: rgba(251,146,60,0.4);  color: var(--porul-color); background: rgba(251,146,60,0.08); }
+  [data-book="inbam"] .filter-pill:hover { border-color: rgba(244,114,182,0.4); color: var(--inbam-color); background: rgba(244,114,182,0.08); }
+
+  /* ===== KURAL CARD — PER-BOOK ACCENTS ===== */
+  .kural-card.book-aram  .kural-num-badge { background: rgba(74,222,128,0.10);  border-color: rgba(74,222,128,0.22);  color: var(--aram-color); }
+  .kural-card.book-porul .kural-num-badge { background: rgba(251,146,60,0.10);  border-color: rgba(251,146,60,0.22);  color: var(--porul-color); }
+  .kural-card.book-inbam .kural-num-badge { background: rgba(244,114,182,0.10); border-color: rgba(244,114,182,0.22); color: var(--inbam-color); }
+
+  .kural-card.book-aram:hover  { border-color: rgba(74,222,128,0.28); }
+  .kural-card.book-porul:hover { border-color: rgba(251,146,60,0.28); }
+  .kural-card.book-inbam:hover { border-color: rgba(244,114,182,0.28); }
+
+  /* Light mode: subsection tag text should be white (not black) on darker book colors */
+  [data-theme="light"] .chapter-card.book-aram  .chapter-subsection,
+  [data-theme="light"] .chapter-card.book-porul .chapter-subsection,
+  [data-theme="light"] .chapter-card.book-inbam .chapter-subsection { color: #fff; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .chapter-card.book-aram  .chapter-subsection,
+    :root:not([data-theme="dark"]) .chapter-card.book-porul .chapter-subsection,
+    :root:not([data-theme="dark"]) .chapter-card.book-inbam .chapter-subsection { color: #fff; }
+  }
 </style>
 </head>
 <body>
@@ -1323,6 +1421,7 @@
 <!-- HOME VIEW -->
 <div class="view active" id="view-home">
   <section class="hero" aria-labelledby="hero-title">
+    <p class="hero-eyebrow">A 2,000-Year-Old Tamil Classic</p>
     <h1 class="hero-title tamil" id="hero-title" lang="ta">திருக்குறள்</h1>
     <p class="hero-sub-tamil tamil" lang="ta">திருவள்ளுவர் இயற்றிய உலகப் பொதுமறை</p>
     <p class="hero-sub-english">The Universal Scripture by Thiruvalluvar</p>
@@ -1787,7 +1886,7 @@ function renderChapterCards(chapters) {
   grid.innerHTML = '';
   chapters.forEach((ch, i) => {
     const card = document.createElement('div');
-    card.className = 'chapter-card';
+    card.className = `chapter-card book-${ch.book}`;
     card.style.animationDelay = `${i * 40}ms`;
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'listitem button');
@@ -1827,6 +1926,7 @@ function showChapters(book, addToHistory = true) {
 
   // Render subsection filter pills
   const filterBar = document.getElementById('subsection-filter');
+  filterBar.dataset.book = book;
   filterBar.innerHTML = `<button class="filter-pill tamil active" data-sub="all" onclick="filterChapters('${book}', 'all')" lang="ta">அனைத்தும் / All</button>` +
     subs.map(sub => `<button class="filter-pill tamil" data-sub="${sub}" onclick="filterChapters('${book}', '${sub}')" lang="ta">${sub}</button>`).join('');
 
@@ -1867,7 +1967,7 @@ function showKurals(chapterNum, highlightNum, addToHistory = true) {
 
   kurals.forEach((k, i) => {
     const card = document.createElement('article');
-    card.className = 'kural-card' + (highlightNum === k.number ? ' highlighted' : '');
+    card.className = `kural-card book-${ch.book}` + (highlightNum === k.number ? ' highlighted' : '');
     card.id = `kural-${k.number}`;
     card.style.animationDelay = `${i * 80}ms`;
     card.setAttribute('aria-label', `Kural ${k.number}`);
