@@ -868,6 +868,17 @@
   .meaning-modal-box.book-aram  .modal-badge { color: var(--aram-color);  background: rgba(52,211,153,0.10);  border-color: rgba(52,211,153,0.22); }
   .meaning-modal-box.book-porul .modal-badge { color: var(--porul-color); background: rgba(251,146,60,0.10);  border-color: rgba(251,146,60,0.22); }
   .meaning-modal-box.book-inbam .modal-badge { color: var(--inbam-color); background: rgba(244,114,182,0.10); border-color: rgba(244,114,182,0.22); }
+  .modal-translation-original {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.75;
+    margin-top: 0.6rem; font-style: italic; letter-spacing: 0.01em;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+  }
+  .modal-translation-original::before {
+    content: 'Classical: ';
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted); font-style: normal;
+  }
   .modal-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
   .modal-section-label {
     font-size: 0.67rem; font-weight: 700; letter-spacing: 0.18em;
@@ -1110,6 +1121,7 @@
     <div class="modal-divider" aria-hidden="true"></div>
     <div class="modal-section-label">Translation</div>
     <div class="kural-translation" id="modal-translation"></div>
+    <div id="modal-translation-original" class="modal-translation-original" hidden></div>
 
     <div id="modal-meaning-section">
       <div class="modal-divider" aria-hidden="true"></div>
@@ -1303,7 +1315,8 @@ async function fetchKurals() {
           line2: k.line2 || '',
           transliteration1: k.transliteration1 || '',
           transliteration2: k.transliteration2 || '',
-          translation: k.translation || '',
+          translation: k.translation_kids || k.translation || '',
+          translation_original: k.translation || '',
           meaning_tamil: k.meaning_tamil || '',
           meaning_english: k.meaning_english || '',
           chapter_number: chNum,
@@ -1782,6 +1795,15 @@ function openMeaningModal(k) {
   }
 
   document.getElementById('modal-translation').textContent = k.translation;
+  const origEl = document.getElementById('modal-translation-original');
+  if (origEl) {
+    if (k.translation_original && k.translation_original !== k.translation) {
+      origEl.textContent = k.translation_original;
+      origEl.hidden = false;
+    } else {
+      origEl.hidden = true;
+    }
+  }
 
   const mtamil   = document.getElementById('modal-meaning-tamil');
   const menglish = document.getElementById('modal-meaning-english');
