@@ -6,11 +6,835 @@
 <title>Thirukkural: 2,000 Years of Wisdom</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;600;700&family=Tiro+Tamil:ital@0;1&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  /* ===== DESIGN TOKENS ===== */
+  /* ===== OLAI CHUVADI — DESIGN TOKENS ===== */
   :root {
-    --bg-primary: #080808;
+    /* Palm leaf */
+    --leaf-base:   #D4A853;
+    --leaf-light:  #E8C97A;
+    --leaf-shadow: #B8892E;
+    --leaf-aged:   #C49B3C;
+    --leaf-vein:   #A07828;
+    /* Ink */
+    --ink-primary:        #1A0A00;
+    --ink-secondary:      #3D1F00;
+    --ink-faded:          #6B4423;
+    --ink-transliteration:#8B6040;
+    /* Binding */
+    --cord-red:    #8B2500;
+    --cord-accent: #A63000;
+    --wood-dark:   #2C1A0A;
+    --wood-medium: #4A2E12;
+    /* Accents */
+    --accent-gold:       #C17F24;
+    --accent-saffron:    #D4580A;
+    --accent-vermilion:  #8B1A00;
+    --accent-earth:      #6B3A1F;
+    --accent-lotus:      #7A1F3D;
+    /* Backgrounds */
+    --bg-page:   #F5E6C8;
+    --bg-card:   #EDD9A3;
+    --bg-card-hover: #E8CF90;
+    --bg-panel:  #D4A853;
+    --bg-header: #2C1A0A;
+    --bg-footer: #2C1A0A;
+    /* Legacy mappings (used by inline JS templates) */
+    --border:       var(--leaf-vein);
+    --border-accent:rgba(139,37,0,0.35);
+    --text-tamil:   var(--ink-primary);
+    --text-english: var(--ink-secondary);
+    --text-muted:   var(--ink-faded);
+    --gold:         var(--accent-gold);
+    --gold-light:   var(--leaf-light);
+    --gold-dim:     var(--leaf-shadow);
+    --gold-glow:    rgba(193,127,36,0.12);
+    --aram-color:   var(--accent-vermilion);
+    --porul-color:  var(--accent-earth);
+    --inbam-color:  var(--accent-lotus);
+    --bg-card-solid:var(--bg-card);
+    --panel-bg:     var(--bg-panel);
+    /* Shadows — leaf-edge style */
+    --shadow-sm: 1px 1px 0 #A07828, 0 2px 6px rgba(80,50,0,0.12);
+    --shadow-md: 2px 2px 0 #A07828, 4px 4px 0 #8B6520, 0 6px 18px rgba(80,50,0,0.18);
+    --shadow-lg: 2px 2px 0 #A07828, 5px 5px 0 #8B6520, 0 10px 32px rgba(80,50,0,0.22);
+    --shadow-gold: 0 4px 16px rgba(160,90,0,0.2);
+    /* Font scale */
+    --font-scale: 1;
+    --ease-out: cubic-bezier(0.4,0,0.2,1);
+    /* Palm-leaf vein texture */
+    --leaf-texture:
+      repeating-linear-gradient(
+        90deg, transparent, transparent 2px,
+        rgba(160,120,40,0.04) 2px, rgba(160,120,40,0.04) 3px
+      ),
+      repeating-linear-gradient(
+        180deg, transparent, transparent 8px,
+        rgba(140,100,20,0.03) 8px, rgba(140,100,20,0.03) 9px
+      );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.1ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: calc(16px * var(--font-scale)); scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-page);
+    background-image: var(--leaf-texture);
+    color: var(--ink-primary);
+    font-family: 'Tiro Tamil', 'Noto Serif Tamil', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* Aged-paper grain overlay */
+  body::after {
+    content: '';
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  .tamil { font-family: 'Noto Serif Tamil', serif; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* ===== SKIP LINK ===== */
+  .skip-link {
+    position: absolute; top: -100%; left: 1rem;
+    background: var(--cord-red); color: var(--leaf-light);
+    padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700;
+    z-index: 10000; text-decoration: none;
+    border-radius: 0 0 2px 2px; white-space: nowrap; transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; outline: 2px solid var(--leaf-light); outline-offset: 2px; }
+
+  :focus-visible { outline: 2px solid var(--cord-red); outline-offset: 2px; border-radius: 2px; }
+
+  /* ===== HEADER — DARK WOOD ===== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--wood-dark);
+    background-image: repeating-linear-gradient(
+      90deg, transparent, transparent 40px,
+      rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px
+    );
+    border-bottom: 2px solid var(--cord-red);
+    padding: 0 1.5rem; height: 64px;
+    display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  }
+
+  .header-brand {
+    display: flex; flex-direction: column; line-height: 1.2;
+    cursor: pointer; flex-shrink: 0; text-decoration: none; transition: opacity 0.15s;
+  }
+  .header-brand:hover { opacity: 0.8; }
+  .header-brand .brand-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--leaf-light); letter-spacing: 0.02em;
+  }
+  .header-brand .brand-english {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.68rem; color: var(--leaf-aged); letter-spacing: 0.07em;
+    text-transform: uppercase; font-style: italic;
+  }
+
+  /* ===== SEARCH ===== */
+  .search-wrap { position: relative; flex: 1; max-width: 480px; }
+
+  .search-wrap input {
+    width: 100%;
+    background: rgba(180,130,40,0.22);
+    border: 1px solid var(--leaf-vein);
+    border-radius: 2px;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;
+    color: var(--ink-primary);
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.9rem; outline: none; height: 44px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .search-wrap input:focus {
+    border-color: var(--cord-red);
+    background: rgba(180,130,40,0.35);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .search-wrap input::placeholder { color: var(--ink-faded); font-family: 'Noto Serif Tamil', serif; }
+
+  .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--ink-faded); font-size: 0.9rem; pointer-events: none; }
+
+  .search-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: var(--bg-card);
+    background-image: var(--leaf-texture);
+    border: 1px solid var(--leaf-vein);
+    border-radius: 2px;
+    max-height: 360px; overflow-y: auto; z-index: 200;
+    display: none;
+    box-shadow: var(--shadow-md);
+  }
+  .search-dropdown.open { display: block; }
+
+  .search-result {
+    padding: 0.75rem 1rem; cursor: pointer;
+    border-bottom: 1px dashed var(--leaf-vein);
+    transition: background 0.12s; min-height: 44px;
+  }
+  .search-result:last-child { border-bottom: none; }
+  .search-result:hover, .search-result:focus { background: rgba(139,37,0,0.08); outline: none; }
+
+  .search-result .sr-type {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.7rem; color: var(--cord-red); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 0.2rem;
+  }
+  .search-result .sr-main { font-family: 'Noto Serif Tamil', serif; font-size: 0.95rem; color: var(--ink-primary); line-height: 1.5; }
+  .search-result .sr-sub { font-family: 'IM Fell English', serif; font-size: 0.8rem; color: var(--ink-faded); margin-top: 0.12rem; font-style: italic; }
+  .highlight { color: var(--cord-red); font-weight: 700; }
+
+  /* ===== ACCESSIBILITY TOOLBAR ===== */
+  .a11y-toolbar { display: flex; align-items: center; gap: 0.25rem; flex-shrink: 0; }
+
+  .a11y-btn {
+    background: rgba(180,130,40,0.18);
+    border: 1px solid var(--leaf-vein);
+    border-radius: 2px; color: var(--leaf-aged);
+    padding: 0.3rem 0.5rem; font-size: 0.82rem; font-weight: 700;
+    cursor: pointer; transition: background 0.12s, color 0.12s;
+    min-height: 36px; min-width: 36px; font-family: 'IM Fell English', serif;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .a11y-btn:hover { background: rgba(180,130,40,0.4); color: var(--leaf-light); }
+
+  /* ===== VIEWS ===== */
+  .view { display: none; position: relative; z-index: 1; }
+  .view.active { display: block; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; text-align: center;
+    padding: 3.5rem 2rem 3rem; overflow: hidden;
+  }
+  /* Faint palm leaf watermark */
+  .hero::before {
+    content: '🌿';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%,-50%) rotate(-15deg);
+    font-size: 26rem; line-height: 1; opacity: 0.03;
+    pointer-events: none; z-index: 0; user-select: none;
+  }
+  /* Subtle radial tint */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 20%, rgba(139,37,0,0.04) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .hero-eyebrow {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.76rem; font-style: italic;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-faded); margin-bottom: 0.9rem;
+    position: relative; z-index: 1;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700; letter-spacing: 0.04em; line-height: 1.1;
+    color: var(--ink-primary); position: relative; z-index: 1;
+    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
+  }
+
+  .hero-sub-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.05rem; color: var(--ink-secondary);
+    margin-top: 0.8rem; position: relative; z-index: 1;
+  }
+  .hero-sub-english {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.95rem; color: var(--ink-faded); font-style: italic;
+    margin-top: 0.3rem; position: relative; z-index: 1;
+  }
+
+  .stat-pills {
+    display: flex; justify-content: center; gap: 0.6rem;
+    margin-top: 1.8rem; flex-wrap: wrap; position: relative; z-index: 1;
+  }
+  .stat-pill {
+    background: var(--wood-dark);
+    border: 1px solid var(--cord-red);
+    border-radius: 2px; padding: 0.4rem 1.1rem;
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.85rem; color: var(--leaf-light); font-weight: 500;
+  }
+
+  .hero-kural {
+    max-width: 600px; margin: 2.2rem auto 0;
+    background: var(--bg-card);
+    background-image: var(--leaf-texture);
+    border: 1px solid var(--leaf-vein);
+    border-left: 4px solid var(--cord-red);
+    border-radius: 2px 4px 3px 2px;
+    padding: 2rem 2.5rem;
+    position: relative; z-index: 1;
+    box-shadow: var(--shadow-md);
+  }
+  /* Cord hole on hero kural */
+  .hero-kural::before {
+    content: '';
+    position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px;
+    background: var(--bg-page); border: 2px solid var(--cord-red); border-radius: 50%;
+  }
+  .hero-kural-text {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.3rem; color: var(--ink-primary); line-height: 2.2; font-weight: 600;
+    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
+  }
+  .hero-kural-english {
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem; color: var(--ink-secondary); font-style: italic;
+    margin-top: 0.9rem; line-height: 1.7;
+  }
+  .hero-kural-attr {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 0.8rem; color: var(--ink-faded); margin-top: 0.7rem;
+  }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title { text-align: center; padding: 0.5rem 2rem 0; }
+  .section-title .t {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.3rem; color: var(--ink-primary); letter-spacing: 0.02em;
+  }
+  .section-title .e {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.86rem; color: var(--ink-faded); margin-top: 0.25rem; font-style: italic;
+  }
+
+  /* ===== MANUSCRIPT DIVIDER ===== */
+  .gold-rule {
+    display: flex; align-items: center; gap: 0.8rem;
+    max-width: 1200px; margin: 2rem auto; padding: 0 2rem;
+    border: none; height: auto;
+  }
+  .gold-rule::before,
+  .gold-rule::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, var(--cord-red), transparent);
+    opacity: 0.5;
+  }
+  .gold-rule::after { background: linear-gradient(to left, transparent, var(--cord-red), transparent); }
+
+  /* ===== BOOK CARDS ===== */
+  .books-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem; max-width: 1200px; margin: 1.5rem auto; padding: 0 2rem;
+  }
+
+  .book-card {
+    background: var(--bg-card);
+    background-image: var(--leaf-texture);
+    border: 1px solid var(--leaf-vein);
+    border-left: 4px solid var(--cord-red);
+    border-top-width: 4px;
+    border-radius: 2px 4px 3px 2px;
+    padding: 2rem 2rem 1.8rem;
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+    position: relative; overflow: visible;
+    box-shadow: var(--shadow-md);
+    /* Reset previous backdrop-filter */
+    backdrop-filter: none;
+  }
+  .book-card.aram  { border-top-color: var(--accent-vermilion); }
+  .book-card.porul { border-top-color: var(--accent-earth); }
+  .book-card.inbam { border-top-color: var(--accent-lotus); }
+
+  .book-card:hover {
+    background: var(--bg-card-hover);
+    box-shadow: 2px 2px 0 var(--leaf-vein), 6px 6px 0 #8B6520, 0 12px 32px rgba(80,50,0,0.22);
+    transform: translateY(-2px);
+  }
+  /* ::before / ::after for previous theme — reset and repurpose for cord hole */
+  .book-card::before { display: none; }
+  .book-card::after {
+    content: '';
+    position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px;
+    background: var(--bg-page); border: 2px solid var(--cord-red); border-radius: 50%;
+    z-index: 2; opacity: 1; transition: none;
+    /* reset previous styles */
+    inset: auto; height: 12px; width: 12px; border-radius: 50%;
+    background: var(--bg-page);
+  }
+  /* Override previous aram/porul/inbam ::before / ::after */
+  .book-card.aram::before, .book-card.porul::before, .book-card.inbam::before { display: none; }
+  .book-card.aram::after, .book-card.porul::after, .book-card.inbam::after {
+    content: '';
+    position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px;
+    background: var(--bg-page); border: 2px solid var(--cord-red); border-radius: 50%;
+    z-index: 2;
+  }
+
+  .book-name-tamil {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--ink-primary); line-height: 1.3;
+    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.12);
+  }
+  .book-name-english {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.88rem; margin-top: 0.25rem; font-style: italic;
+  }
+  .book-card.aram  .book-name-english { color: var(--accent-vermilion); }
+  .book-card.porul .book-name-english { color: var(--accent-earth); }
+  .book-card.inbam .book-name-english { color: var(--accent-lotus); }
+
+  .book-subsections { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .subsection-tag {
+    font-family: 'Noto Serif Tamil', serif; font-size: 0.74rem;
+    padding: 0.2rem 0.6rem; border-radius: 2px;
+    border: 1px solid rgba(139,37,0,0.28);
+    color: var(--cord-red); background: rgba(139,37,0,0.08);
+  }
+  /* Override per-book subsection tag colors */
+  .book-card.aram  .subsection-tag,
+  .book-card.porul .subsection-tag,
+  .book-card.inbam .subsection-tag {
+    color: var(--cord-red); background: rgba(139,37,0,0.08);
+    border-color: rgba(139,37,0,0.28);
+  }
+
+  .book-desc-tamil { font-family: 'Noto Serif Tamil', serif; font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.85; margin-top: 1rem; }
+  .book-desc-english { font-family: 'IM Fell English', serif; font-size: 0.86rem; color: var(--ink-faded); line-height: 1.7; margin-top: 0.4rem; font-style: italic; }
+  .book-meta { margin-top: 1rem; font-family: 'Noto Serif Tamil', serif; font-size: 0.82rem; color: var(--ink-faded); }
+
+  .book-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 1.2rem; padding: 0.65rem 1.2rem;
+    background: var(--accent-saffron); color: var(--leaf-light);
+    border: none; border-radius: 2px;
+    font-family: 'Noto Serif Tamil', serif; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; transition: background 0.15s;
+    width: 100%; text-align: center; min-height: 44px;
+  }
+  .book-btn:hover { background: var(--cord-red); }
+  /* Override per-book button hover from previous theme */
+  .book-card.aram  .book-btn,
+  .book-card.porul .book-btn,
+  .book-card.inbam .book-btn { background: var(--accent-saffron); color: var(--leaf-light); border: none; }
+  .book-card.aram  .book-btn:hover,
+  .book-card.porul .book-btn:hover,
+  .book-card.inbam .book-btn:hover { background: var(--cord-red); color: var(--leaf-light); }
+
+  /* ===== BREADCRUMB & BACK ===== */
+  .nav-bar { display: flex; align-items: center; gap: 1rem; padding: 1.5rem 2rem 0.5rem; max-width: 1200px; margin: 0 auto; }
+
+  .back-btn {
+    background: rgba(139,37,0,0.1);
+    border: 1px solid var(--cord-red); border-radius: 2px;
+    color: var(--cord-red); padding: 0.5rem 1rem; font-size: 0.88rem;
+    cursor: pointer; transition: background 0.12s, color 0.12s;
+    font-family: 'Noto Serif Tamil', serif; flex-shrink: 0;
+    min-height: 44px; display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600;
+  }
+  .back-btn:hover { background: var(--cord-red); color: var(--leaf-light); }
+
+  .breadcrumb { font-family: 'IM Fell English', serif; font-size: 0.88rem; color: var(--ink-faded); display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+  .breadcrumb span { cursor: pointer; transition: color 0.12s; }
+  .breadcrumb span:hover { color: var(--cord-red); }
+  .breadcrumb .sep { color: var(--cord-red); cursor: default; }
+  .breadcrumb .current { color: var(--ink-secondary); cursor: default; font-weight: 600; }
+
+  /* ===== CHAPTERS VIEW ===== */
+  .view-heading { max-width: 1200px; margin: 0 auto; padding: 0.5rem 2rem 1.2rem; }
+  .view-heading .vt { font-family: 'Noto Serif Tamil', serif; font-size: 1.7rem; font-weight: 700; color: var(--ink-primary); text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.12); }
+  .view-heading .ve { font-family: 'IM Fell English', serif; font-size: 0.88rem; color: var(--ink-faded); margin-top: 0.2rem; font-style: italic; }
+
+  .chapters-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem;
+  }
+
+  .chapter-card {
+    background: var(--bg-card);
+    background-image: var(--leaf-texture);
+    border: 1px solid var(--leaf-vein);
+    border-left: 4px solid var(--cord-red);
+    border-radius: 2px 3px 2px 2px;
+    padding: 1.2rem 1.1rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.12s, box-shadow 0.12s, border-left-width 0.12s, transform 0.12s;
+    min-height: 44px; position: relative; overflow: visible;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: none;
+    /* Reset animation from previous theme */
+    opacity: 0; transform: translateY(4px); animation: fadeUp 0.28s var(--ease-out) forwards;
+  }
+  .chapter-card:hover { background: var(--bg-card-hover); border-left-width: 6px; box-shadow: var(--shadow-md); transform: translateY(-1px); }
+
+  /* Cord hole */
+  .chapter-card::after {
+    content: '';
+    position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+    width: 10px; height: 10px;
+    background: var(--bg-page); border: 2px solid var(--cord-red); border-radius: 50%; z-index: 2;
+    /* Reset left-border accent from previous theme */
+    left: auto; bottom: auto; width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  /* Per-book top accent */
+  .chapter-card.book-aram  { border-top: 3px solid var(--accent-vermilion); }
+  .chapter-card.book-porul { border-top: 3px solid var(--accent-earth); }
+  .chapter-card.book-inbam { border-top: 3px solid var(--accent-lotus); }
+
+  /* Override per-book hover border */
+  .chapter-card.book-aram:hover,
+  .chapter-card.book-porul:hover,
+  .chapter-card.book-inbam:hover { border-color: var(--leaf-vein); border-left-color: var(--cord-accent); border-left-width: 6px; }
+
+  .chapter-num-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--wood-dark); color: var(--leaf-light);
+    font-size: 0.75rem; font-weight: 700; margin-bottom: 0.7rem;
+    font-family: 'IM Fell English', serif; border: 1px solid var(--cord-red);
+  }
+  /* Override per-book badge colors */
+  .chapter-card.book-aram  .chapter-num-badge,
+  .chapter-card.book-porul .chapter-num-badge,
+  .chapter-card.book-inbam .chapter-num-badge {
+    background: var(--wood-dark); color: var(--leaf-light);
+    border-color: var(--cord-red);
+  }
+  .chapter-card.book-aram:hover  .chapter-num-badge,
+  .chapter-card.book-porul:hover .chapter-num-badge,
+  .chapter-card.book-inbam:hover .chapter-num-badge { box-shadow: none; }
+
+  .chapter-name-tamil { font-family: 'Noto Serif Tamil', serif; font-size: 1rem; font-weight: 600; color: var(--ink-primary); line-height: 1.4; text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.08); }
+  .chapter-name-english { font-family: 'IM Fell English', serif; font-size: 0.76rem; color: var(--ink-faded); margin-top: 0.2rem; line-height: 1.4; font-style: italic; }
+
+  .chapter-subsection {
+    font-family: 'Noto Serif Tamil', serif; font-size: 0.72rem; margin-top: 0.5rem;
+    background: rgba(139,37,0,0.1); color: var(--cord-red);
+    display: inline-block; padding: 0.18rem 0.5rem;
+    border-radius: 2px; border: 1px solid rgba(139,37,0,0.22); font-weight: 600;
+  }
+  /* Override all book-specific subsection styles */
+  .chapter-card.book-aram  .chapter-subsection,
+  .chapter-card.book-porul .chapter-subsection,
+  .chapter-card.book-inbam .chapter-subsection {
+    color: var(--cord-red); background: rgba(139,37,0,0.1);
+    border-color: rgba(139,37,0,0.22); font-weight: 600;
+  }
+
+  .chapter-kural-pill { display: inline-block; margin-top: 0.4rem; font-family: 'Noto Serif Tamil', serif; font-size: 0.72rem; color: var(--ink-faded); }
+  /* Override per-book kural pill colors */
+  .chapter-card.book-aram  .chapter-kural-pill,
+  .chapter-card.book-porul .chapter-kural-pill,
+  .chapter-card.book-inbam .chapter-kural-pill { color: var(--ink-faded); background: none; border: none; }
+
+  /* ===== KURALS VIEW ===== */
+  .chapter-header { max-width: 800px; margin: 0 auto; padding: 0.5rem 2rem 1.5rem; text-align: center; }
+  .chapter-header .cht { font-family: 'Noto Serif Tamil', serif; font-size: 1.9rem; font-weight: 700; color: var(--ink-primary); text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.12); }
+  .chapter-header .che { font-family: 'IM Fell English', serif; font-size: 1rem; color: var(--ink-secondary); margin-top: 0.3rem; font-style: italic; }
+  .chapter-header .chmeta { font-family: 'Noto Serif Tamil', serif; font-size: 0.82rem; color: var(--ink-faded); margin-top: 0.4rem; }
+
+  .kurals-list { max-width: 800px; margin: 0 auto; padding: 0 2rem 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .kural-card {
+    background: var(--bg-card);
+    background-image: var(--leaf-texture);
+    border: 1px solid var(--leaf-vein);
+    border-left: 6px solid var(--cord-red);
+    border-radius: 2px 4px 3px 2px;
+    padding: 1.7rem 2rem 1.5rem 1.8rem;
+    position: relative; overflow: visible;
+    box-shadow: var(--shadow-sm);
+    opacity: 0; transform: translateY(4px);
+    animation: fadeUp 0.3s var(--ease-out) forwards;
+    transition: box-shadow 0.15s, border-left-color 0.15s;
+    backdrop-filter: none;
+  }
+  .kural-card:hover { box-shadow: var(--shadow-md); }
+  .kural-card.highlighted { border-left-color: var(--accent-saffron); box-shadow: var(--shadow-md); }
+
+  /* Cord hole */
+  .kural-card::after {
+    content: '';
+    position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px;
+    background: var(--bg-page); border: 2px solid var(--cord-red); border-radius: 50%; z-index: 2;
+  }
+
+  /* Override per-book kural hover border */
+  .kural-card.book-aram:hover,
+  .kural-card.book-porul:hover,
+  .kural-card.book-inbam:hover { border-left-color: var(--cord-accent); border-color: var(--leaf-vein); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .kural-num-badge {
+    display: inline-flex; align-items: center;
+    padding: 0.2rem 0.8rem; border-radius: 2px;
+    background: var(--wood-dark); border: 1px solid var(--cord-red);
+    color: var(--leaf-light); font-size: 0.78rem; font-weight: 600;
+    margin-bottom: 1rem; font-family: 'IM Fell English', serif;
+    cursor: default; letter-spacing: 0.04em;
+  }
+  /* Override per-book badge colors */
+  .kural-card.book-aram  .kural-num-badge,
+  .kural-card.book-porul .kural-num-badge,
+  .kural-card.book-inbam .kural-num-badge {
+    background: var(--wood-dark); color: var(--leaf-light); border-color: var(--cord-red);
+  }
+
+  .kural-lines { margin-bottom: 0.5rem; }
+  .kural-line {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 1.35rem; color: var(--ink-primary); line-height: 2.2; font-weight: 600;
+    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
+  }
+  .kural-translit { font-family: 'IM Fell English', serif; font-size: 0.84rem; color: var(--ink-transliteration); font-style: italic; line-height: 1.8; margin-top: 0.2rem; }
+  .kural-translation { font-family: 'IM Fell English', serif; font-size: 1rem; color: var(--ink-secondary); line-height: 1.75; font-style: italic; }
+  .kural-meaning-tamil { font-family: 'Noto Serif Tamil', serif; font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.9; margin-top: 0.8rem; }
+  .kural-meaning-english { font-family: 'IM Fell English', serif; font-size: 0.9rem; color: var(--ink-faded); line-height: 1.75; margin-top: 0.4rem; font-style: italic; }
+
+  /* ===== MEANING TOGGLE BUTTON ===== */
+  .meaning-toggle {
+    background: var(--wood-dark);
+    border: 1px solid var(--cord-red);
+    color: var(--leaf-light); font-size: 0.82rem;
+    cursor: pointer; margin-top: 0.8rem;
+    font-family: 'Noto Serif Tamil', serif;
+    padding: 0.45rem 1.1rem;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    border-radius: 2px; min-height: 0;
+    transition: background 0.12s; font-weight: 500; letter-spacing: 0.03em;
+  }
+  .meaning-toggle:hover { background: var(--cord-red); }
+
+  /* ===== CHAPTER PROGRESS BAR ===== */
+  .chapter-progress { margin-top: 0.8rem; }
+  .cp-bar { background: rgba(160,120,40,0.2); border-radius: 0; height: 3px; overflow: hidden; }
+  .cp-fill { background: linear-gradient(90deg, var(--cord-red), var(--accent-saffron)); height: 100%; transition: width 0.5s var(--ease-out); width: 0%; }
+  .cp-label { font-family: 'Noto Serif Tamil', serif; font-size: 0.72rem; color: var(--ink-faded); margin-top: 0.3rem; }
+
+  /* ===== SKELETON LOADING ===== */
+  .skeleton-line {
+    background: linear-gradient(90deg, var(--bg-card) 0%, rgba(180,130,40,0.3) 50%, var(--bg-card) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite; border-radius: 2px;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* ===== SUBSECTION FILTER ===== */
+  .subsection-filter { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 2rem 1rem; max-width: 1200px; margin: 0 auto; }
+
+  .filter-pill {
+    background: rgba(180,130,40,0.14);
+    border: 1px solid var(--leaf-vein);
+    border-radius: 2px; padding: 0.4rem 1rem;
+    font-family: 'Noto Serif Tamil', serif; font-size: 0.85rem;
+    color: var(--ink-faded); cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+    min-height: 36px; font-weight: 500;
+  }
+  .filter-pill:hover { border-color: var(--cord-red); color: var(--cord-red); background: rgba(139,37,0,0.08); }
+  .filter-pill.active { background: var(--cord-red); border-color: var(--cord-red); color: var(--leaf-light); font-weight: 600; }
+
+  /* Override per-book filter pill active states */
+  [data-book="aram"]  .filter-pill.active,
+  [data-book="porul"] .filter-pill.active,
+  [data-book="inbam"] .filter-pill.active { background: var(--cord-red); border-color: var(--cord-red); color: var(--leaf-light); }
+  [data-book="aram"]  .filter-pill:hover,
+  [data-book="porul"] .filter-pill:hover,
+  [data-book="inbam"] .filter-pill:hover { border-color: var(--cord-red); color: var(--cord-red); background: rgba(139,37,0,0.08); }
+
+  /* ===== SCROLL TO TOP ===== */
+  .scroll-top-btn {
+    position: fixed; bottom: 2rem; right: 2rem;
+    width: 44px; height: 44px;
+    background: var(--wood-dark); border: 1px solid var(--cord-red);
+    border-radius: 2px; color: var(--leaf-light);
+    font-size: 1.1rem; cursor: pointer;
+    display: none; align-items: center; justify-content: center; z-index: 50;
+    transition: background 0.12s; box-shadow: var(--shadow-sm);
+    backdrop-filter: none;
+  }
+  .scroll-top-btn.visible { display: flex; }
+  .scroll-top-btn:hover { background: var(--cord-red); }
+
+  /* ===== FOOTER — DARK WOOD ===== */
+  footer {
+    background: var(--wood-dark);
+    background-image: repeating-linear-gradient(
+      90deg, transparent, transparent 40px,
+      rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px
+    );
+    border-top: 2px solid var(--cord-red);
+    padding: 3rem 2rem; text-align: center; position: relative; z-index: 1;
+    backdrop-filter: none;
+  }
+  footer::before { display: none; }
+  .footer-brand { font-family: 'Noto Serif Tamil', serif; font-size: 1.05rem; color: var(--leaf-light); margin-bottom: 0.3rem; }
+  .footer-stats { font-family: 'IM Fell English', serif; font-size: 0.8rem; color: var(--leaf-aged); margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; font-style: italic; }
+  .footer-kural { max-width: 500px; margin: 0 auto 1.8rem; }
+  .footer-kural .fkt { font-family: 'Noto Serif Tamil', serif; font-size: 0.92rem; color: var(--leaf-light); line-height: 1.85; }
+  .footer-kural .fke { font-family: 'IM Fell English', serif; font-size: 0.85rem; color: var(--leaf-aged); margin-top: 0.4rem; line-height: 1.7; font-style: italic; }
+  .footer-kural .fka { font-family: 'Noto Serif Tamil', serif; font-size: 0.78rem; color: var(--ink-transliteration); margin-top: 0.35rem; letter-spacing: 0.04em; }
+  .footer-credit { font-family: 'IM Fell English', serif; font-size: 0.82rem; color: var(--leaf-aged); line-height: 1.9; }
+  .footer-credit a { color: var(--leaf-light); text-underline-offset: 3px; transition: color 0.12s; text-decoration: underline; }
+  .footer-credit a:hover { color: var(--accent-saffron); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) { .books-grid { grid-template-columns: 1fr; } .chapters-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 768px) { .a11y-toolbar .a11y-label { display: none; } }
+  @media (max-width: 600px) {
+    header { padding: 0 1rem; gap: 0.5rem; }
+    .search-wrap { max-width: none; }
+    .books-grid { padding: 0 1rem; gap: 1rem; }
+    .chapters-grid { grid-template-columns: 1fr; padding: 0 1rem 3rem; }
+    .kurals-list { padding: 0 1rem 3rem; }
+    .nav-bar { padding: 1rem 1rem 0.5rem; }
+    .chapter-header { padding: 0.5rem 1rem 1.2rem; }
+    .hero { padding: 2.5rem 1rem 2rem; }
+    .hero-kural { padding: 1.3rem 1.2rem; }
+    .scroll-top-btn { bottom: 1rem; right: 1rem; }
+    .a11y-toolbar { display: none; }
+    .hero-title { font-size: 2.8rem; }
+  }
+  @media (max-width: 420px) { .chapters-grid { grid-template-columns: 1fr; } }
+
+  /* Stagger animations */
+  .book-card { opacity: 0; transform: translateY(6px); animation: fadeUp 0.32s var(--ease-out) forwards; }
+  .book-card:nth-child(1) { animation-delay: 0.04s; }
+  .book-card:nth-child(2) { animation-delay: 0.12s; }
+  .book-card:nth-child(3) { animation-delay: 0.20s; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg-page); }
+  ::-webkit-scrollbar-thumb { background: var(--leaf-vein); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--cord-red); }
+
+  button, .book-card, .chapter-card, .search-result { min-height: 44px; }
+
+  /* ===== CHAPTER END ORNAMENT ===== */
+  .chapter-end-ornament {
+    text-align: center; padding: 1.8rem 0 0.5rem; color: var(--ink-faded);
+  }
+  .chapter-end-ornament .co-tamil {
+    font-family: 'Noto Serif Tamil', serif; font-size: 0.88rem; display: block;
+  }
+  .chapter-end-ornament .co-english {
+    font-family: 'IM Fell English', serif; font-size: 0.84rem; font-style: italic;
+    display: block; margin-top: 0.2rem;
+  }
+
+  /* ===== MEANING MODAL — MANUSCRIPT STYLE ===== */
+  .meaning-modal-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem 1.5rem;
+    background: rgba(26,10,0,0.72);
+    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.22s var(--ease-out);
+  }
+  .meaning-modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .meaning-modal-box {
+    position: relative;
+    background: var(--bg-card);
+    background-image: var(--leaf-texture);
+    border: 1px solid var(--leaf-vein);
+    border-left: 6px solid var(--cord-red);
+    border-radius: 2px 4px 3px 2px;
+    max-width: 640px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    padding: 2.2rem 2.2rem 1.8rem;
+    box-shadow: 4px 4px 0 var(--leaf-shadow), 8px 8px 0 rgba(80,50,0,0.15), 0 16px 48px rgba(26,10,0,0.38);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.24s var(--ease-out);
+    scrollbar-width: thin;
+  }
+  .meaning-modal-overlay.open .meaning-modal-box { transform: translateY(0) scale(1); }
+
+  /* Cord hole on modal */
+  .meaning-modal-box::after {
+    content: '';
+    position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px;
+    background: var(--bg-card); border: 2px solid var(--cord-red); border-radius: 50%;
+  }
+
+  /* Override book-specific modal badge colors */
+  .meaning-modal-box.book-aram  .modal-badge,
+  .meaning-modal-box.book-porul .modal-badge,
+  .meaning-modal-box.book-inbam .modal-badge {
+    background: var(--wood-dark); color: var(--leaf-light); border-color: var(--cord-red);
+  }
+
+  .modal-close-x {
+    position: absolute; top: 1rem; right: 1rem;
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid var(--cord-red);
+    background: rgba(44,26,10,0.15); color: var(--ink-faded);
+    font-size: 0.9rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, color 0.12s; font-family: inherit;
+  }
+  .modal-close-x:hover { background: var(--cord-red); color: var(--leaf-light); }
+
+  .modal-badge {
+    display: inline-flex; align-items: center;
+    padding: 0.2rem 0.8rem; border-radius: 2px;
+    background: var(--wood-dark); border: 1px solid var(--cord-red);
+    color: var(--leaf-light); font-size: 0.78rem; font-weight: 600;
+    margin-bottom: 1.1rem; font-family: 'IM Fell English', serif; letter-spacing: 0.04em;
+  }
+
+  .modal-divider { border: none; border-top: 1px dashed var(--leaf-vein); margin: 1.2rem 0; opacity: 0.8; }
+
+  .modal-section-label {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faded); margin-bottom: 0.5rem; font-style: italic;
+  }
+
+  .modal-footer { margin-top: 1.8rem; display: flex; justify-content: flex-end; }
+  .modal-close-footer-btn {
+    background: var(--wood-dark); border: 1px solid var(--cord-red);
+    border-radius: 2px; color: var(--leaf-light);
+    padding: 0.55rem 1.5rem; font-size: 0.86rem; cursor: pointer;
+    transition: background 0.12s; font-family: 'Noto Serif Tamil', serif;
+    min-height: 44px; font-weight: 500;
+  }
+  .modal-close-footer-btn:hover { background: var(--cord-red); }
+
+  @media (max-width: 600px) {
+    .meaning-modal-overlay { padding: 1rem 0.75rem; align-items: flex-end; }
+    .meaning-modal-box { padding: 2rem 1.4rem 1.5rem; border-radius: 4px 4px 0 0; max-height: 92vh; }
+  }
+</style>
     --bg-card: rgba(18,18,18,0.85);
     --bg-card-solid: #121212;
     --bg-card-hover: rgba(28,28,28,0.95);
@@ -2140,7 +2964,7 @@ function showKurals(chapterNum, highlightNum, addToHistory = true) {
 
     card.innerHTML = `
       <span class="kural-num-badge tamil" lang="ta">குறள் #${k.number}${firstBadge}</span>
-      <div style="padding-bottom:1rem;border-bottom:1px solid var(--border)">
+      <div style="padding-bottom:1rem;border-bottom:1px dashed var(--leaf-vein)">
         <div class="kural-lines">
           <div class="kural-line tamil" lang="ta">${k.line1}</div>
           <div class="kural-line tamil" lang="ta">${k.line2}</div>
@@ -2149,11 +2973,23 @@ function showKurals(chapterNum, highlightNum, addToHistory = true) {
       </div>
       <div style="padding-top:1rem">
         <div class="kural-translation">${k.translation}</div>
-        ${hasMeaning ? `<button class="meaning-toggle tamil" onclick="toggleMeaning(${k.number}, this)" aria-haspopup="dialog" lang="ta">விளக்கம் காண்க / View Meaning →</button>` : ''}
+        ${hasMeaning ? `<button class="meaning-toggle tamil" onclick="toggleMeaning(${k.number}, this)" aria-haspopup="dialog" lang="ta">விளக்கம் பெறு / View Meaning</button>` : ''}
       </div>
     `;
     list.appendChild(card);
   });
+
+  // Chapter-end ornament
+  if (kurals.length > 0) {
+    const ornament = document.createElement('div');
+    ornament.className = 'chapter-end-ornament';
+    ornament.setAttribute('aria-hidden', 'true');
+    ornament.innerHTML = `
+      <span class="co-tamil tamil" lang="ta">❧ இந்த அதிகாரம் நிறைவடைந்தது ❧</span>
+      <span class="co-english">End of Chapter</span>
+    `;
+    list.appendChild(ornament);
+  }
 
   // Issue 5: update chapter progress bar
   updateChapterProgress(chapterNum);
