@@ -298,13 +298,13 @@
     padding: 5rem 2rem 4.5rem; overflow: hidden;
   }
   .hero::before {
-    content: ''; position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0; pointer-events: none;
     background:
       radial-gradient(ellipse 100% 75% at 50% -8%, rgba(79,70,229,0.16) 0%, rgba(109,40,217,0.06) 38%, transparent 65%),
       radial-gradient(ellipse 60% 50% at 50% 55%, rgba(242,196,74,0.05) 0%, transparent 60%);
   }
   .hero::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; pointer-events: none;
     height: 1px;
     background: linear-gradient(to right, transparent, rgba(242,196,74,0.2), transparent);
   }
@@ -368,6 +368,27 @@
     font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--gold); opacity: 0.75;
   }
+  .random-kural-btn {
+    display: flex; align-items: center; gap: 0.55rem;
+    margin: 1.5rem auto 0;
+    position: relative; z-index: 1;
+    padding: 0.72rem 1.8rem;
+    background: transparent;
+    border: 1px solid rgba(242,196,74,0.32);
+    border-radius: 100px;
+    color: var(--gold);
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.22s, border-color 0.22s, transform 0.22s var(--ease-spring), box-shadow 0.22s;
+  }
+  .random-kural-btn:hover {
+    background: rgba(242,196,74,0.09);
+    border-color: rgba(242,196,74,0.60);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(242,196,74,0.13);
+  }
+  .random-kural-btn:active { transform: translateY(0); }
+  .random-kural-icon { font-size: 1rem; line-height: 1; }
   @keyframes heroGlowPulse {
     0%, 100% { box-shadow: var(--shadow-gold), inset 0 1px 0 rgba(242,196,74,0.10); }
     50%       { box-shadow: 0 14px 60px rgba(242,196,74,0.30), 0 4px 20px rgba(242,196,74,0.13), inset 0 1px 0 rgba(242,196,74,0.18); }
@@ -1032,6 +1053,9 @@
       <p class="hero-kural-english" id="hero-kural-english">&nbsp;</p>
       <footer class="hero-kural-attr tamil" lang="ta" id="hero-kural-attr">&nbsp;</footer>
     </blockquote>
+    <button class="random-kural-btn" onclick="openRandomKural()" aria-label="Open a random Kural">
+      <span class="random-kural-icon" aria-hidden="true">&#8767;</span> Surprise Me — Random Kural
+    </button>
   </section>
 
   <hr class="gold-rule" style="max-width:1200px;margin:0 auto 2rem;" aria-hidden="true">
@@ -1367,6 +1391,12 @@ function renderDailyKural() {
 
 function openDailyKural() {
   if (dailyKuralNum) toggleMeaning(dailyKuralNum, document.getElementById('hero-kural-card'));
+}
+
+function openRandomKural() {
+  if (!allKurals.length) return;
+  const k = allKurals[Math.floor(Math.random() * allKurals.length)];
+  toggleMeaning(k.number, document.querySelector('.random-kural-btn'));
 }
 
 // ===== FETCH =====
