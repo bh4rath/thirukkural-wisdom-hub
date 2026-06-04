@@ -1366,6 +1366,127 @@
     :root:not([data-theme="dark"]) .chapter-card.book-porul .chapter-subsection,
     :root:not([data-theme="dark"]) .chapter-card.book-inbam .chapter-subsection { color: #fff; }
   }
+
+  /* ===== MEANING MODAL ===== */
+  .meaning-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s var(--ease-out);
+  }
+  .meaning-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .meaning-modal-box {
+    position: relative;
+    background: var(--bg-card-solid);
+    border: 1px solid var(--border-accent);
+    border-radius: 24px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 2.5rem 2.5rem 2rem;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(22px) scale(0.97);
+    transition: transform 0.28s var(--ease-out);
+    scrollbar-width: thin;
+  }
+  .meaning-modal-overlay.open .meaning-modal-box {
+    transform: translateY(0) scale(1);
+  }
+
+  [data-theme="light"] .meaning-modal-box { background: #FEFCF8; border-color: #D4C5A8; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .meaning-modal-box { background: #FEFCF8; border-color: #D4C5A8; }
+  }
+
+  .modal-close-x {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    font-family: inherit;
+    flex-shrink: 0;
+  }
+  .modal-close-x:hover { background: rgba(255,255,255,0.08); color: var(--text-tamil); border-color: var(--border-accent); }
+
+  .modal-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.85rem;
+    border-radius: 99px;
+    background: var(--gold-glow);
+    border: 1px solid var(--border-accent);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.03em;
+  }
+  .meaning-modal-box.book-aram  .modal-badge { color: var(--aram-color);  background: rgba(74,222,128,0.10);  border-color: rgba(74,222,128,0.22); }
+  .meaning-modal-box.book-porul .modal-badge { color: var(--porul-color); background: rgba(251,146,60,0.10);  border-color: rgba(251,146,60,0.22); }
+  .meaning-modal-box.book-inbam .modal-badge { color: var(--inbam-color); background: rgba(244,114,182,0.10); border-color: rgba(244,114,182,0.22); }
+
+  .modal-divider { height: 1px; background: var(--border); margin: 1.4rem 0; }
+
+  .modal-section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .modal-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .modal-close-footer-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-accent);
+    border-radius: 10px;
+    color: var(--text-english);
+    padding: 0.55rem 1.6rem;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    font-family: 'Noto Serif Tamil', serif;
+    min-height: 44px;
+    font-weight: 500;
+  }
+  .modal-close-footer-btn:hover { background: var(--gold-glow); color: var(--gold); border-color: var(--border-accent); }
+
+  @media (max-width: 600px) {
+    .meaning-modal-overlay { padding: 1rem 0.75rem; align-items: flex-end; }
+    .meaning-modal-box { padding: 2rem 1.4rem 1.5rem; border-radius: 20px 20px 0 0; max-height: 92vh; }
+  }
 </style>
 </head>
 <body>
@@ -1564,6 +1685,43 @@
     </div>
   </div>
   <div class="kurals-list" id="kurals-list" aria-label="List of Kurals"></div>
+</div>
+
+<!-- MEANING MODAL -->
+<div id="meaning-modal"
+     class="meaning-modal-overlay"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modal-kural-num"
+     aria-hidden="true"
+     onclick="if(event.target===this)closeMeaningModal()">
+  <div class="meaning-modal-box" id="meaning-modal-box">
+    <button class="modal-close-x" onclick="closeMeaningModal()" aria-label="Close">✕</button>
+
+    <div class="modal-badge tamil" id="modal-kural-num" lang="ta"></div>
+
+    <div class="modal-section-label">Kural / குறள்</div>
+    <div style="margin-bottom:0.5rem">
+      <div class="kural-line tamil" id="modal-line1" lang="ta"></div>
+      <div class="kural-line tamil" id="modal-line2" lang="ta"></div>
+    </div>
+    <div class="kural-translit" id="modal-translit"></div>
+
+    <div class="modal-divider" aria-hidden="true"></div>
+    <div class="modal-section-label">Translation</div>
+    <div class="kural-translation" id="modal-translation"></div>
+
+    <div id="modal-meaning-section">
+      <div class="modal-divider" aria-hidden="true"></div>
+      <div class="modal-section-label">Meaning / விளக்கம்</div>
+      <div class="kural-meaning-tamil tamil" id="modal-meaning-tamil" lang="ta"></div>
+      <div class="kural-meaning-english" id="modal-meaning-english" style="margin-top:0.6rem"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="modal-close-footer-btn tamil" onclick="closeMeaningModal()" lang="ta">மூடு / Close</button>
+    </div>
+  </div>
 </div>
 
 </main><!-- /main -->
@@ -1989,14 +2147,10 @@ function showKurals(chapterNum, highlightNum, addToHistory = true) {
         </div>
         ${k.transliteration1 || k.transliteration2 ? `<div class="kural-translit" aria-label="Transliteration">${k.transliteration1 || ''}<br>${k.transliteration2 || ''}</div>` : ''}
       </div>
-      <div style="padding-top:1rem;padding-bottom:1rem">
+      <div style="padding-top:1rem">
         <div class="kural-translation">${k.translation}</div>
-        ${hasMeaning ? `<button class="meaning-toggle tamil" onclick="toggleMeaning(${k.number}, this)" lang="ta">விளக்கம் காண்க / Show meaning ▾</button>` : ''}
+        ${hasMeaning ? `<button class="meaning-toggle tamil" onclick="toggleMeaning(${k.number}, this)" aria-haspopup="dialog" lang="ta">விளக்கம் காண்க / View Meaning →</button>` : ''}
       </div>
-      ${hasMeaning ? `<div id="meanings-${k.number}" hidden style="padding-top:0.5rem;border-top:1px solid var(--border);margin-top:0.5rem">
-        ${k.meaning_tamil ? `<div class="kural-meaning-tamil tamil" lang="ta">${k.meaning_tamil}</div>` : ''}
-        ${k.meaning_english ? `<div class="kural-meaning-english">${k.meaning_english}</div>` : ''}
-      </div>` : ''}
     `;
     list.appendChild(card);
   });
@@ -2201,18 +2355,69 @@ function updateGlobalProgress() {
   if (pill) pill.textContent = `${seenKurals.size} / 1330 படிக்கப்பட்டது`;
 }
 
-// ===== MEANING TOGGLE (Issue 3) =====
+// ===== MEANING MODAL =====
+let _modalOpener = null;
+
 function toggleMeaning(kuralNum, btn) {
-  const div = document.getElementById(`meanings-${kuralNum}`);
-  const wasHidden = div.hidden;
-  div.hidden = !wasHidden;
-  if (wasHidden) {
-    btn.textContent = 'மறை / Hide ▴';
-    markKuralSeen(kuralNum);
-  } else {
-    btn.textContent = 'விளக்கம் காண்க / Show meaning ▾';
-  }
+  const k = allKurals.find(x => x.number === kuralNum);
+  if (!k) return;
+  _modalOpener = btn;
+  openMeaningModal(k);
 }
+
+function openMeaningModal(k) {
+  const overlay = document.getElementById('meaning-modal');
+  const box     = document.getElementById('meaning-modal-box');
+
+  document.getElementById('modal-kural-num').textContent = `குறள் #${k.number}`;
+  document.getElementById('modal-line1').textContent = k.line1;
+  document.getElementById('modal-line2').textContent = k.line2;
+
+  const translit = document.getElementById('modal-translit');
+  if (k.transliteration1 || k.transliteration2) {
+    translit.innerHTML = `${k.transliteration1 || ''}<br>${k.transliteration2 || ''}`;
+    translit.hidden = false;
+  } else {
+    translit.hidden = true;
+  }
+
+  document.getElementById('modal-translation').textContent = k.translation;
+
+  const mtamil   = document.getElementById('modal-meaning-tamil');
+  const menglish = document.getElementById('modal-meaning-english');
+  const msection = document.getElementById('modal-meaning-section');
+  mtamil.textContent   = k.meaning_tamil   || '';
+  mtamil.hidden        = !k.meaning_tamil;
+  menglish.textContent = k.meaning_english || '';
+  menglish.hidden      = !k.meaning_english;
+  msection.hidden      = !(k.meaning_tamil || k.meaning_english);
+
+  box.className = `meaning-modal-box book-${k.book}`;
+  box.scrollTop = 0;
+
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => overlay.querySelector('.modal-close-x').focus(), 60);
+  markKuralSeen(k.number);
+}
+
+function closeMeaningModal() {
+  const overlay = document.getElementById('meaning-modal');
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (_modalOpener) { _modalOpener.focus(); _modalOpener = null; }
+}
+
+// Escape key closes the modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const overlay = document.getElementById('meaning-modal');
+    if (overlay && overlay.classList.contains('open')) closeMeaningModal();
+  }
+});
 
 // ===== UTILS =====
 function debounce(fn, ms) {
