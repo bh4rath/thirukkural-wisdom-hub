@@ -372,20 +372,21 @@
     display: flex; align-items: center; gap: 0.55rem;
     margin: 1.5rem auto 0;
     position: relative; z-index: 1;
-    padding: 0.72rem 1.8rem;
-    background: transparent;
-    border: 1px solid rgba(242,196,74,0.32);
+    padding: 0.76rem 2rem;
+    background: var(--gold);
+    border: 1px solid var(--gold);
     border-radius: 100px;
-    color: var(--gold);
-    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--bg-primary);
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.03em;
     cursor: pointer;
     transition: background 0.22s, border-color 0.22s, transform 0.22s var(--ease-spring), box-shadow 0.22s;
   }
   .random-kural-btn:hover {
-    background: rgba(242,196,74,0.09);
-    border-color: rgba(242,196,74,0.60);
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: var(--bg-primary);
     transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(242,196,74,0.13);
+    box-shadow: 0 8px 32px rgba(242,196,74,0.38);
   }
   .random-kural-btn:active { transform: translateY(0); }
   .random-kural-icon { font-size: 1rem; line-height: 1; }
@@ -818,10 +819,10 @@
     padding: 0 2rem 1.2rem; max-width: 1200px; margin: 0 auto;
   }
   .filter-pill {
-    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16);
     border-radius: 99px; padding: 0.4rem 1.1rem;
     font-family: 'Noto Serif Tamil', serif; font-size: 0.88rem;
-    color: var(--text-muted); cursor: pointer;
+    color: var(--text-english); cursor: pointer;
     transition: background 0.22s var(--ease-out), color 0.22s, border-color 0.22s, transform 0.18s;
     min-height: 36px; font-weight: 500;
   }
@@ -835,15 +836,15 @@
 
   /* ===== MEANING TOGGLE ===== */
   .meaning-toggle {
-    background: var(--gold-glow); border: 1px solid var(--border-accent);
-    color: var(--gold-dim); font-size: 0.78rem; cursor: pointer;
+    background: rgba(242,196,74,0.14); border: 1px solid rgba(242,196,74,0.48);
+    color: var(--gold); font-size: 0.78rem; cursor: pointer;
     margin-top: 0.75rem; font-family: 'Noto Serif Tamil', serif;
-    padding: 0.32rem 0.9rem;
+    padding: 0.35rem 1rem;
     display: inline-flex; align-items: center; gap: 0.3rem;
-    border-radius: 99px; font-weight: 600;
+    border-radius: 99px; font-weight: 700;
     transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
   }
-  .meaning-toggle:hover { color: var(--gold); background: rgba(242,196,74,0.15); border-color: var(--gold-dim); transform: translateY(-1px); }
+  .meaning-toggle:hover { color: var(--gold-light); background: rgba(242,196,74,0.22); border-color: rgba(242,196,74,0.75); transform: translateY(-1px); }
 
   /* ===== PROGRESS BAR ===== */
   .chapter-progress { margin-top: 1rem; }
@@ -886,6 +887,16 @@
     :root:not([data-theme="dark"]) .chapter-card:hover { background: #FDF8F0; border-color: #C8A85A; box-shadow: 0 6px 26px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04); }
     :root:not([data-theme="dark"]) .kural-card:hover { border-color: #C8A85A; box-shadow: 0 4px 22px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04); }
     :root:not([data-theme="dark"]) .search-dropdown { background: #FEFCF8; border-color: #C8A85A; box-shadow: 0 14px 44px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06); }
+  }
+
+  /* Light mode CTA overrides — white-on-white borders need dark equivalents */
+  [data-theme="light"] .filter-pill {
+    background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.16);
+  }
+  [data-theme="light"] .filter-pill:hover { background: rgba(0,0,0,0.08); }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .filter-pill { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.16); }
+    :root:not([data-theme="dark"]) .filter-pill:hover { background: rgba(0,0,0,0.08); }
   }
 
   [data-theme="light"] .chapter-card.book-aram  .chapter-subsection,
@@ -971,13 +982,13 @@
   }
   .modal-footer { margin-top: 2rem; display: flex; justify-content: flex-end; }
   .modal-close-footer-btn {
-    background: rgba(255,255,255,0.04); border: 1px solid var(--border-accent);
-    border-radius: 12px; color: var(--text-english);
+    background: rgba(242,196,74,0.10); border: 1px solid rgba(242,196,74,0.42);
+    border-radius: 12px; color: var(--gold);
     padding: 0.6rem 1.8rem; font-size: 0.88rem; cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
-    font-family: 'Noto Serif Tamil', serif; min-height: 44px; font-weight: 500;
+    font-family: 'Noto Serif Tamil', serif; min-height: 44px; font-weight: 600;
   }
-  .modal-close-footer-btn:hover { background: var(--gold-glow); color: var(--gold); border-color: var(--border-accent); }
+  .modal-close-footer-btn:hover { background: rgba(242,196,74,0.20); color: var(--gold-light); border-color: rgba(242,196,74,0.70); }
   @media (max-width: 600px) {
     .meaning-modal-overlay { padding: 1rem 0.75rem; align-items: flex-end; }
     .meaning-modal-box { padding: 2rem 1.4rem 1.5rem; border-radius: 20px 20px 0 0; max-height: 92vh; }
