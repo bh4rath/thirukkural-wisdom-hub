@@ -1127,7 +1127,7 @@
       <div class="modal-divider" aria-hidden="true"></div>
       <div class="modal-section-label">Meaning / விளக்கம்</div>
       <div class="kural-meaning-tamil tamil" id="modal-meaning-tamil" lang="ta"></div>
-      <div class="kural-meaning-english" id="modal-meaning-english" style="margin-top:0.6rem"></div>
+      <div class="kural-meaning-english" id="modal-meaning-english" style="margin-top:0.6rem" hidden></div>
     </div>
 
     <div class="modal-footer">
@@ -1808,11 +1808,10 @@ function openMeaningModal(k) {
   const mtamil   = document.getElementById('modal-meaning-tamil');
   const menglish = document.getElementById('modal-meaning-english');
   const msection = document.getElementById('modal-meaning-section');
-  mtamil.textContent   = k.meaning_tamil   || '';
+  mtamil.textContent   = k.meaning_tamil || '';
   mtamil.hidden        = !k.meaning_tamil;
-  menglish.textContent = k.meaning_english || '';
-  menglish.hidden      = !k.meaning_english;
-  msection.hidden      = !(k.meaning_tamil || k.meaning_english);
+  menglish.hidden      = true;
+  msection.hidden      = !k.meaning_tamil;
 
   box.className = `meaning-modal-box book-${k.book}`;
   box.scrollTop = 0;
