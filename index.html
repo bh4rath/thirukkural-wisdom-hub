@@ -363,8 +363,17 @@
   }
   .stat-pill:hover { background: rgba(242,196,74,0.13); border-color: rgba(242,196,74,0.32); }
 
+  .daily-kural-eyebrow {
+    text-align: center; margin: 2.8rem auto 0.65rem;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold); opacity: 0.75;
+  }
+  @keyframes heroGlowPulse {
+    0%, 100% { box-shadow: var(--shadow-gold), inset 0 1px 0 rgba(242,196,74,0.10); }
+    50%       { box-shadow: 0 14px 60px rgba(242,196,74,0.30), 0 4px 20px rgba(242,196,74,0.13), inset 0 1px 0 rgba(242,196,74,0.18); }
+  }
   .hero-kural {
-    max-width: 660px; margin: 3rem auto 0;
+    max-width: 660px; margin: 0 auto 0;
     background: rgba(242,196,74,0.04);
     border: 1px solid rgba(242,196,74,0.18);
     border-radius: 20px; padding: 2.4rem 3rem 2.4rem 3.4rem;
@@ -372,6 +381,8 @@
     backdrop-filter: blur(20px);
     box-shadow: var(--shadow-gold), inset 0 1px 0 rgba(242,196,74,0.10);
     transition: box-shadow 0.38s var(--ease-out), transform 0.38s var(--ease-out);
+    animation: heroGlowPulse 3.6s ease-in-out infinite;
+    cursor: pointer;
   }
   .hero-kural::before {
     content: ''; position: absolute; left: 0; top: 2rem; bottom: 2rem;
@@ -381,6 +392,7 @@
   .hero-kural:hover {
     box-shadow: 0 18px 64px rgba(242,196,74,0.24), 0 4px 18px rgba(242,196,74,0.10);
     transform: translateY(-4px);
+    animation-play-state: paused;
   }
   [data-theme="light"] .hero-kural {
     background: #FEFCF8; border-color: #C8A85A;
@@ -722,7 +734,8 @@
     /* Hero */
     .hero { padding: 2.5rem 1rem 2.5rem; }
     .hero-title { font-size: clamp(2.4rem, 10vw, 3.8rem); }
-    .hero-kural { padding: 1.4rem 1.2rem 1.4rem 1.7rem; margin-top: 2rem; }
+    .daily-kural-eyebrow { margin-top: 2rem; }
+    .hero-kural { padding: 1.4rem 1.2rem 1.4rem 1.7rem; margin-top: 0; }
     .hero-kural-text { font-size: 1.15rem; }
     .stat-pills { gap: 0.4rem; margin-top: 1.8rem; }
     .stat-pill { font-size: 0.82rem; padding: 0.35rem 0.9rem; }
@@ -1013,13 +1026,11 @@
       <span class="stat-pill" lang="ta">3 பால்கள்</span>
       <span class="stat-pill tamil" id="global-progress" lang="ta">0 / 1330 படிக்கப்பட்டது</span>
     </div>
-    <blockquote class="hero-kural" aria-label="Featured Kural — Kural 1">
-      <div class="hero-kural-text tamil" lang="ta">
-        அகர முதல எழுத்தெல்லாம் ஆதி<br>
-        பகவன் முதற்றே உலகு
-      </div>
-      <p class="hero-kural-english">"A leads all letters; the Primal Deity leads the entire world."</p>
-      <footer class="hero-kural-attr tamil" lang="ta">— குறள் 1, கடவுள் வாழ்த்து</footer>
+    <div class="daily-kural-eyebrow">Today's Kural</div>
+    <blockquote class="hero-kural" id="hero-kural-card" aria-label="Today's Daily Kural" role="button" tabindex="0" onclick="openDailyKural()" onkeydown="if(event.key==='Enter'||event.key===' ')openDailyKural()">
+      <div class="hero-kural-text tamil" lang="ta" id="hero-kural-text">&nbsp;<br>&nbsp;</div>
+      <p class="hero-kural-english" id="hero-kural-english">&nbsp;</p>
+      <footer class="hero-kural-attr tamil" lang="ta" id="hero-kural-attr">&nbsp;</footer>
     </blockquote>
   </section>
 
@@ -1331,10 +1342,32 @@ const BOOK_META = {
 
 // ===== STATE =====
 let allKurals = [];
+let dailyKuralNum = null;
 let currentBook = null;
 let currentChapter = null;
 let currentKuralForPanel = null;
 let lastFocusedElement = null;
+
+// ===== DAILY KURAL =====
+function renderDailyKural() {
+  if (!allKurals.length) return;
+  const dayIndex = Math.floor(Date.now() / 86400000) % 1330;
+  const k = allKurals[dayIndex];
+  if (!k) return;
+  dailyKuralNum = k.number;
+  const card = document.getElementById('hero-kural-card');
+  const textEl = document.getElementById('hero-kural-text');
+  const engEl = document.getElementById('hero-kural-english');
+  const attrEl = document.getElementById('hero-kural-attr');
+  if (card) card.setAttribute('aria-label', `Today's Kural — Kural ${k.number}`);
+  if (textEl) textEl.innerHTML = `${k.line1}<br>${k.line2}`;
+  if (engEl) engEl.textContent = `"${k.translation}"`;
+  if (attrEl) attrEl.textContent = `— குறள் ${k.number}, ${k.chapter_tamil}`;
+}
+
+function openDailyKural() {
+  if (dailyKuralNum) toggleMeaning(dailyKuralNum, document.getElementById('hero-kural-card'));
+}
 
 // ===== FETCH =====
 async function fetchKurals() {
@@ -1366,6 +1399,7 @@ async function fetchKurals() {
           book: ch.book || 'aram',
         };
       });
+      renderDailyKural();
       return;
     } catch (_) {
       // kurals-kids.json not available yet — load from upstream source
@@ -1393,6 +1427,7 @@ async function fetchKurals() {
         book: ch.book || 'aram',
       };
     });
+    renderDailyKural();
   } catch(err) {
     console.error('Failed to fetch kurals:', err);
     allKurals = [];
