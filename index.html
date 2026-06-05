@@ -107,6 +107,7 @@
       transition-duration: 0.1ms !important;
       scroll-behavior: auto !important;
     }
+    .hero-particle { display: none; }
   }
 
   @media (prefers-contrast: high) {
@@ -314,6 +315,19 @@
     background: linear-gradient(to right, transparent, rgba(242,196,74,0.2), transparent);
   }
 
+  @keyframes floatUp {
+    0%   { transform: translateY(0);      opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-130px); opacity: 0; }
+  }
+  .hero-particle {
+    position: absolute; border-radius: 50%;
+    background: var(--gold); opacity: 0;
+    pointer-events: none; z-index: 0;
+    animation: floatUp linear infinite;
+  }
+
   .hero-eyebrow {
     font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--gold-dim);
@@ -369,9 +383,36 @@
   .stat-pill:hover { background: rgba(242,196,74,0.13); border-color: rgba(242,196,74,0.32); }
 
   .daily-kural-eyebrow {
-    text-align: center; margin: 2.8rem auto 0.65rem;
+    text-align: center; margin: 1rem auto 0.65rem;
     font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--gold); opacity: 0.75;
+  }
+
+  .streak-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(242,196,74,0.12); border: 1px solid rgba(242,196,74,0.25);
+    color: var(--gold); border-radius: var(--radius-full);
+    padding: 0.3rem 0.9rem; font-size: 0.78rem; font-weight: 700;
+    margin: 0.8rem auto 0; letter-spacing: 0.04em;
+    animation: streakPop 0.4s var(--ease-spring) both;
+  }
+  @keyframes streakPop {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .hero-divider {
+    text-align: center; color: var(--text-muted); font-size: 0.7rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin: 1.4rem auto 0; position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 0.7rem; justify-content: center;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: ''; flex: 1; max-width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(242,196,74,0.18));
+  }
+  .hero-divider::after {
+    background: linear-gradient(to left, transparent, rgba(242,196,74,0.18));
   }
   .random-kural-btn {
     display: flex; align-items: center; gap: 0.55rem;
@@ -985,7 +1026,18 @@
     text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem;
     font-family: 'Inter', sans-serif;
   }
-  .modal-footer { margin-top: 2rem; display: flex; justify-content: flex-end; }
+  .modal-footer { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+
+  .modal-share-btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    background: rgba(242,196,74,0.10); border: 1px solid rgba(242,196,74,0.28);
+    color: var(--gold); border-radius: var(--radius-full);
+    padding: 0.5rem 1.1rem; font-size: 0.8rem; font-weight: 700;
+    cursor: pointer; min-height: 44px; letter-spacing: 0.03em;
+    transition: background 0.18s, color 0.18s;
+  }
+  .modal-share-btn:hover { background: rgba(242,196,74,0.2); color: var(--gold-light); }
+  .modal-share-btn.copied { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.35); color: #34D399; }
   .modal-close-footer-btn {
     background: rgba(242,196,74,0.10); border: 1px solid rgba(242,196,74,0.42);
     border-radius: var(--radius-md); color: var(--gold);
@@ -1063,15 +1115,25 @@
       <span class="stat-pill" lang="ta">3 பால்கள்</span>
       <span class="stat-pill tamil" id="global-progress" lang="ta">0 / 1330 படிக்கப்பட்டது</span>
     </div>
+    <div class="streak-badge" id="streak-badge" aria-live="polite" hidden>
+      <span aria-hidden="true">🔥</span>
+      <span id="streak-text">Day 1</span>
+    </div>
+    <button class="random-kural-btn" onclick="openRandomKural()" aria-label="Open a random Kural">
+      <span class="random-kural-icon" aria-hidden="true">&#8767;</span> Surprise Me — Random Kural
+    </button>
+    <div class="hero-divider" aria-hidden="true">or read today's kural</div>
     <div class="daily-kural-eyebrow">Today's Kural</div>
     <blockquote class="hero-kural" id="hero-kural-card" aria-label="Today's Daily Kural" role="button" tabindex="0" onclick="openDailyKural()" onkeydown="if(event.key==='Enter'||event.key===' ')openDailyKural()">
       <div class="hero-kural-text tamil" lang="ta" id="hero-kural-text">&nbsp;<br>&nbsp;</div>
       <p class="hero-kural-english" id="hero-kural-english">&nbsp;</p>
       <footer class="hero-kural-attr tamil" lang="ta" id="hero-kural-attr">&nbsp;</footer>
     </blockquote>
-    <button class="random-kural-btn" onclick="openRandomKural()" aria-label="Open a random Kural">
-      <span class="random-kural-icon" aria-hidden="true">&#8767;</span> Surprise Me — Random Kural
-    </button>
+    <span class="hero-particle" style="left:12%;width:3px;height:3px;animation-duration:9s;animation-delay:0s;bottom:30%"></span>
+    <span class="hero-particle" style="left:30%;width:2px;height:2px;animation-duration:13s;animation-delay:3.5s;bottom:40%"></span>
+    <span class="hero-particle" style="left:62%;width:4px;height:4px;animation-duration:11s;animation-delay:1.8s;bottom:20%"></span>
+    <span class="hero-particle" style="left:80%;width:2px;height:2px;animation-duration:15s;animation-delay:6s;bottom:35%"></span>
+    <span class="hero-particle" style="left:46%;width:3px;height:3px;animation-duration:12s;animation-delay:8.5s;bottom:10%"></span>
   </section>
 
   <hr class="gold-rule" style="max-width:1200px;margin:0 auto 2rem;" aria-hidden="true">
@@ -1223,6 +1285,9 @@
     </div>
 
     <div class="modal-footer">
+      <button class="modal-share-btn" id="modal-share-btn" onclick="shareCurrentKural()" aria-label="Copy kural to share">
+        ↗ Share
+      </button>
       <button class="modal-close-footer-btn tamil" onclick="closeMeaningModal()" lang="ta">மூடு / Close</button>
     </div>
   </div>
@@ -1387,6 +1452,7 @@ let currentBook = null;
 let currentChapter = null;
 let currentKuralForPanel = null;
 let lastFocusedElement = null;
+let _currentModalKural = null;
 
 // ===== DAILY KURAL =====
 function renderDailyKural() {
@@ -1897,10 +1963,12 @@ function toggleMeaning(kuralNum, btn) {
   const k = allKurals.find(x => x.number === kuralNum);
   if (!k) return;
   _modalOpener = btn;
+  _currentModalKural = k;
   openMeaningModal(k);
 }
 
 function openMeaningModal(k) {
+  _currentModalKural = k;
   const overlay = document.getElementById('meaning-modal');
   const box     = document.getElementById('meaning-modal-box');
 
@@ -1968,10 +2036,86 @@ function debounce(fn, ms) {
   return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
 }
 
+// ===== STREAK =====
+function updateStreak() {
+  const today = new Date().toISOString().slice(0, 10);
+  const lastVisit = localStorage.getItem('tk_last_visit') || '';
+  let streak = parseInt(localStorage.getItem('tk_streak') || '0', 10);
+
+  if (lastVisit === today) {
+    // already visited today — streak unchanged
+  } else {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    if (lastVisit === yesterday) {
+      streak += 1;
+    } else {
+      streak = 1;
+    }
+    localStorage.setItem('tk_streak', String(streak));
+    localStorage.setItem('tk_last_visit', today);
+  }
+
+  if (streak > 1) {
+    const badge = document.getElementById('streak-badge');
+    const text  = document.getElementById('streak-text');
+    if (badge && text) {
+      text.textContent = 'Day ' + streak + ' streak';
+      badge.hidden = false;
+    }
+  }
+}
+
+// ===== SHARE =====
+function shareCurrentKural() {
+  const k = _currentModalKural;
+  if (!k) return;
+  const lines = [
+    k.line1 || '', k.line2 || '',
+    '',
+    k.transliteration1 ? (k.transliteration1 + (k.transliteration2 ? '\n' + k.transliteration2 : '')) : '',
+    '',
+    k.translation || '',
+    '',
+    '— குறள் #' + k.number + (k.chapter_name ? ' · ' + k.chapter_name : ''),
+    '',
+    'Thirukkural Wisdom Hub 📖',
+  ].filter((l, i, arr) => !(l === '' && arr[i - 1] === '')); // collapse double blank lines
+  const text = lines.join('\n').trim();
+
+  const btn = document.getElementById('modal-share-btn');
+
+  function showCopied() {
+    if (!btn) return;
+    btn.classList.add('copied');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '↗ Share';
+    }, 1500);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showCopied).catch(() => fallbackCopy(text, showCopied));
+  } else {
+    fallbackCopy(text, showCopied);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
 // ===== INIT =====
 history.replaceState({view:'home'}, '');
 loadSeenKurals();
 updateGlobalProgress();
+updateStreak();
 fetchKurals();
 </script>
 </body>
